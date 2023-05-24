@@ -1,17 +1,14 @@
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
+import { getDateToLocale } from "@/lib/utils";
 import { Todo } from "@/types";
-import axios from "axios";
 import Link from "next/link";
 import { Icons } from "./icons";
 import { buttonVariants } from "./ui/button";
-import { getDateToLocale } from "@/lib/utils";
 
 interface PageProps {
   todo: Todo;
