@@ -13,7 +13,7 @@ export default async function Home() {
 
         <div className="mx-2 my-2 bg-slate-100 rounded-sm dark:bg-transparent grid grid-cols-1 gap-4 p-5 ">
           {todoList.map((todo) => (
-            <Suspense fallback={<TodoSkeleton />}>
+            <Suspense key={todo.id} fallback={<TodoSkeleton />}>
               {/* @ts-expect-error Async Server Component */}
               <TodoCard key={todo.id} todo={todo} />
             </Suspense>
