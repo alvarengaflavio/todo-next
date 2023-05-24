@@ -1,66 +1,43 @@
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
+import { getDateToLocale } from "@/lib/utils";
 import { Todo } from "@/types";
-import axios from "axios";
 import Link from "next/link";
 import { Icons } from "./icons";
 import { buttonVariants } from "./ui/button";
-import { getDateToLocale } from "@/lib/utils";
 
 interface PageProps {
-  id: number;
+  todo: Todo;
 }
 
 const TodoCard = async (props: PageProps) => {
-  const { id } = props;
+  const { todo } = props;
+  const createdAt = getDateToLocale(todo.createdAt);
 
   const fakeDelay = (ms: number) => new Promise((res) => setTimeout(res, ms));
 
   await fakeDelay(Math.random() * 5000 + 5);
 
-  const getTodo = async () => {
-    const { data } = await axios.get(
-      `https://jsonplaceholder.typicode.com/todos/${id}`
-    );
-    return data as Todo;
-  };
-
-  const data: Todo = await getTodo();
-
-  const { title, description, content, footer } = {
-    title: `TODO #${data.id}`,
-    description: `criada em ${getDateToLocale(Date.now())}`,
-    content: data.title,
-    footer: `${data.completed}`,
-  };
-
   return (
-    <Card className="flex flex-col justify-between align-bottom">
-      <CardHeader>
-        <CardTitle className="text-center">
-          {title ? title : "Card Title"}
-        </CardTitle>
-        <CardDescription className="text-center">
-          {description ? description : "Card Description"}
-        </CardDescription>
+    <Card className="flex justify-between w-full p-0 min-h-[200px]">
+      <CardHeader className="p-0 w-1/12">
+        <input type="checkbox" defaultChecked={todo.done} className="m-auto" />
       </CardHeader>
-      <CardContent>
-        <p className="text-center">{content ? content : "Card Content"}</p>
+
+      <CardContent className="flex flex-col flex-1 p-0 justify-between text-center w-10/12">
+        <div className="text-3xl mt-20"> {todo.title ?? "Card Title"}</div>
+        <div className="text-sm text-slate-400 pb-1 mb-10">
+          criada em {createdAt ?? "..."}
+        </div>
       </CardContent>
-      <CardContent>
-        <p className="text-center">
-          {footer === "true" ? "Completa" : "Incompleta"}
-        </p>
-      </CardContent>
-      <CardFooter className="flex justify-around align-bottom">
+
+      <CardFooter className="flex justify-around align-bottom w-1/12">
         <Link
-          href={`/dashboard/${id}`}
+          href={`/dashboard/${todo.id}`}
           className={buttonVariants({ variant: "outline" })}
           style={{
             height: "1.5rem",
