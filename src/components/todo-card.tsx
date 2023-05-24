@@ -28,7 +28,7 @@ const TodoCard = async (props: PageProps) => {
   return (
     <Card className="flex justify-between w-full p-0 min-h-[200px]">
       <CardHeader className="p-0 w-1/12">
-        <input type="checkbox" checked={todo.done} className="m-auto" />
+        <input type="checkbox" defaultChecked={todo.done} className="m-auto" />
       </CardHeader>
 
       <CardContent className="flex flex-col flex-1 p-0 justify-between text-center w-10/12">
