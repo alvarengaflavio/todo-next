@@ -6,23 +6,17 @@ interface LayoutProps {
 }
 
 export const metadata = {
-  title: "Page title",
-  description: "Page description",
+  title: "Authorization",
+  description: "Authorization page, for logging in and creating new users.",
 };
 
 const layout = async ({ children }: LayoutProps) => {
   return (
-    <>
+    <div>
       <SiteHeader />
-      <div className="flex min-h-screen flex-col space-y-6">
-        <div className="container flex-1">
-          <main className="flex w-full flex-1 flex-col overflow-hidden">
-            {children}
-          </main>
-        </div>
-      </div>
+      <main>{children}</main>
       <SiteFooter className="border-t" />
-    </>
+    </div>
   );
 };
 
