@@ -1,3 +1,4 @@
+import { ToastSimple } from "@/components/toast-simple";
 import TodoCard from "@/components/todo-card";
 import { TodoSkeleton } from "@/components/todo-skeleton";
 import { getTodos } from "@/lib/axios-instance";
@@ -19,6 +20,7 @@ export default async function Home() {
             </Suspense>
           ))}
         </div>
+        <ToastSimple />
       </section>
     </main>
   );
