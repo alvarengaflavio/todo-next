@@ -7,6 +7,10 @@ export const dashboardConfig: DashboardConfig = {
       href: "/",
     },
     {
+      title: "Criar Todo",
+      href: "/todo/create",
+    },
+    {
       title: "Suporte",
       href: "/support",
       disabled: true,

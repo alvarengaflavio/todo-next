@@ -1,4 +1,5 @@
 import { TailwindIndicator } from "@/components/tailwind-indicator";
+import { Toaster } from "@/components/ui/toast/toaster";
 import { siteConfig } from "@/config/site";
 import "@/styles/globals.css";
 import { Metadata } from "next";
@@ -40,6 +41,7 @@ export default function RootLayout({ children }: LayoutProps) {
           {children}
           {/* ThemeSwitch só funcionava abaixo do children, agora funciona acima */}
           <TailwindIndicator />
+          <Toaster />
         </Providers>
       </body>
     </html>
