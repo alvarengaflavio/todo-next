@@ -12,25 +12,18 @@ interface PageProps {}
 
 export const TodoSkeleton: FC<PageProps> = ({}) => {
   return (
-    <Card>
-      <CardHeader className="gap-2">
-        <CardTitle>
-          <Skeleton className="h-4 w-3/5 mx-auto" />
-        </CardTitle>
-        <Skeleton className="h-4 w-4/5 mx-auto" />
-        <Skeleton className="h-4 w-2/5 mx-auto" />
+    <Card className="flex justify-between w-full p-0 min-h-[200px]">
+      <CardHeader className="p-0 w-1/12">
+        <Skeleton className="h-8 w-8 m-auto rounded-full" />
       </CardHeader>
 
-      <CardContent>
-        <Skeleton className="h-20 w-full" />
+      <CardContent className="flex flex-col flex-1 p-0 justify-between w-10/12">
+        <Skeleton className="h-10 w-3/4 mt-20 mx-auto" />
+        <Skeleton className="h-4 w-1/3 mb-8 mx-auto" />
       </CardContent>
 
-      <CardContent>
-        <Skeleton className="h-4 w-full" />
-      </CardContent>
-
-      <CardFooter>
-        <Skeleton className="h-4 w-1/4 mx-auto" />
+      <CardFooter className="w-1/12 p-0">
+        <Skeleton className="h-4 w-8 m-auto rounded-full" />
       </CardFooter>
     </Card>
   );
