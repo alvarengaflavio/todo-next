@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/db";
 import { exceptionHandler } from "@/lib/exception-handler";
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
   try {
@@ -10,7 +10,7 @@ export async function GET(req: NextRequest) {
     // console.log(mySearchParam);
     const todoList = await prisma.todo.findMany();
 
-    return new Response(JSON.stringify(todoList), {
+    return NextResponse.json(todoList, {
       status: 200,
       statusText: "OK",
     });
