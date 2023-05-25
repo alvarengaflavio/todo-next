@@ -35,7 +35,7 @@ const TodoCard = async (props: PageProps) => {
         </div>
       </CardContent>
 
-      <CardFooter className="flex justify-around align-bottom w-1/12">
+      <CardFooter className="flex justify-around align-bottom p-0 w-1/12">
         <Link
           href={`/dashboard/${todo.id}`}
           className={buttonVariants({ variant: "outline" })}
