@@ -1,10 +1,12 @@
+import { ToastSimple } from "@/components/toast-simple";
 import TodoCard from "@/components/todo-card";
 import { TodoSkeleton } from "@/components/todo-skeleton";
-import { prisma } from "@/lib/db";
+import { getTodos } from "@/lib/axios-instance";
+
 import { Suspense } from "react";
 
 export default async function Home() {
-  const todoList = await prisma.todo.findMany();
+  const todoList = await getTodos();
 
   return (
     <main className="flex min-h-screen container flex-col items-center justify-between px-24 py-4">
@@ -18,6 +20,7 @@ export default async function Home() {
             </Suspense>
           ))}
         </div>
+        <ToastSimple />
       </section>
     </main>
   );

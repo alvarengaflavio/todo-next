@@ -23,10 +23,10 @@ export type DashboardConfig = {
 };
 
 export interface Todo {
-  id: number;
+  id?: string;
   title: string;
   done: boolean;
   createdAt: string;
-  updatedAt?: string;
-  userId?: number;
+  updatedAt: string;
+  userId?: number | string;
 }
