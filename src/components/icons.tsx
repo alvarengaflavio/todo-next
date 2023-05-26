@@ -1,5 +1,6 @@
 import {
   Binary,
+  Check,
   Laptop,
   Link2,
   LucideProps,
@@ -15,6 +16,7 @@ export type Icon = LucideIcon;
 
 export const Icons = {
   code: Binary,
+  check: Check,
   close: X,
   moon: Moon,
   sun: SunMedium,

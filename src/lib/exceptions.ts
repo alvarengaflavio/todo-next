@@ -11,3 +11,10 @@ export class NotFoundException extends Error {
     this.name = "NotFoundException";
   }
 }
+
+export class BadRequestException extends Error {
+  constructor(message = "The request was malformed") {
+    super(message);
+    this.name = "BadRequestException";
+  }
+}

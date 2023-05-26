@@ -9,10 +9,10 @@ export async function GET(req: NextRequest) {
     // const mySearchParam = searchParams.get("search");
     const orderBy: Prisma.Enumerable<Prisma.TodoOrderByWithRelationInput> = [
       {
-        createdAt: "desc",
+        done: "asc",
       },
       {
-        done: "asc",
+        createdAt: "desc",
       },
     ];
 

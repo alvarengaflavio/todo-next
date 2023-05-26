@@ -6,11 +6,10 @@ interface LayoutProps {
 }
 
 export const metadata = {
-  title: "Page title",
-  description: "Page description",
+  title: "Editar tarefa",
 };
 
-const Layout = async ({ children }: LayoutProps) => {
+const LayoutTodoId = async ({ children }: LayoutProps) => {
   return (
     <div className="flex min-h-screen flex-col space-y-6">
       <SiteHeader />
@@ -24,4 +23,4 @@ const Layout = async ({ children }: LayoutProps) => {
   );
 };
 
-export default Layout;
+export default LayoutTodoId;
