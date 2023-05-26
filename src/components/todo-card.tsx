@@ -76,7 +76,7 @@ const TodoCard = async ({ todo }: TodoCardProps) => {
 
       <CardFooter className="flex justify-around align-bottom p-0 w-1/12">
         <Link
-          href={`/dashboard/${todo.id}`}
+          href={`/todo/${todo.id}`}
           className={buttonVariants({ variant: "outline" })}
           style={{
             height: "1.5rem",
