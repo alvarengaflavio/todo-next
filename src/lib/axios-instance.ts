@@ -20,3 +20,16 @@ export const postTodo = async (todo: Todo): Promise<Todo> => {
     return {} as Todo;
   }
 };
+
+export const handleTodoDone = async (
+  done: boolean,
+  todoId: string
+): Promise<Todo> => {
+  try {
+    const response = await api.patch(`/todo/${todoId}/done`, { done });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return {} as Todo;
+  }
+};
