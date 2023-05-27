@@ -23,7 +23,7 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
             >
               alva
             </a>
-            . Hosted on{" "}
+            <Icons.logoAv />. Hosted on{" "}
             <a
               href="https://vercel.com"
               target="_blank"

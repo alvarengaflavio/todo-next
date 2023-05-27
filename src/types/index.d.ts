@@ -22,11 +22,11 @@ export type DashboardConfig = {
   sidebarNav: SidebarNavItem[];
 };
 
-export interface Todo {
+export type Todo = {
   id?: string;
   title: string;
   done: boolean;
   createdAt: string;
   updatedAt: string;
   userId?: number | string;
-}
+};

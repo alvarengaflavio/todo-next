@@ -6,8 +6,8 @@ interface LayoutProps {
 }
 
 export const metadata = {
-  title: "Home",
-  description: "Page description",
+  title: "Lista de Tarefas",
+  description: "Lista de todas as tarefas",
 };
 
 const Layout = async ({ children }: LayoutProps) => {

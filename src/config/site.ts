@@ -1,11 +1,11 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: "Next.js Template",
-  description: "My template for Next.js applications with Tailwind CSS.",
+  name: "Todo App",
+  description: "Lista de Tarefas simples com Next.js 13 e TypeScript",
   mainNav: [
     {
-      title: "Home",
+      title: "Página Inicial",
       href: "/",
     },
   ],

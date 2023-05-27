@@ -1,5 +1,6 @@
 import {
   Binary,
+  BookOpenCheck,
   Check,
   Laptop,
   Link2,
@@ -23,23 +24,13 @@ export const Icons = {
   laptop: Laptop,
   link: Link2,
   twitter: Twitter,
-  logo: Binary,
+  logo: BookOpenCheck,
 
   logoAv: () => (
     <Image
       src={"/av-big.png"}
-      className="aspect-auto p-0.5 w-8 dark:bg-slate-800 dark:rounded-sm"
+      className="aspect-auto p-0.5 w-5 mx-0.5 inline-block"
       alt="Logo"
-      width="40"
-      height="40"
-    />
-  ),
-
-  logoBig: () => (
-    <Image
-      src={"/av-big.png"}
-      alt="Logo"
-      className="aspect-auto"
       width="40"
       height="40"
     />
