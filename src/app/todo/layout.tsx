@@ -6,7 +6,7 @@ interface LayoutProps {
 }
 
 export const metadata = {
-  title: "Editar tarefa",
+  title: "Editar Tarefa",
 };
 
 const LayoutTodoId = async ({ children }: LayoutProps) => {
