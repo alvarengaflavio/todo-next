@@ -16,6 +16,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
+import { postTodo } from "@/lib/axios-instance";
+import { useRouter } from "next/navigation";
 import { Card } from "./ui/card";
 
 const FormSchema = z.object({
@@ -24,8 +26,8 @@ const FormSchema = z.object({
     .min(6, {
       message: "A tarefa deve ter no mínimo 6 caracteres.",
     })
-    .max(30, {
-      message: "A tarefa deve ter no máximo 30 caracteres.",
+    .max(45, {
+      message: "A tarefa deve ter no máximo 45 caracteres.",
     })
     .nonempty({
       message: "A tarefa não pode ser vazia.",
@@ -33,11 +35,19 @@ const FormSchema = z.object({
 });
 
 export function CreateTodoForm() {
+  const router = useRouter();
   const form = useForm<z.infer<typeof FormSchema>>({
+    defaultValues: {
+      title: "", // Isso é necessário para o formulário ser controlado pelo react-hook-form
+    },
     resolver: zodResolver(FormSchema),
   });
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
+  const refreshData = () => {
+    router.refresh();
+  };
+
+  async function onSubmit(data: z.infer<typeof FormSchema>) {
     toast({
       title: "Você submeteu os seguintes dados:",
       description: (
@@ -46,6 +56,9 @@ export function CreateTodoForm() {
         </pre>
       ),
     });
+
+    await postTodo({ title: data.title });
+    refreshData();
   }
 
   return (
@@ -61,11 +74,16 @@ export function CreateTodoForm() {
               name="title"
               render={({ field }) => (
                 <FormItem className="w-full h-[200px] flex flex-col justify-center relative">
-                  <FormLabel className="text-base font-light">
+                  <FormLabel className="text-base font-light" htmlFor="title">
                     CRIAR NOVA TAREFA
                   </FormLabel>
                   <FormControl>
-                    <Input placeholder="nova tarefa" {...field} />
+                    <Input
+                      id="title"
+                      placeholder="nova tarefa"
+                      type="text"
+                      {...field}
+                    />
                   </FormControl>
                   <FormDescription>
                     Aqui você pode criar uma nova tarefa.
