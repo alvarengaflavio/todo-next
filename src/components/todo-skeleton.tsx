@@ -7,12 +7,17 @@ import {
   CardTitle,
 } from "./ui/card";
 import { Skeleton } from "./ui/skeleton";
+import { cn } from "@/lib/utils";
 
-interface PageProps {}
+interface TodoSkeletonProp {
+  className?: string;
+}
 
-export const TodoSkeleton: FC<PageProps> = ({}) => {
+export const TodoSkeleton: FC<TodoSkeletonProp> = ({ className }) => {
   return (
-    <Card className="flex justify-between w-full p-0 min-h-[200px]">
+    <Card
+      className={cn("flex justify-between w-full p-0 min-h-[200px]", className)}
+    >
       <CardHeader className="p-0 w-1/12">
         <Skeleton className="h-8 w-8 m-auto rounded-full" />
       </CardHeader>
@@ -27,4 +32,8 @@ export const TodoSkeleton: FC<PageProps> = ({}) => {
       </CardFooter>
     </Card>
   );
+};
+
+TodoSkeleton.defaultProps = {
+  className: "",
 };
