@@ -1,3 +1,5 @@
+"use client";
+
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Card,
@@ -6,9 +8,13 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
-import { getTodo } from "@/lib/axios-instance";
+import { siteConfig } from "@/config/site";
+import { deleteTodo, getTodo } from "@/lib/axios-instance";
 import { getDateToLocale } from "@/lib/utils";
+import { Todo } from "@/types";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 interface PageProps {
   params: {
@@ -16,8 +22,41 @@ interface PageProps {
   };
 }
 
-const TodoPage = async ({ params }: PageProps) => {
-  const todo = await getTodo(params.todoId);
+const defaultTodo = {
+  id: "",
+  title: "",
+  description: "",
+  done: false,
+  createdAt: "",
+  updatedAt: "",
+};
+
+const TodoPage = ({ params }: PageProps) => {
+  const [todo, setTodo] = useState<Todo>(defaultTodo);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const router = useRouter();
+
+  useEffect(() => {
+    async function load() {
+      const _todo = await getTodo(params.todoId);
+      console.log(_todo);
+      setTodo(() => _todo);
+      setIsLoading(() => false);
+    }
+
+    load();
+
+    return () => {};
+  }, []);
+
+  async function handleDelete() {
+    if (isLoading) return;
+    if (!todo.id) return;
+    if (!confirm(`Deseja realmente excluir a tarefa "${todo.title}"?`)) return;
+
+    await deleteTodo(todo.id);
+    router.push(siteConfig.mainNav[0].href);
+  }
 
   return (
     <div className="text-center container flex flex-col items-center">
@@ -48,7 +87,9 @@ const TodoPage = async ({ params }: PageProps) => {
         <div className="flex gap-x-2">
           <Button variant={"default"}>Editar</Button>
 
-          <Button variant={"destructive"}>Excluir</Button>
+          <Button variant={"destructive"} onClick={handleDelete}>
+            Excluir
+          </Button>
         </div>
       </div>
     </div>
