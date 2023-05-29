@@ -16,6 +16,7 @@ export const getTodos = async (): Promise<Todo[]> => {
 
 export const postTodo = async (todo: Pick<Todo, "title">) => {
   try {
+    // ! TODO - Refatorar para usar a action ou compartilhar o state de todoList entre as components
     const newTodo = await createTodoAction(todo);
 
     return newTodo;
