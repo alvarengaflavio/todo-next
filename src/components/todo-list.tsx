@@ -10,9 +10,14 @@ interface TodoListProps {
   className?: string;
 }
 
+const defaultProps = {
+  className: "",
+  todos: [] as Todo[],
+};
+
 export const TodoList: FC<TodoListProps> = ({
-  todos,
-  className,
+  todos = defaultProps.todos,
+  className = defaultProps.className,
   ...props
 }: TodoListProps) => {
   const [todoList, setTodoList] = useState<Todo[]>(todos);
@@ -46,11 +51,6 @@ export const TodoList: FC<TodoListProps> = ({
       </ul>
     </div>
   );
-};
-
-TodoList.defaultProps = {
-  className: "",
-  todos: [],
 };
 
 export default TodoCard;
