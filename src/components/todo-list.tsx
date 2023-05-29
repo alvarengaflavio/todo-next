@@ -39,7 +39,7 @@ export const TodoList: FC<TodoListProps> = ({
     <div className={cn(className)} {...props}>
       <ul className="space-y-4">
         {todoList.map((todo) => (
-          <li>
+          <li key={`todo-${todo.id}`}>
             <TodoCard key={todo.id} todo={todo} handledDone={handleTodoDone} />
           </li>
         ))}
