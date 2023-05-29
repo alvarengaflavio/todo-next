@@ -92,7 +92,9 @@ export function CreateTodoForm() {
                 </FormItem>
               )}
             />
-            <Button type="submit">Enviar</Button>
+            <Button type="submit" className="mt-1">
+              Enviar
+            </Button>
           </div>
         </form>
       </Form>
