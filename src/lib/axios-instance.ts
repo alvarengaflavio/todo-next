@@ -1,3 +1,5 @@
+"use server";
+
 import { Todo } from "@/types";
 import { revalidatePath } from "next/cache";
 import api from "./axios";
