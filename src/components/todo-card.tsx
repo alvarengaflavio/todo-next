@@ -6,27 +6,29 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
+import { handleTodoDone } from "@/lib/axios-instance";
 import { getDateToLocale } from "@/lib/utils";
 import { Todo } from "@/types";
 import Link from "next/link";
+import { FC } from "react";
 import { Icons } from "./icons";
 import { buttonVariants } from "./ui/button";
-import { useState } from "react";
-import { handleTodoDone } from "@/lib/axios-instance";
 
 interface TodoCardProps {
   todo: Todo;
+  handledDone: (id: string) => void;
 }
 
-const TodoCard = async ({ todo }: TodoCardProps) => {
-  const [done, setDone] = useState<boolean>(todo.done);
+export const TodoCard: FC<TodoCardProps> = ({ todo, handledDone }) => {
+  const done = todo.done;
 
-  const createdAt = getDateToLocale(todo.createdAt);
-  const updatedAt = getDateToLocale(todo.updatedAt);
+  const displayDate = !done
+    ? getDateToLocale(todo.createdAt)
+    : getDateToLocale(todo.updatedAt);
 
-  const handleDone = async () => {
+  const handleCardDone = async () => {
     handleTodoDone(!done, todo.id!);
-    setDone(() => !done);
+    handledDone(todo.id!);
   };
 
   return (
@@ -36,7 +38,7 @@ const TodoCard = async ({ todo }: TodoCardProps) => {
           <CardHeader className="flex item-center w-1/12 p-0">
             <div
               id={todo.id}
-              onClick={handleDone}
+              onClick={handleCardDone}
               className="flex items-center justify-center w-8 h-8 rounded-full m-auto cursor-pointer bg-foreground border-transparent transition-colors duration-300 outline-none"
             >
               <Icons.check className="text-background" />
@@ -44,13 +46,13 @@ const TodoCard = async ({ todo }: TodoCardProps) => {
           </CardHeader>
           <CardContent className="flex flex-col flex-1 p-0 justify-between text-center w-10/12">
             <div
-              onClick={handleDone}
+              onClick={handleCardDone}
               className="text-3xl mt-20 line-through text-slate-400"
             >
               {todo.title ?? ""}
             </div>
             <div className="text-sm text-slate-300 line-through pb-1 mb-10">
-              finalizada em {updatedAt ?? "..."}
+              finalizada em {displayDate ?? "..."}
             </div>
           </CardContent>
         </>
@@ -59,16 +61,16 @@ const TodoCard = async ({ todo }: TodoCardProps) => {
           <CardHeader className="flex item-center w-1/12 p-0">
             <div
               id={todo.id}
-              onClick={handleDone}
+              onClick={handleCardDone}
               className="flex items-center justify-center w-8 h-8 rounded-full m-auto cursor-pointer border-2 border-slate-400 transition-colors duration-300 outline-none"
             />
           </CardHeader>
           <CardContent className="flex flex-col flex-1 p-0 justify-between text-center w-10/12">
-            <div onClick={handleDone} className="text-3xl mt-20 ">
+            <div onClick={handleCardDone} className="text-3xl mt-20 ">
               {todo.title ?? ""}
             </div>
             <div className="text-sm text-slate-400 pb-1 mb-10">
-              criada em {createdAt ?? "..."}
+              criada em {displayDate ?? "..."}
             </div>
           </CardContent>
         </>
@@ -90,6 +92,17 @@ const TodoCard = async ({ todo }: TodoCardProps) => {
       </CardFooter>
     </Card>
   );
+};
+
+TodoCard.defaultProps = {
+  handledDone: () => {},
+  todo: {
+    id: "",
+    title: "",
+    done: false,
+    createdAt: "",
+    updatedAt: "",
+  } as Todo,
 };
 
 export default TodoCard;
