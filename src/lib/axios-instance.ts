@@ -1,9 +1,8 @@
-"use server";
-
-import { Todo } from "@/types";
-import { useRouter } from "next/navigation";
-import api from "./axios";
 import { siteConfig } from "@/config/site";
+import { Todo } from "@/types";
+import { revalidatePath } from "next/cache";
+import api from "./axios";
+import { createTodoAction } from "@/app/_actions";
 
 export const getTodos = async (): Promise<Todo[]> => {
   try {
@@ -15,13 +14,15 @@ export const getTodos = async (): Promise<Todo[]> => {
   }
 };
 
-export const postTodo = async (todo: Pick<Todo, "title">): Promise<Todo> => {
+export const postTodo = async (todo: Pick<Todo, "title">) => {
   try {
-    const response = await api.post("/todo", todo);
+    const newTodo = await createTodoAction(todo);
 
-    return response.data;
+    return newTodo;
+    // const newTodo = await api.post("/todo", body);
+    // return newTodo.data;
   } catch (error) {
-    return {} as Todo;
+    console.error(error);
   }
 };
 
@@ -48,14 +49,9 @@ export const getTodo = async (todoId: string): Promise<Todo> => {
   }
 };
 
-export const deleteTodo = async (todoId: string): Promise<Todo> => {
+export const deleteTodo = async (todoId: string) => {
   try {
-    const router = useRouter();
-    const response = await api.delete(`/todo/${todoId}`);
-
-    router.replace(siteConfig.mainNav[0].href);
-
-    return response.data;
+    await api.delete(`/todo/${todoId}`);
   } catch (error) {
     return {} as Todo;
   }
