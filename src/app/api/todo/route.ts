@@ -1,8 +1,11 @@
 import { prisma } from "@/lib/db";
 import { exceptionHandler } from "@/lib/exception-handler";
 import { BadRequestException } from "@/lib/exceptions";
+import { createTodoSchema } from "@/lib/zod";
 import { Prisma } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
+
+const todoCreateSchema = createTodoSchema;
 
 export async function GET(req: NextRequest) {
   try {
@@ -32,11 +35,12 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   try {
-    const data = await req.json(); // data is a JS object with the JSON-parsed body
+    const json = await req.json(); // data is a JS object with the JSON-parsed body
 
-    if (!data.title) throw new BadRequestException("Título não informado");
-    if (typeof data.title !== "string")
-      throw new BadRequestException("Título deve ser uma string");
+    if (!json.title) throw new BadRequestException("Título não informado");
+
+    const body = todoCreateSchema.parse(json);
+    const data = { title: body.title };
 
     const newTodo = await prisma.todo.create({ data });
 
