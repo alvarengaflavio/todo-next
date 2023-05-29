@@ -11,7 +11,7 @@ export const getTodos = async (): Promise<Todo[]> => {
   }
 };
 
-export const postTodo = async (todo: Todo): Promise<Todo> => {
+export const postTodo = async (todo: Pick<Todo, "title">): Promise<Todo> => {
   try {
     const response = await api.post("/todo", todo);
 
@@ -37,6 +37,16 @@ export const handleTodoDone = async (
 export const getTodo = async (todoId: string): Promise<Todo> => {
   try {
     const response = await api.get(`/todo/${todoId}`);
+
+    return response.data;
+  } catch (error) {
+    return {} as Todo;
+  }
+};
+
+export const deleteTodo = async (todoId: string): Promise<Todo> => {
+  try {
+    const response = await api.delete(`/todo/${todoId}`);
 
     return response.data;
   } catch (error) {
