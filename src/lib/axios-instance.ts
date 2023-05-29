@@ -1,4 +1,5 @@
 import { Todo } from "@/types";
+import { revalidatePath } from "next/cache";
 import api from "./axios";
 
 export const getTodos = async (): Promise<Todo[]> => {
@@ -47,6 +48,8 @@ export const getTodo = async (todoId: string): Promise<Todo> => {
 export const deleteTodo = async (todoId: string): Promise<Todo> => {
   try {
     const response = await api.delete(`/todo/${todoId}`);
+
+    revalidatePath("/");
 
     return response.data;
   } catch (error) {
