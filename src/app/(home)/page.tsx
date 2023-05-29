@@ -3,6 +3,8 @@ import { CreateTodoForm } from "@/components/todo-create";
 import { TodoList } from "@/components/todo-list";
 import { getTodos } from "@/lib/axios-instance";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   const todoList = await getTodos();
 
