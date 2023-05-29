@@ -1,4 +1,5 @@
 import { Prisma } from "@prisma/client";
+import { z } from "zod";
 
 export function exceptionHandler(error: any) {
   if (error instanceof Prisma.PrismaClientValidationError) {
@@ -7,6 +8,13 @@ export function exceptionHandler(error: any) {
     return new Response(JSON.stringify(errObj), {
       status: errObj.code ?? 400,
       statusText: errObj.name ?? "Bad Request",
+    });
+  } else if (error instanceof z.ZodError) {
+    const errObj = buildZodErrorObject(error);
+
+    return new Response(JSON.stringify(errObj), {
+      status: errObj.code ?? 400,
+      statusText: errObj.name ?? "Unprocessable Content",
     });
   }
 
@@ -54,6 +62,14 @@ const buildPrismaErrorObject = (
     name: "Bad Request",
     code: (error?.cause as number) ?? 400,
     message: getPrismaError(error) ?? "Internal Server Error",
+  };
+};
+
+const buildZodErrorObject = (error: z.ZodError): ErrorObject => {
+  return {
+    name: "Unprocessable Content",
+    code: 422,
+    message: error.issues[0]?.message ?? "Unprocessable Content",
   };
 };
 

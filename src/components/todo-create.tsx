@@ -19,20 +19,9 @@ import { toast } from "@/components/ui/use-toast";
 import { postTodo } from "@/lib/axios-instance";
 import { useRouter } from "next/navigation";
 import { Card } from "./ui/card";
+import { createTodoSchema } from "@/lib/zod";
 
-const FormSchema = z.object({
-  title: z
-    .string()
-    .min(6, {
-      message: "A tarefa deve ter no mínimo 6 caracteres.",
-    })
-    .max(45, {
-      message: "A tarefa deve ter no máximo 45 caracteres.",
-    })
-    .nonempty({
-      message: "A tarefa não pode ser vazia.",
-    }),
-});
+const FormSchema = createTodoSchema;
 
 export function CreateTodoForm() {
   const router = useRouter();
@@ -42,10 +31,6 @@ export function CreateTodoForm() {
     },
     resolver: zodResolver(FormSchema),
   });
-
-  const refreshData = () => {
-    router.refresh();
-  };
 
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     toast({
@@ -57,8 +42,21 @@ export function CreateTodoForm() {
       ),
     });
 
-    await postTodo({ title: data.title });
-    refreshData();
+    const newTodo = await postTodo({ title: data.title });
+
+    toast({
+      title: "Tarefa criada com sucesso!",
+      description: (
+        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+          <code className="text-white">{JSON.stringify(newTodo, null, 2)}</code>
+        </pre>
+      ),
+    });
+
+    router.refresh();
+    router.push("/", {
+      forceOptimisticNavigation: true,
+    });
   }
 
   return (

@@ -19,7 +19,21 @@ interface TodoCardProps {
   handledDone: (id: string) => void;
 }
 
-export const TodoCard: FC<TodoCardProps> = ({ todo, handledDone }) => {
+const defaultProps = {
+  handledDone: () => {},
+  todo: {
+    id: "",
+    title: "",
+    done: false,
+    createdAt: "",
+    updatedAt: "",
+  } as Todo,
+};
+
+export const TodoCard: FC<TodoCardProps> = ({
+  todo = defaultProps.todo,
+  handledDone = defaultProps.handledDone,
+}) => {
   const done = todo.done;
 
   const displayDate = !done
@@ -92,17 +106,6 @@ export const TodoCard: FC<TodoCardProps> = ({ todo, handledDone }) => {
       </CardFooter>
     </Card>
   );
-};
-
-TodoCard.defaultProps = {
-  handledDone: () => {},
-  todo: {
-    id: "",
-    title: "",
-    done: false,
-    createdAt: "",
-    updatedAt: "",
-  } as Todo,
 };
 
 export default TodoCard;
