@@ -9,8 +9,6 @@ const todoCreateSchema = createTodoSchema;
 
 export async function GET(req: NextRequest) {
   try {
-    // const { searchParams } = new URL(req.url);
-    // const mySearchParam = searchParams.get("search");
     const orderBy: Prisma.Enumerable<Prisma.TodoOrderByWithRelationInput> = [
       {
         done: "asc",
@@ -41,7 +39,6 @@ export async function POST(req: NextRequest) {
 
     const body = todoCreateSchema.parse(json);
     const data = { title: body.title };
-
     const newTodo = await prisma.todo.create({ data });
 
     return NextResponse.json(newTodo, { status: 201 });

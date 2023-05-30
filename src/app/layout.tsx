@@ -39,7 +39,6 @@ export default function RootLayout({ children }: LayoutProps) {
       >
         <Providers attribute="class" defaultTheme="system" enableSystem>
           {children}
-          {/* ThemeSwitch só funcionava abaixo do children, agora funciona acima */}
           <TailwindIndicator />
           <Toaster />
         </Providers>

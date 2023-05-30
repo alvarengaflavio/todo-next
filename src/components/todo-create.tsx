@@ -17,14 +17,17 @@ import {
 import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
 import { postTodo } from "@/lib/axios-instance";
-import { useRouter } from "next/navigation";
-import { Card } from "./ui/card";
 import { createTodoSchema } from "@/lib/zod";
+import { Card } from "./ui/card";
+import { useContext } from "react";
+import { TodoContext } from "@/context/todo-context";
+import { Todo } from "@/types";
 
 const FormSchema = createTodoSchema;
 
 export function CreateTodoForm() {
-  const router = useRouter();
+  const { dispatch } = useContext(TodoContext);
+
   const form = useForm<z.infer<typeof FormSchema>>({
     defaultValues: {
       title: "", // Isso é necessário para o formulário ser controlado pelo react-hook-form
@@ -33,29 +36,23 @@ export function CreateTodoForm() {
   });
 
   async function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast({
-      title: "Você submeteu os seguintes dados:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    });
-
     const newTodo = await postTodo({ title: data.title });
 
+    if (!newTodo || newTodo instanceof Error)
+      return toast({
+        title: "Ocorreu um erro ao criar a tarefa",
+        description: (
+          <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+            <code className="text-white">
+              {JSON.stringify(newTodo ?? "indefinido", null, 2)}
+            </code>
+          </pre>
+        ),
+      });
+
+    dispatch({ type: "ADD_TODO", payload: newTodo as Todo });
     toast({
       title: "Tarefa criada com sucesso!",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(newTodo, null, 2)}</code>
-        </pre>
-      ),
-    });
-
-    router.refresh();
-    router.push("/", {
-      forceOptimisticNavigation: true,
     });
   }
 

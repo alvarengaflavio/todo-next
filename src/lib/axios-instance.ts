@@ -1,6 +1,4 @@
-import { siteConfig } from "@/config/site";
 import { Todo } from "@/types";
-import { revalidatePath } from "next/cache";
 import api from "./axios";
 import { createTodoAction } from "@/app/_actions";
 
@@ -16,14 +14,13 @@ export const getTodos = async (): Promise<Todo[]> => {
 
 export const postTodo = async (todo: Pick<Todo, "title">) => {
   try {
-    // ! TODO - Refatorar para usar a action ou compartilhar o state de todoList entre as components
-    const newTodo = await createTodoAction(todo);
+    const { data } = await api.post("/todo", todo);
+    return data;
 
-    return newTodo;
-    // const newTodo = await api.post("/todo", body);
-    // return newTodo.data;
+    // ! Não sei qual a melhor forma de implementar, se for utilizar serverAction utilize a linha abaixo
+    // return = await createTodoAction(todo);
   } catch (error) {
-    console.error(error);
+    return error;
   }
 };
 
@@ -42,9 +39,8 @@ export const handleTodoDone = async (
 
 export const getTodo = async (todoId: string): Promise<Todo> => {
   try {
-    const response = await api.get(`/todo/${todoId}`);
-
-    return response.data;
+    const { data } = await api.get(`/todo/${todoId}`);
+    return data;
   } catch (error) {
     return {} as Todo;
   }
