@@ -1,7 +1,7 @@
 "use client";
 
 import React, { Dispatch, createContext, useReducer } from "react";
-import { ActionType } from "./todo-reducer";
+import { ActionType, reducer } from "./todo-reducer";
 import { Todo } from "@/types";
 
 export type StateType = {
@@ -12,30 +12,12 @@ const initialState: StateType = {
   todos: [],
 };
 
-const reducer = (state: StateType, action: ActionType) => {
-  switch (action.type) {
-    case "SET":
-      if (!action.todos) return state;
-      return { ...state, todos: [...action.todos] };
-
-    case "UPDATE":
-      if (!action.todos) return state;
-      return { ...state, todos: [...state.todos, ...action.todos] };
-
-    case "CHECK":
-      return { ...state, todos: [...state.todos] };
-
-    default:
-      return state;
-  }
-};
-
-export const CounterContext = createContext<{
+export const TodoContext = createContext<{
   state: StateType;
   dispatch: Dispatch<ActionType>;
 }>({ state: initialState, dispatch: () => null });
 
-export const CounterContextProvider = ({
+export const TodoContextProvider = ({
   children,
 }: {
   children: React.ReactNode;
@@ -43,8 +25,8 @@ export const CounterContextProvider = ({
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
-    <CounterContext.Provider value={{ state, dispatch }}>
+    <TodoContext.Provider value={{ state, dispatch }}>
       {children}
-    </CounterContext.Provider>
+    </TodoContext.Provider>
   );
 };
