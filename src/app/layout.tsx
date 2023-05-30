@@ -1,6 +1,7 @@
 import { TailwindIndicator } from "@/components/tailwind-indicator";
 import { Toaster } from "@/components/ui/toast/toaster";
 import { siteConfig } from "@/config/site";
+import { CounterContextProvider } from "@/context/counter.context";
 import "@/styles/globals.css";
 import { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -38,8 +39,7 @@ export default function RootLayout({ children }: LayoutProps) {
         className={inter.className + "min-h-screen bg-background antialiased"}
       >
         <Providers attribute="class" defaultTheme="system" enableSystem>
-          {children}
-          {/* ThemeSwitch só funcionava abaixo do children, agora funciona acima */}
+          <CounterContextProvider>{children}</CounterContextProvider>
           <TailwindIndicator />
           <Toaster />
         </Providers>
