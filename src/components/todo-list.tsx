@@ -1,8 +1,9 @@
 "use client";
 
+import { TodoContext } from "@/context/todo-context";
 import { cn } from "@/lib/utils";
 import { Todo } from "@/types";
-import { FC, useState } from "react";
+import { FC, useContext, useEffect } from "react";
 import TodoCard from "./todo-card";
 
 interface TodoListProps {
@@ -20,35 +21,36 @@ export const TodoList: FC<TodoListProps> = ({
   className = defaultProps.className,
   ...props
 }: TodoListProps) => {
-  const [todoList, setTodoList] = useState<Todo[]>(todos);
+  const { state, dispatch } = useContext(TodoContext);
+
+  useEffect(() => {
+    if (todos.length === 0) return;
+    dispatch({ type: "SET_LIST", payload: todos });
+
+    return () => {};
+  }, []);
 
   const handleTodoDone = (id: string) => {
-    const newTodoList = todoList.map((todo) => {
-      if (todo.id === id) {
-        todo.done = !todo.done;
-      }
-      return todo;
-    });
-    // order by done and createdAt
-    newTodoList.sort((a, b) => {
-      if (a.done === b.done) {
-        return a.createdAt > b.createdAt ? -1 : 1;
-      }
-      return a.done ? 1 : -1;
-    });
-
-    setTodoList(() => newTodoList);
+    dispatch({ type: "SET_DONE", payload: id });
   };
 
   return (
     <div className={cn(className)} {...props}>
-      <ul className="space-y-4">
-        {todoList.map((todo) => (
-          <li key={`todo-${todo.id}`}>
-            <TodoCard key={todo.id} todo={todo} handledDone={handleTodoDone} />
-          </li>
-        ))}
-      </ul>
+      {state.todos.length === 0 ? (
+        <div className="text-center">CRIE SUA PRIMEIRA TAREFA</div>
+      ) : (
+        <ul className="space-y-4">
+          {state.todos.map((todo) => (
+            <li key={`todo-${todo.id}`}>
+              <TodoCard
+                key={todo.id}
+                todo={todo}
+                handledDone={handleTodoDone}
+              />
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };
