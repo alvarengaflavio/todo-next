@@ -15,7 +15,7 @@ export const reducer = (state: StateType, action: ActionType) => {
       return { ...state, todos: [...action.payload] };
 
     case "ADD_TODO":
-      if (!(action.payload instanceof Object) || !("id" in action.payload)) {
+      if (!(action.payload instanceof Object) || !("title" in action.payload)) {
         return state;
       }
 
