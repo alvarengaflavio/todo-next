@@ -17,14 +17,12 @@ import {
 import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
 import { postTodo } from "@/lib/axios-instance";
-import { useRouter } from "next/navigation";
-import { Card } from "./ui/card";
 import { createTodoSchema } from "@/lib/zod";
+import { Card } from "./ui/card";
 
 const FormSchema = createTodoSchema;
 
 export function CreateTodoForm() {
-  const router = useRouter();
   const form = useForm<z.infer<typeof FormSchema>>({
     defaultValues: {
       title: "", // Isso é necessário para o formulário ser controlado pelo react-hook-form
@@ -51,11 +49,6 @@ export function CreateTodoForm() {
           <code className="text-white">{JSON.stringify(newTodo, null, 2)}</code>
         </pre>
       ),
-    });
-
-    router.refresh();
-    router.push("/", {
-      forceOptimisticNavigation: true,
     });
   }
 
