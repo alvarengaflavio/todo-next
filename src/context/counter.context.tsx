@@ -1,7 +1,7 @@
 "use client";
 
 import React, { Dispatch, createContext, useReducer } from "react";
-import { ActionType } from "./counter.reducer";
+import { ActionType, reducer } from "./counter.reducer";
 
 export type StateType = {
   count: number;
@@ -9,19 +9,6 @@ export type StateType = {
 
 const initialState: StateType = {
   count: 0,
-};
-
-const reducer = (state: StateType, action: ActionType) => {
-  switch (action.type) {
-    case "INCREMENT":
-      return { ...state, count: state.count + 1 };
-    case "DECREMENT":
-      return { ...state, count: state.count - 1 };
-    case "RESET":
-      return { ...state, count: 0 };
-    default:
-      return state;
-  }
 };
 
 export const CounterContext = createContext<{
