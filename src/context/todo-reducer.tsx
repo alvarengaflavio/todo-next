@@ -38,6 +38,29 @@ export const reducer = (state: StateType, action: ActionType) => {
 
       return { ...state, todos };
 
+    case "EDIT_TODO":
+      if (
+        !(action.payload instanceof Object) ||
+        !("title" in action.payload) ||
+        !("id" in action.payload)
+      ) {
+        return state;
+      }
+
+      const _update: Pick<Todo, "id" | "title"> = {
+        id: action.payload.id,
+        title: action.payload.title,
+      };
+
+      state.todos.forEach((todo) => {
+        if (todo.id === _update.id) {
+          return { ...todo, title: _update.title };
+        }
+        return todo;
+      });
+
+      return state;
+
     default:
       return state;
   }
