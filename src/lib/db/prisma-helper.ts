@@ -1,13 +1,11 @@
-import { prisma } from "@/lib/db/db";
-import { exceptionHandler } from "@/lib/exception-handler";
-import { BadRequestException } from "@/lib/exceptions";
-import { createTodoSchema } from "@/lib/zod";
 import { Prisma } from "@prisma/client";
-import { NextRequest, NextResponse } from "next/server";
+import { prisma } from "./db";
+import { NextResponse } from "next/server";
+import { exceptionHandler } from "../exception-handler";
+import { Todo } from "@/types";
+import { createTodoSchema } from "../zod";
 
-const todoCreateSchema = createTodoSchema;
-
-export async function GET(req: NextRequest) {
+export async function getTodosAction() {
   try {
     const orderBy: Prisma.Enumerable<Prisma.TodoOrderByWithRelationInput> = [
       {
@@ -31,15 +29,13 @@ export async function GET(req: NextRequest) {
   }
 }
 
-export async function POST(req: NextRequest) {
+export async function postTodoAction(body: Pick<Todo, "title">) {
   try {
-    const json = await req.json(); // data is a JS object with the JSON-parsed body
-
-    if (!json.title) throw new BadRequestException("Título não informado");
-
-    const body = todoCreateSchema.parse(json);
+    const zBody = createTodoSchema.parse(body);
     const data = { title: body.title };
     const newTodo = await prisma.todo.create({ data });
+
+    console.log("ZOD PARSE:", zBody);
 
     return NextResponse.json(newTodo, { status: 201 });
   } catch (error: any) {

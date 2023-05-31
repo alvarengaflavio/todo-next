@@ -22,7 +22,7 @@ export const reducer = (state: StateType, action: ActionType) => {
       return { ...state, todos: [action.payload, ...state.todos] };
 
     case "SET_DONE":
-      if (!(typeof action.payload === "string")) return state;
+      if (typeof action.payload !== "string") return state;
       state.todos.forEach((todo) => {
         if (todo.id === action.payload) {
           todo.done = !todo.done;
@@ -31,6 +31,35 @@ export const reducer = (state: StateType, action: ActionType) => {
       sortTodoList(state.todos);
 
       return { ...state, todos: [...state.todos] };
+
+    case "DELETE_TODO":
+      if (typeof action.payload !== "string") return state;
+      const todos = state.todos.filter((todo) => todo.id !== action.payload);
+
+      return { ...state, todos };
+
+    case "EDIT_TODO":
+      if (
+        !(action.payload instanceof Object) ||
+        !("title" in action.payload) ||
+        !("id" in action.payload)
+      ) {
+        return state;
+      }
+
+      const _update: Pick<Todo, "id" | "title"> = {
+        id: action.payload.id,
+        title: action.payload.title,
+      };
+
+      state.todos.forEach((todo) => {
+        if (todo.id === _update.id) {
+          return { ...todo, title: _update.title };
+        }
+        return todo;
+      });
+
+      return state;
 
     default:
       return state;

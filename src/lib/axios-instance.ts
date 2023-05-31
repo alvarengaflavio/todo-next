@@ -18,6 +18,7 @@ export const postTodo = async (todo: Pick<Todo, "title">) => {
     return data;
 
     // ! Não sei qual a melhor forma de implementar, se for utilizar serverAction utilize a linha abaixo
+    // * Entendi, o actions que deve chamar este arquivo e aqui fazer a conexão direta com o banco de dados
     // return = await createTodoAction(todo);
   } catch (error) {
     return error;
