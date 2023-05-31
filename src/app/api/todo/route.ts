@@ -1,4 +1,4 @@
-import { prisma } from "@/lib/db";
+import { prisma } from "@/lib/db/db";
 import { exceptionHandler } from "@/lib/exception-handler";
 import { BadRequestException } from "@/lib/exceptions";
 import { createTodoSchema } from "@/lib/zod";
