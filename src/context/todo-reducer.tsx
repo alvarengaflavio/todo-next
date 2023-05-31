@@ -32,6 +32,12 @@ export const reducer = (state: StateType, action: ActionType) => {
 
       return { ...state, todos: [...state.todos] };
 
+    case "DELETE_TODO":
+      if (!(typeof action.payload === "string")) return state;
+      const todos = state.todos.filter((todo) => todo.id !== action.payload);
+
+      return { ...state, todos };
+
     default:
       return state;
   }
