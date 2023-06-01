@@ -5,8 +5,14 @@ import { ToastAction } from "@/components/ui/toast";
 import { useToast } from "@/components/ui/use-toast";
 import { ToastClose } from "@radix-ui/react-toast";
 
-export function ToastDestructive() {
+interface ToastDestructiveProps {}
+
+export function ToastDestructive({}: ToastDestructiveProps) {
   const { toast } = useToast();
+
+  async function handleDelete() {
+    console.log("deletar");
+  }
 
   return (
     <Button
@@ -21,6 +27,7 @@ export function ToastDestructive() {
               <ToastAction
                 altText="Tentar novamente"
                 className="outline outline-1 outline-slate-100"
+                onClick={() => handleDelete()}
               >
                 Confirmar
               </ToastAction>
