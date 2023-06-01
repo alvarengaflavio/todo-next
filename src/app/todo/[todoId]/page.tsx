@@ -1,5 +1,6 @@
 "use client";
 
+import { DeleteTodoBtn } from "@/components/todo-delete-button";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Card,
@@ -87,9 +88,10 @@ const TodoPage = ({ params }: PageProps) => {
         <div className="flex gap-x-2">
           <Button variant={"default"}>Editar</Button>
 
-          <Button variant={"destructive"} onClick={handleDelete}>
+          <DeleteTodoBtn handleDelete={handleDelete}>Excluir</DeleteTodoBtn>
+          {/* <Button variant={"destructive"} onClick={handleDelete}>
             Excluir
-          </Button>
+          </Button> */}
         </div>
       </div>
     </div>
