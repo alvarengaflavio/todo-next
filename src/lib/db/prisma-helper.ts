@@ -1,9 +1,9 @@
+import { Todo } from "@/types";
 import { Prisma } from "@prisma/client";
-import { prisma } from "./db";
 import { NextResponse } from "next/server";
 import { exceptionHandler } from "../exception-handler";
-import { Todo } from "@/types";
 import { createTodoSchema } from "../zod";
+import { prisma } from "./db";
 
 export async function getTodosAction() {
   try {
