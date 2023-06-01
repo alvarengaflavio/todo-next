@@ -9,6 +9,7 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
+import { toast } from "@/components/ui/use-toast";
 import { siteConfig } from "@/config/site";
 import { deleteTodo, getTodo } from "@/lib/axios-instance";
 import { getDateToLocale } from "@/lib/utils";
@@ -54,7 +55,21 @@ const TodoPage = ({ params }: PageProps) => {
     if (isLoading) return;
     if (!todo.id) return;
 
-    await deleteTodo(todo.id);
+    const status: boolean = await deleteTodo(todo.id);
+
+    if (!status) {
+      toast({
+        variant: "destructive",
+        title: "Erro ao excluir tarefa",
+        description: "Tente novamente mais tarde",
+      });
+    }
+
+    toast({
+      title: "Tarefa excluída com sucesso",
+      description: "Redirecionando para a página inicial",
+    });
+
     router.push(siteConfig.mainNav[0].href);
   }
 
