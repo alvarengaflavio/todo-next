@@ -5,18 +5,22 @@ import { ToastAction } from "@/components/ui/toast";
 import { useToast } from "@/components/ui/use-toast";
 import { ToastClose } from "@radix-ui/react-toast";
 
-interface ToastDestructiveProps {}
+interface ToastDestructiveProps {
+  handleDelete: () => void;
+  children?: React.ReactNode;
+}
 
-export function ToastDestructive({}: ToastDestructiveProps) {
+export function DeleteTodoBtn({
+  handleDelete,
+  children,
+  ...props
+}: ToastDestructiveProps) {
   const { toast } = useToast();
-
-  async function handleDelete() {
-    console.log("deletar");
-  }
 
   return (
     <Button
       variant="destructive"
+      {...props}
       onClick={() => {
         toast({
           variant: "destructive",
@@ -27,7 +31,7 @@ export function ToastDestructive({}: ToastDestructiveProps) {
               <ToastAction
                 altText="Tentar novamente"
                 className="outline outline-1 outline-slate-100"
-                onClick={() => handleDelete()}
+                onClick={handleDelete}
               >
                 Confirmar
               </ToastAction>
@@ -39,7 +43,7 @@ export function ToastDestructive({}: ToastDestructiveProps) {
         });
       }}
     >
-      Excluir
+      {children}
     </Button>
   );
 }

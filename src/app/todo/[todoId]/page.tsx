@@ -1,5 +1,6 @@
 "use client";
 
+import { DeleteTodoBtn } from "@/components/todo-delete-button";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Card,
@@ -8,6 +9,7 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
+import { toast } from "@/components/ui/use-toast";
 import { siteConfig } from "@/config/site";
 import { deleteTodo, getTodo } from "@/lib/axios-instance";
 import { getDateToLocale } from "@/lib/utils";
@@ -52,9 +54,22 @@ const TodoPage = ({ params }: PageProps) => {
   async function handleDelete() {
     if (isLoading) return;
     if (!todo.id) return;
-    if (!confirm(`Deseja realmente excluir a tarefa "${todo.title}"?`)) return;
 
-    await deleteTodo(todo.id);
+    const status: boolean = await deleteTodo(todo.id);
+
+    if (!status) {
+      toast({
+        variant: "destructive",
+        title: "Erro ao excluir tarefa",
+        description: "Tente novamente mais tarde",
+      });
+    }
+
+    toast({
+      title: "Tarefa excluída com sucesso",
+      description: "Redirecionando para a página inicial",
+    });
+
     router.push(siteConfig.mainNav[0].href);
   }
 
@@ -87,9 +102,10 @@ const TodoPage = ({ params }: PageProps) => {
         <div className="flex gap-x-2">
           <Button variant={"default"}>Editar</Button>
 
-          <Button variant={"destructive"} onClick={handleDelete}>
+          <DeleteTodoBtn handleDelete={handleDelete}>Excluir</DeleteTodoBtn>
+          {/* <Button variant={"destructive"} onClick={handleDelete}>
             Excluir
-          </Button>
+          </Button> */}
         </div>
       </div>
     </div>
