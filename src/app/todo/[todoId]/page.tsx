@@ -53,7 +53,6 @@ const TodoPage = ({ params }: PageProps) => {
   async function handleDelete() {
     if (isLoading) return;
     if (!todo.id) return;
-    if (!confirm(`Deseja realmente excluir a tarefa "${todo.title}"?`)) return;
 
     await deleteTodo(todo.id);
     router.push(siteConfig.mainNav[0].href);
