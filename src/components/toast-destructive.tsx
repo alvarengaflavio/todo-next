@@ -14,7 +14,7 @@ export function ToastDestructive() {
       onClick={() => {
         toast({
           variant: "destructive",
-          title: "Deseja realmente excluir a tarefa?",
+          title: "Confirmar Exclusão?",
 
           action: (
             <>
@@ -24,10 +24,9 @@ export function ToastDestructive() {
               >
                 Confirmar
               </ToastAction>
-              <ToastClose className="inline-flex h-8 shrink-0 items-center justify-center rounded-md border bg-slate-200 text-red-900 px-3 text-sm font-medium ring-offset-slate-100 transition-colors hover:bg-red-900 hover:text-slate-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none">
+              <ToastClose className="inline-flex h-8 shrink-0 items-center justify-center rounded-md outline outline-1 outline-slate-100 bg-slate-200 text-red-900 px-3 text-sm font-medium transition-colors hover:bg-red-900 hover:text-slate-100 focus:outline-2  focus:outline-black disabled:pointer-events-none">
                 Cancelar
               </ToastClose>
-              ,
             </>
           ),
         });
