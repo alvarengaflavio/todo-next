@@ -50,7 +50,8 @@ export const getTodo = async (todoId: string): Promise<Todo> => {
 export const deleteTodo = async (todoId: string) => {
   try {
     await api.delete(`/todo/${todoId}`);
+    return true;
   } catch (error) {
-    return {} as Todo;
+    return false;
   }
 };
