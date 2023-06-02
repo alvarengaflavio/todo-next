@@ -71,17 +71,17 @@ const TodoEditPage: FC<PageProps> = ({ todoProp = defaultTodo }) => {
       <Card className="w-3/4 p-4 my-4 dark:shadow-foreground/10 shadow-md ">
         <CardHeader className="text-slate-400">TAREFA</CardHeader>
         <CardContent className="text-4xl">
-          <p>{todo.title}</p>
+          <span>{todo.title}</span>
         </CardContent>
 
         <CardDescription className="text-xl">
-          <p>{todo.done ? `Completa` : `Incompleta`}</p>
+          <span>{todo.done ? `Completa` : `Incompleta`}</span>
         </CardDescription>
 
         <CardFooter className="text-center text-lg text-slate-500">
-          <p className="min-w-full">
+          <span className="min-w-full">
             {todo.done ? `Finalizada em ${date}` : `Criada em ${date}`}
-          </p>
+          </span>
         </CardFooter>
       </Card>
 
