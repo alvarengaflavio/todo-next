@@ -2,6 +2,7 @@ import { prisma } from "@/lib/db/db";
 import { exceptionHandler } from "@/lib/exception-handler";
 import { BadRequestException, NotFoundException } from "@/lib/exceptions";
 import { NextRequest, NextResponse } from "next/server";
+import { createTodoSchema } from "@/lib/zod";
 
 type Context = {
   params: {
@@ -11,19 +12,18 @@ type Context = {
 
 export async function PATCH(req: NextRequest, context: Context) {
   try {
-    const title = await req.json(); // data is a JS object with the JSON-parsed body
+    const json = await req.json(); // data is a JS object with the JSON-parsed body
     const { params } = context;
 
     if (!params.todoId) throw new BadRequestException("ID não informado");
-    if (typeof title !== "string")
-      throw new BadRequestException("Título não informado");
 
-    const data = { title };
+    const body = createTodoSchema.parse(json);
+    const data = { title: body.title };
     const where = { id: params.todoId };
 
-    const newTodo = await prisma.todo.update({ where, data });
+    const updatedTodo = await prisma.todo.update({ where, data });
 
-    return NextResponse.json(newTodo, { status: 200 });
+    return NextResponse.json(updatedTodo, { status: 200 });
   } catch (error: any) {
     return exceptionHandler(error);
   }
