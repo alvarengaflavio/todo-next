@@ -21,7 +21,6 @@ export function DeleteTodoBtn({
   return (
     <Button
       variant="destructive"
-      disabled={props.disabled ?? false}
       {...props}
       onClick={() => {
         toast({
