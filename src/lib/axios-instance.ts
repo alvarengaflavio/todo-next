@@ -47,6 +47,15 @@ export const getTodo = async (todoId: string): Promise<Todo> => {
   }
 };
 
+export const updateTodo = async (todo: Todo) => {
+  try {
+    const { data } = await api.patch(`/todo/${todo.id}`, todo);
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
+
 export const deleteTodo = async (todoId: string) => {
   try {
     await api.delete(`/todo/${todoId}`);
