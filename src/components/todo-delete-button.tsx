@@ -8,20 +8,17 @@ import { ToastClose } from "@radix-ui/react-toast";
 interface ToastDestructiveProps {
   handleDelete: () => void;
   children?: React.ReactNode;
-  disabled?: boolean;
 }
 
 export function DeleteTodoBtn({
   handleDelete,
   children,
-  ...props
 }: ToastDestructiveProps) {
   const { toast } = useToast();
 
   return (
     <Button
       variant="destructive"
-      {...props}
       onClick={() => {
         toast({
           variant: "destructive",
