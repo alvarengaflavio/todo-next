@@ -13,14 +13,12 @@ interface ToastDestructiveProps {
 export function DeleteTodoBtn({
   handleDelete,
   children,
-  ...props
 }: ToastDestructiveProps) {
   const { toast } = useToast();
 
   return (
     <Button
       variant="destructive"
-      {...props}
       onClick={() => {
         toast({
           variant: "destructive",
