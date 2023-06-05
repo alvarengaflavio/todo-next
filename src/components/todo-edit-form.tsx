@@ -82,23 +82,28 @@ const TodoEditForm: FC<TodoEditItemProps> = ({
                   control={form.control}
                   name="title"
                   render={({ field }) => (
-                    <FormItem className="relative flex flex-col w-full h-[250px] justify-center">
-                      <FormLabel className="text-xl font-light" htmlFor="title">
+                    <FormItem className="relative flex flex-col w-full h-[250px] space-y-14">
+                      <FormLabel
+                        className="text-xl font-light mt-2"
+                        htmlFor="title"
+                      >
                         ATUALIZAR TAREFA
                       </FormLabel>
-                      <FormControl>
-                        <Input
-                          id="title"
-                          placeholder="atualizar tarefa"
-                          type="text"
-                          className="text-4xl font-bold min-w-full text-center"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormDescription>
-                        Entre com o novo texto desta tarefa.
-                      </FormDescription>
-                      <FormMessage className="absolute bottom-5 left-1/2 transform -translate-x-1/2" />
+                      <div className="relative mt-10 flex flex-col w-full justify-start">
+                        <FormControl>
+                          <Input
+                            id="title"
+                            placeholder="atualizar tarefa"
+                            type="text"
+                            className="text-4xl font-bold min-w-full text-center"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormDescription>
+                          Entre com o texto atualizado
+                        </FormDescription>
+                      </div>
+                      <FormMessage className="absolute bottom-10 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-base" />
                     </FormItem>
                   )}
                 />
