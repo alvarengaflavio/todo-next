@@ -72,8 +72,6 @@ const TodoEditPage: FC<PageProps> = ({ todoProp = defaultTodo }) => {
           handleEditing={handleEditing}
         />
       )}
-      {/* <TodoEditItem todo={todo} handleDelete={handleDelete} />
-      <TodoEditForm todo={todo} handleDelete={handleDelete} /> */}
     </div>
   );
 };

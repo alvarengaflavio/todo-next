@@ -30,7 +30,7 @@ const TodoEditItem: FC<TodoEditItemProps> = ({
     <>
       <Card className="w-3/4 p-4 my-4 dark:shadow-foreground/10 shadow-md ">
         <CardHeader className="text-slate-400">TAREFA</CardHeader>
-        <CardContent className="text-4xl">
+        <CardContent className="text-4xl mt-5 font-bold min-h-[134px]">
           <span>{todo.title}</span>
         </CardContent>
 
