@@ -74,23 +74,16 @@ const TodoEditForm: FC<TodoEditItemProps> = ({
   return (
     <>
       <Card className="w-3/4 p-4 my-4 dark:shadow-foreground/10 shadow-md ">
-        <CardHeader className="text-slate-400">TAREFA</CardHeader>
         <CardContent className="text-4xl">
           <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit(onSubmit)}
-              className="w-3/4 space-y-6"
-            >
-              <div className="flex h-[200px] w-[750px] justify-center items-center space-x-6">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
+              <div className="flex h-[250px] min-w-full justify-center items-center space-x-6">
                 <FormField
                   control={form.control}
                   name="title"
                   render={({ field }) => (
-                    <FormItem className="w-full h-[200px] flex flex-col justify-center relative">
-                      <FormLabel
-                        className="text-base font-light"
-                        htmlFor="title"
-                      >
+                    <FormItem className="relative flex flex-col w-full h-[250px] justify-center">
+                      <FormLabel className="text-xl font-light" htmlFor="title">
                         ATUALIZAR TAREFA
                       </FormLabel>
                       <FormControl>
@@ -98,6 +91,7 @@ const TodoEditForm: FC<TodoEditItemProps> = ({
                           id="title"
                           placeholder="atualizar tarefa"
                           type="text"
+                          className="text-4xl font-bold min-w-full text-center"
                           {...field}
                         />
                       </FormControl>
@@ -113,7 +107,7 @@ const TodoEditForm: FC<TodoEditItemProps> = ({
           </Form>
         </CardContent>
 
-        <CardDescription className="text-xl">
+        <CardDescription className="text-xl -mt-12 p-0">
           <span>{todo.done ? `Completa` : `Incompleta`}</span>
         </CardDescription>
 
