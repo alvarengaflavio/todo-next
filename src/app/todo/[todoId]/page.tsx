@@ -1,5 +1,5 @@
 import TodoEditPage from "@/components/todo-edit-page";
-import { getTodo } from "@/lib/axios-instance";
+import { getTodo } from "@/lib/axios-helper";
 
 interface PageProps {
   params: {

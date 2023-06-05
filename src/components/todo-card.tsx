@@ -6,7 +6,7 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
-import { handleTodoDone } from "@/lib/axios-instance";
+import { handleTodoDone } from "@/lib/axios-helper";
 import { getDateToLocale } from "@/lib/utils";
 import { Todo } from "@/types";
 import Link from "next/link";

@@ -1,7 +1,7 @@
 import { ToastSimple } from "@/components/toast-simple";
 import { CreateTodoForm } from "@/components/todo-create";
 import { TodoList } from "@/components/todo-list";
-import { getTodos } from "@/lib/axios-instance";
+import { getTodos } from "@/lib/axios-helper";
 
 export const dynamic = "force-dynamic";
 
