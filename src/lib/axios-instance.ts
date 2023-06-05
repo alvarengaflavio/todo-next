@@ -20,7 +20,6 @@ export const postTodo = async (todo: Pick<Todo, "title">) => {
     // * Entendi, a actions da component chamam este arquivo, aqui ele faz a conexão direta com o banco de dados
     // * exemplo: createTodoAction(todo) -> actions -> serverAction -> api -> banco de dados
     // * code: return = await prisma.todo.create({ data: todo });
-    // return = await createTodoAction(todo);
   } catch (error) {
     return error;
   }
