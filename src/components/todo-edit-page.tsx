@@ -1,7 +1,7 @@
 "use client";
 
 import { siteConfig } from "@/config/site";
-import { deleteTodo } from "@/lib/axios-instance";
+import { deleteTodo } from "@/lib/axios-helper";
 import { Todo } from "@/types";
 import { useRouter } from "next/navigation";
 import { FC, useEffect, useState } from "react";
