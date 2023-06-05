@@ -1,4 +1,4 @@
-import { updateTodo } from "@/lib/axios-instance";
+import { updateTodo } from "@/lib/axios-helper";
 import { getDateToLocale } from "@/lib/utils";
 import { createTodoSchema } from "@/lib/zod";
 import { Todo } from "@/types";
