@@ -53,7 +53,7 @@ export const TodoCard: FC<TodoCardProps> = ({
             <div
               id={todo.id}
               onClick={handleCardDone}
-              className="flex items-center justify-center w-8 h-8 rounded-full m-auto cursor-pointer bg-foreground border-transparent transition-colors duration-300 outline-none"
+              className="flex items-center justify-center w-8 h-8 rounded-full m-auto cursor-pointer bg-foreground border-transparent transition-colors duration-300 outline-none hover:bg-slate-400"
             >
               <Icons.check className="text-background" />
             </div>
@@ -76,7 +76,7 @@ export const TodoCard: FC<TodoCardProps> = ({
             <div
               id={todo.id}
               onClick={handleCardDone}
-              className="flex items-center justify-center w-8 h-8 rounded-full m-auto cursor-pointer border-2 border-slate-400 transition-colors duration-300 outline-none"
+              className="flex items-center justify-center w-8 h-8 rounded-full m-auto cursor-pointer border-2 border-slate-400 transition-colors  outline-none hover:bg-slate-400 dark:hover:bg-slate-300/90 hover:border-transparent"
             />
           </CardHeader>
           <CardContent className="flex flex-col flex-1 p-0 justify-between text-center w-10/12">
@@ -93,15 +93,16 @@ export const TodoCard: FC<TodoCardProps> = ({
       <CardFooter className="flex justify-around align-bottom p-0 w-1/12">
         <Link
           href={`/todo/${todo.id}`}
-          className={buttonVariants({ variant: "outline" })}
+          className={buttonVariants({ variant: "ghost" })}
           style={{
-            height: "1.5rem",
+            height: "2.75rem",
+            width: "2.75rem",
             placeSelf: "center",
             position: "relative",
             bottom: "0px",
           }}
         >
-          <Icons.link className="absolute hover:cursor-pointer" />
+          <Icons.edit className="absolute hover:cursor-pointer" />
         </Link>
       </CardFooter>
     </Card>
