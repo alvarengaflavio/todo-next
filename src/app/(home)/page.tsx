@@ -1,5 +1,4 @@
-import { AlertDialogDelete } from "@/components/alert-dialog-delete";
-import { ToastSimple } from "@/components/toast-simple";
+import { DeleteAlertDialog } from "@/components/alert-dialog-delete";
 import { CreateTodoForm } from "@/components/todo-create";
 import { TodoList } from "@/components/todo-list";
 import { getTodos } from "@/lib/axios-helper";
@@ -17,7 +16,7 @@ export default async function Home() {
           <CreateTodoForm />
           <TodoList todos={todoList} />
         </div>
-        <AlertDialogDelete />
+        <DeleteAlertDialog />
       </section>
     </main>
   );
