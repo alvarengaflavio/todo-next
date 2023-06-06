@@ -1,4 +1,9 @@
+import { getDateToLocale } from "@/lib/utils";
+import { Todo } from "@/types";
+import Link from "next/link";
 import { FC } from "react";
+import { DeleteAlertDialog } from "./alert-dialog-delete";
+import { Button, buttonVariants } from "./ui/button";
 import {
   Card,
   CardContent,
@@ -6,11 +11,6 @@ import {
   CardFooter,
   CardHeader,
 } from "./ui/card";
-import Link from "next/link";
-import { Button, buttonVariants } from "./ui/button";
-import { DeleteTodoBtn } from "./todo-delete-button";
-import { Todo } from "@/types";
-import { getDateToLocale } from "@/lib/utils";
 
 interface TodoEditItemProps {
   todo: Todo;
@@ -55,7 +55,7 @@ const TodoEditItem: FC<TodoEditItemProps> = ({
             Editar
           </Button>
 
-          <DeleteTodoBtn handleDelete={handleDelete}>Excluir</DeleteTodoBtn>
+          <DeleteAlertDialog handleDelete={handleDelete} />
         </div>
       </div>
     </>

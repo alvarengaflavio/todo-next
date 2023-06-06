@@ -12,9 +12,6 @@ const TodoPage = async ({ params }: PageProps) => {
 
   const todo = await getTodo(todoId);
 
-  // ? Concertar o aviso de erro:
-  // ! Warning: validateDOMNesting(...): <p> cannot appear as a descendant of <p>.
-
   return (
     <div className="text-center container flex flex-col items-center">
       <TodoEditPage todoProp={todo} />

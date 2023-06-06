@@ -20,13 +20,14 @@ import { TodoContext } from "@/context/todo-context";
 import { postTodo } from "@/lib/axios-helper";
 import { createTodoSchema } from "@/lib/zod";
 import { Todo } from "@/types";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Card } from "./ui/card";
 
 const FormSchema = createTodoSchema;
 
 export function CreateTodoForm() {
   const { dispatch } = useContext(TodoContext);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   const form = useForm<z.infer<typeof FormSchema>>({
     defaultValues: {
@@ -36,6 +37,7 @@ export function CreateTodoForm() {
   });
 
   async function onSubmit(data: z.infer<typeof FormSchema>) {
+    setIsSubmitting(() => true);
     const newTodo = await postTodo({ title: data.title });
 
     if (!newTodo || newTodo instanceof Error)
@@ -54,6 +56,8 @@ export function CreateTodoForm() {
     toast({
       title: "Tarefa criada com sucesso!",
     });
+    form.reset();
+    setIsSubmitting(() => false);
   }
 
   return (
@@ -87,7 +91,7 @@ export function CreateTodoForm() {
                 </FormItem>
               )}
             />
-            <Button type="submit" className="mt-1">
+            <Button type="submit" className="mt-1" disabled={isSubmitting}>
               Enviar
             </Button>
           </div>
