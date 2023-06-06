@@ -1,3 +1,4 @@
+import { AlertDialogDelete } from "@/components/alert-dialog-delete";
 import { ToastSimple } from "@/components/toast-simple";
 import { CreateTodoForm } from "@/components/todo-create";
 import { TodoList } from "@/components/todo-list";
@@ -16,7 +17,7 @@ export default async function Home() {
           <CreateTodoForm />
           <TodoList todos={todoList} />
         </div>
-        <ToastSimple />
+        <AlertDialogDelete />
       </section>
     </main>
   );
