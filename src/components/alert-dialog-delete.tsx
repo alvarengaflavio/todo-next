@@ -10,28 +10,41 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { buttonVariants } from "./ui/button";
 
 interface AlertDialogProps {}
 
 const AlertDialogDelete: FC<AlertDialogProps> = ({}) => {
   return (
     <AlertDialog>
-      <AlertDialogTrigger>Open</AlertDialogTrigger>
+      <AlertDialogTrigger
+        className={buttonVariants({ variant: "destructive" })}
+      >
+        Excluir
+      </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Tem certeza?</AlertDialogTitle>
+          <AlertDialogTitle>Está certo disso?</AlertDialogTitle>
           <AlertDialogDescription>
             Você está prestes a excluir uma tarefa. Essa ação não pode ser
             desfeita. Tem certeza que deseja continuar?
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancelar</AlertDialogCancel>
-          <AlertDialogAction>Excluir</AlertDialogAction>
+          <AlertDialogCancel className={"w-[5.55rem]"}>
+            Cancelar
+          </AlertDialogCancel>
+          <AlertDialogAction
+            className={
+              buttonVariants({ variant: "destructive" }) + " w-[5.55rem]"
+            }
+          >
+            Excluir
+          </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
   );
 };
 
-export default { AlertDialogDelete };
+export { AlertDialogDelete };
