@@ -15,7 +15,6 @@ export default async function Home() {
           <CreateTodoForm />
           <TodoList todos={todoList} />
         </div>
-        {/* <DeleteAlertDialog handleDelete={handleDelete} /> */}
       </section>
     </main>
   );
