@@ -12,9 +12,9 @@ import {
 } from "@/components/ui/alert-dialog";
 import { buttonVariants } from "./ui/button";
 
-interface AlertDialogProps {}
+interface DeleteAlertProps {}
 
-const AlertDialogDelete: FC<AlertDialogProps> = ({}) => {
+const DeleteAlertDialog: FC<DeleteAlertProps> = ({}) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger
@@ -47,4 +47,4 @@ const AlertDialogDelete: FC<AlertDialogProps> = ({}) => {
   );
 };
 
-export { AlertDialogDelete };
+export { DeleteAlertDialog };
