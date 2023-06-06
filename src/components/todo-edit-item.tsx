@@ -11,6 +11,7 @@ import { Button, buttonVariants } from "./ui/button";
 import { DeleteTodoBtn } from "./todo-delete-button";
 import { Todo } from "@/types";
 import { getDateToLocale } from "@/lib/utils";
+import { DeleteAlertDialog } from "./alert-dialog-delete";
 
 interface TodoEditItemProps {
   todo: Todo;
@@ -55,7 +56,8 @@ const TodoEditItem: FC<TodoEditItemProps> = ({
             Editar
           </Button>
 
-          <DeleteTodoBtn handleDelete={handleDelete}>Excluir</DeleteTodoBtn>
+          {/* <DeleteTodoBtn handleDelete={handleDelete}>Excluir</DeleteTodoBtn> */}
+          <DeleteAlertDialog handleDelete={handleDelete} />
         </div>
       </div>
     </>
