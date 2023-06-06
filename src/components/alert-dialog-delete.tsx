@@ -1,3 +1,5 @@
+"use client";
+
 import { FC } from "react";
 import {
   AlertDialog,
@@ -12,9 +14,11 @@ import {
 } from "@/components/ui/alert-dialog";
 import { buttonVariants } from "./ui/button";
 
-interface DeleteAlertProps {}
+interface DeleteAlertProps {
+  handleDelete: () => void;
+}
 
-const DeleteAlertDialog: FC<DeleteAlertProps> = ({}) => {
+const DeleteAlertDialog: FC<DeleteAlertProps> = ({ handleDelete }) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger
@@ -38,6 +42,7 @@ const DeleteAlertDialog: FC<DeleteAlertProps> = ({}) => {
             className={
               buttonVariants({ variant: "destructive" }) + " w-[5.55rem]"
             }
+            onClick={handleDelete}
           >
             Excluir
           </AlertDialogAction>
