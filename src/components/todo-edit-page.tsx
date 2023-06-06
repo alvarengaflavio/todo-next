@@ -62,8 +62,8 @@ const TodoEditPage: FC<PageProps> = ({ todoProp = defaultTodo }) => {
       {isEditing ? (
         <TodoEditForm
           todo={todo}
-          handleEditing={handleEditing}
           handleTodo={handleTodo}
+          handleEditing={handleEditing}
         />
       ) : (
         <TodoEditItem
