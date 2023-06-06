@@ -76,7 +76,7 @@ export const TodoCard: FC<TodoCardProps> = ({
             <div
               id={todo.id}
               onClick={handleCardDone}
-              className="flex items-center justify-center w-8 h-8 rounded-full m-auto cursor-pointer border-2 border-slate-400 transition-colors  outline-none hover:bg-slate-400 dark:hover:bg-slate-300/90 hover:border-transparent"
+              className="flex items-center justify-center w-8 h-8 rounded-full m-auto cursor-pointer border-2 border-slate-400 transition-colors  outline-none hover:bg-slate-400 dark:hover:bg-accent hover:border-transparent"
             />
           </CardHeader>
           <CardContent className="flex flex-col flex-1 p-0 justify-between text-center w-10/12">
