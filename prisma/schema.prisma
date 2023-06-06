@@ -10,10 +10,26 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id       String  @id @default(uuid())
+  email    String  @unique
+  password String
+  name     String?
+  image    String?
+  todos    Todo[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("user")
+}
+
 model Todo {
-  id    String  @id @default(uuid())
-  title String
-  done  Boolean @default(false)
+  id     String  @id @default(uuid())
+  title  String
+  done   Boolean @default(false)
+  userId String  @map("user_id")
+  user   User    @relation(fields: [userId], references: [id])
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
