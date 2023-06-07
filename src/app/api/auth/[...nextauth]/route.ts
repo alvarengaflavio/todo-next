@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/db/db";
+import { User } from "@/types";
 import { compare } from "bcrypt";
 import NextAuth, { type NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -44,10 +45,38 @@ export const authOptions: NextAuthOptions = {
           id: user.id,
           name: user.name,
           email: user.email,
+          randomKey: "randomValue",
         };
       },
     }),
   ],
+  callbacks: {
+    session: ({ session, token }) => {
+      console.log("SESSION_CALLBACK", { session, token });
+
+      return {
+        ...session,
+        user: {
+          id: token.id,
+          ...session.user,
+          randomKey: token.randomKey,
+        },
+      };
+    },
+
+    jwt: ({ token, user }) => {
+      console.log("JWT_CALLBACK", { token, user });
+
+      const _user = user as unknown as User;
+
+      if (user) {
+        token.id = user.id; // neste caso id e sub são iguais
+        token.randomKey = _user?.randomKey;
+      }
+
+      return token;
+    },
+  },
 };
 
 const handler = NextAuth(authOptions);
