@@ -52,26 +52,18 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     session: ({ session, token }) => {
-      console.log("SESSION_CALLBACK", { session, token });
-
       return {
         ...session,
         user: {
           id: token.id,
           ...session.user,
-          randomKey: token.randomKey,
         },
       };
     },
 
     jwt: ({ token, user }) => {
-      console.log("JWT_CALLBACK", { token, user });
-
-      const _user = user as unknown as User;
-
       if (user) {
         token.id = user.id; // neste caso id e sub são iguais
-        token.randomKey = _user?.randomKey;
       }
 
       return token;
