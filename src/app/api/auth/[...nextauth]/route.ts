@@ -22,12 +22,6 @@ export const authOptions: NextAuthOptions = {
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) return null;
 
-        // const response = await fetch("http://localhost:3000/api/auth/login", {
-        //   method: "POST",
-        //   headers: { "Content-Type": "application/json" },
-        //   body: JSON.stringify(credentials),
-        // });
-
         const user = await prisma.user.findUnique({
           where: { email: credentials.email },
         });
