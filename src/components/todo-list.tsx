@@ -28,7 +28,7 @@ export const TodoList: FC<TodoListProps> = ({
     dispatch({ type: "SET_LIST", payload: todos });
 
     return () => {};
-  }, []);
+  }, [todos, dispatch]);
 
   const handleTodoDone = (id: string) => {
     dispatch({ type: "SET_DONE", payload: id });

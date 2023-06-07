@@ -1,5 +1,4 @@
 import { prisma } from "@/lib/db/db";
-import { User } from "@/types";
 import { compare } from "bcrypt";
 import NextAuth, { type NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
