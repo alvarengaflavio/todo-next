@@ -34,7 +34,7 @@ const TodoEditForm: FC<TodoEditItemProps> = ({
 }: TodoEditItemProps) => {
   const form = useForm<z.infer<typeof createTodoSchema>>({
     defaultValues: {
-      title: todo.title,
+      title: todo.title ?? "",
     },
     resolver: zodResolver(createTodoSchema),
   });
