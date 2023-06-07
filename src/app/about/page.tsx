@@ -1,18 +1,15 @@
 import { ToastDestructive } from "@/components/toast-destructive";
 import { ToastSimple } from "@/components/toast-simple";
 import { ToastWithAction } from "@/components/toast-with-action";
-import { getServerSession } from "next-auth";
-import { FC } from "react";
-import { authOptions } from "../api/auth/[...nextauth]/route";
+import { User } from "@/config/user";
 
-interface PageProps {}
-
-const AboutPage = async ({}) => {
-  const session = await getServerSession(authOptions);
+const AboutPage = async () => {
+  // const session = await getServerSession(authOptions);
 
   return (
     <section>
-      <pre>{JSON.stringify(session)}</pre>
+      {/* <pre>{JSON.stringify(session)}</pre> */}
+      <User />
       <ToastSimple />
       <ToastWithAction />
       <ToastDestructive />
