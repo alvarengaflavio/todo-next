@@ -30,3 +30,14 @@ export type Todo = {
   updatedAt: string;
   userId?: number | string;
 };
+
+export type User = {
+  id?: string;
+  name: string;
+  email: string;
+  password: string;
+  createdAt: string;
+  updatedAt: string;
+  todos?: Todo[];
+  randomKey?: string;
+};
