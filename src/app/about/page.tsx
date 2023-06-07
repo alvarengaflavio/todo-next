@@ -1,14 +1,14 @@
 import { ToastDestructive } from "@/components/toast-destructive";
 import { ToastSimple } from "@/components/toast-simple";
 import { ToastWithAction } from "@/components/toast-with-action";
+import AuthButtons from "@/components/user-auth";
 import { User } from "@/config/user";
 
 const AboutPage = async () => {
-  // const session = await getServerSession(authOptions);
-
   return (
     <section>
-      {/* <pre>{JSON.stringify(session)}</pre> */}
+      <h1>About</h1>
+      <AuthButtons />
       <User />
       <ToastSimple />
       <ToastWithAction />
