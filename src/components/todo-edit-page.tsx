@@ -30,7 +30,7 @@ const TodoEditPage: FC<PageProps> = ({ todoProp = defaultTodo }) => {
   useEffect(() => {
     setTodo(() => todoProp);
     setIsEditing(() => false);
-  }, []);
+  }, [todoProp]);
 
   async function handleDelete() {
     if (isEditing) return;
@@ -44,6 +44,7 @@ const TodoEditPage: FC<PageProps> = ({ todoProp = defaultTodo }) => {
         title: "Erro ao excluir tarefa",
         description: "Tente novamente mais tarde",
       });
+      return;
     }
 
     toast({
