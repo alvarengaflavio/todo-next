@@ -1,13 +1,7 @@
-import { FC } from "react";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
-import { Skeleton } from "./ui/skeleton";
 import { cn } from "@/lib/utils";
+import { FC } from "react";
+import { Card, CardContent, CardFooter, CardHeader } from "./ui/card";
+import { Skeleton } from "./ui/skeleton";
 
 interface TodoSkeletonProp {
   className?: string;
@@ -32,8 +26,4 @@ export const TodoSkeleton: FC<TodoSkeletonProp> = ({ className }) => {
       </CardFooter>
     </Card>
   );
-};
-
-TodoSkeleton.defaultProps = {
-  className: "",
 };
