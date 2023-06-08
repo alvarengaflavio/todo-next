@@ -24,6 +24,7 @@ const defaultProps = {
   todo: {
     id: "",
     title: "",
+    userId: "",
     done: false,
     createdAt: "",
     updatedAt: "",

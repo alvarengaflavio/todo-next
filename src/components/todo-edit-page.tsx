@@ -18,6 +18,7 @@ const defaultTodo = {
   title: "Tarefa",
   description: "Carregando...",
   done: false,
+  userId: "i",
   createdAt: "2023-05-30T20:25:01.200Z",
   updatedAt: "2023-05-30T20:25:01.200Z",
 };
