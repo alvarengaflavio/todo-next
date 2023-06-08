@@ -5,30 +5,34 @@ import { cn } from "@/lib/utils";
 import { Todo } from "@/types";
 import { FC, useContext, useEffect } from "react";
 import TodoCard from "./todo-card";
+import { getTodos } from "@/lib/axios-helper";
 
 interface TodoListProps {
-  todos: Todo[];
+  // todos: Todo[];
   className?: string;
 }
 
 const defaultProps = {
   className: "",
-  todos: [] as Todo[],
+  // todos: [] as Todo[],
 };
 
 export const TodoList: FC<TodoListProps> = ({
-  todos = defaultProps.todos,
   className = defaultProps.className,
   ...props
 }: TodoListProps) => {
   const { state, dispatch } = useContext(TodoContext);
 
   useEffect(() => {
-    if (todos.length === 0) return;
-    dispatch({ type: "SET_LIST", payload: todos });
+    const getAll = async () => {
+      const todos = await getTodos();
+      dispatch({ type: "SET_LIST", payload: todos });
+    };
+
+    getAll();
 
     return () => {};
-  }, [todos, dispatch]);
+  }, []);
 
   const handleTodoDone = (id: string) => {
     dispatch({ type: "SET_DONE", payload: id });
