@@ -1,8 +1,11 @@
+import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/db/db";
 import { exceptionHandler } from "@/lib/exception-handler";
-import { BadRequestException } from "@/lib/exceptions";
+import { AuthRequiredException, BadRequestException } from "@/lib/exceptions";
 import { createTodoSchema } from "@/lib/zod";
+import { ISession } from "@/types";
 import { Prisma } from "@prisma/client";
+import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
 const todoCreateSchema = createTodoSchema;
@@ -37,12 +40,28 @@ export async function POST(req: NextRequest) {
 
     if (!json.title) throw new BadRequestException("Título não informado");
 
+    const session: Required<ISession> | null = await getServerSession(
+      authOptions
+    );
+
+    if (!session) throw new AuthRequiredException("Usuário não autenticado");
+
+    const { user } = session;
+    const id = user.id ? user.id : undefined;
     const body = todoCreateSchema.parse(json);
-    const data = { title: body.title };
+    const data = { title: body.title, user: { connect: { id } } };
     const newTodo = await prisma.todo.create({ data });
 
     return NextResponse.json(newTodo, { status: 201 });
   } catch (error: any) {
-    return exceptionHandler(error);
+    if (error instanceof BadRequestException) {
+      return NextResponse.json(null, { status: 400 });
+    }
+
+    if (error instanceof AuthRequiredException) {
+      return NextResponse.json(null, { status: 401 });
+    }
+
+    return NextResponse.json(null, { status: 500 });
   }
 }
