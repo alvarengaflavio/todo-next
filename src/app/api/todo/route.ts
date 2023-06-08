@@ -13,9 +13,7 @@ const todoCreateSchema = createTodoSchema;
 export async function GET() {
   try {
     const user = await getCurrentUser();
-    const session = await getServerSession(authOptions);
 
-    console.log("GET", user, session);
     if (!user) throw new AuthRequiredException("Usuário não autenticado");
 
     const id = user.id ? user.id : undefined;
@@ -33,7 +31,7 @@ export async function GET() {
     return NextResponse.json(todoList, { status: 200 });
   } catch (error) {
     if (error instanceof AuthRequiredException)
-      return NextResponse.json(null, { status: 401 });
+      return NextResponse.json(null, { status: 403 });
 
     return NextResponse.json(null, { status: 500 });
   }
@@ -63,7 +61,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(null, { status: 400 });
 
     if (error instanceof AuthRequiredException)
-      return NextResponse.json(null, { status: 401 });
+      return NextResponse.json(null, { status: 403 });
 
     return NextResponse.json(null, { status: 500 });
   }
