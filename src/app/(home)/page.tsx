@@ -1,6 +1,5 @@
 import { CreateTodoForm } from "@/components/todo-create";
 import { TodoList } from "@/components/todo-list";
-import { Suspense } from "react";
 
 export default async function Home() {
   return (
@@ -9,9 +8,7 @@ export default async function Home() {
         <div className="mx-2 my-2 bg-slate-100 rounded-sm dark:bg-transparent grid grid-cols-1 gap-4 p-5">
           <h1 className="text-5xl text-center font-light"> TODO LIST</h1>
           <CreateTodoForm />
-          <Suspense fallback={<div>Carregando...</div>}>
-            <TodoList />
-          </Suspense>
+          <TodoList />
         </div>
       </section>
     </main>
