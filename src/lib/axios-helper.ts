@@ -1,6 +1,5 @@
 import { Todo } from "@/types";
 import api from "./axios";
-import { createTodoAction } from "@/app/_actions";
 
 export const getTodos = async (): Promise<Todo[]> => {
   try {
@@ -8,6 +7,7 @@ export const getTodos = async (): Promise<Todo[]> => {
 
     return response.data;
   } catch (error) {
+    console.error("Erro ao buscar todos as tarefas");
     return [];
   }
 };
