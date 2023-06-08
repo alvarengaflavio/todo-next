@@ -1,23 +1,20 @@
 "use client";
 
 import { TodoContext } from "@/context/todo-context";
+import { getTodos } from "@/lib/axios-helper";
 import { cn } from "@/lib/utils";
 import { Todo } from "@/types";
 import { FC, useContext, useEffect, useState } from "react";
 import TodoCard from "./todo-card";
-import { getTodos } from "@/lib/axios-helper";
-import { TodoSkeleton } from "./todo-skeleton";
+import { TodoListSkeleton } from "./todo-list-skeleton";
 
-interface TodoListProps {
+interface TodoListProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;
 }
 
-const defaultProps = {
-  className: "",
-};
-
 export const TodoList: FC<TodoListProps> = ({
-  className = defaultProps.className,
+  className,
+  children,
   ...props
 }: TodoListProps) => {
   const { state, dispatch } = useContext(TodoContext);
@@ -42,21 +39,11 @@ export const TodoList: FC<TodoListProps> = ({
   };
 
   if (!isLoaded) {
-    return (
-      <div className={cn(className)} {...props}>
-        <ul className="space-y-4">
-          <TodoSkeleton />
-          <TodoSkeleton />
-          <TodoSkeleton />
-          <TodoSkeleton />
-          <TodoSkeleton />
-        </ul>
-      </div>
-    );
+    return <TodoListSkeleton />;
   }
 
   return (
-    <div className={cn(className)} {...props}>
+    <div className={cn("", className)} {...props}>
       <ul className="space-y-4">
         {state.todos.length > 0 ? (
           state.todos.map((todo) => (
