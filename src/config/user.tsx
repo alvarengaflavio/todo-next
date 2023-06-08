@@ -1,6 +1,5 @@
 "use client";
 
-import { stat } from "fs/promises";
 import { useSession } from "next-auth/react";
 
 export const User = () => {
