@@ -12,13 +12,14 @@ type Context = {
 
 export async function PATCH(req: NextRequest, context: Context) {
   try {
-    const json = await req.json(); // data is a JS object with the JSON-parsed body
+    const json = await req.json();
     const { params } = context;
+    // ! checar se usuário está autenticado e se o todo pertence a ele
 
     if (!params.todoId) throw new BadRequestException("ID não informado");
 
-    const body = createTodoSchema.parse(json);
-    const data = { title: body.title };
+    const zBody = createTodoSchema.parse(json);
+    const data = { title: zBody.title };
     const where = { id: params.todoId };
 
     const updatedTodo = await prisma.todo.update({ where, data });
@@ -32,6 +33,7 @@ export async function PATCH(req: NextRequest, context: Context) {
 export async function GET(req: NextRequest, context: Context) {
   try {
     const { params } = context;
+    // ! checar se usuário está autenticado e se o todo pertence a ele
 
     if (!params.todoId) throw new BadRequestException("ID não informado");
 
@@ -48,6 +50,7 @@ export async function GET(req: NextRequest, context: Context) {
 
 export async function DELETE(req: NextRequest, context: Context) {
   try {
+    // ! checar se usuário está autenticado e se o todo pertence a ele
     const { params } = context;
 
     if (!params.todoId) throw new BadRequestException("ID não informado");
