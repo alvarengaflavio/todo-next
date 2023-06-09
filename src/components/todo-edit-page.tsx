@@ -9,12 +9,14 @@ import TodoEditForm from "./todo-edit-form";
 import TodoEditItem from "./todo-edit-item";
 import { toast } from "./ui/use-toast";
 import { defaultTodo } from "@/lib/todo";
+import { TodoEditSkeleton } from "./todo-edit-skeleton";
 
 interface PageProps {}
 
 const TodoEditPage: FC<PageProps> = ({}) => {
   const [todo, setTodo] = useState<Todo>(defaultTodo);
   const [isEditing, setIsEditing] = useState<boolean>(false);
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const router = useRouter();
   const params = useParams();
   const { todoId } = params;
@@ -35,6 +37,7 @@ const TodoEditPage: FC<PageProps> = ({}) => {
       }
 
       setTodo(() => todo);
+      setIsLoaded(() => true);
     };
 
     getOnLoad();
@@ -42,6 +45,7 @@ const TodoEditPage: FC<PageProps> = ({}) => {
     return () => {
       setTodo(() => defaultTodo);
       setIsEditing(() => false);
+      setIsLoaded(() => false);
     };
   }, []);
 
@@ -70,6 +74,10 @@ const TodoEditPage: FC<PageProps> = ({}) => {
 
   const handleEditing = () => setIsEditing((prev) => !prev);
   const handleTodo = (todo: Todo) => setTodo(() => todo);
+
+  if (!isLoaded) {
+    return <TodoEditSkeleton />;
+  }
 
   return (
     <div className="text-center container flex flex-col items-center">
