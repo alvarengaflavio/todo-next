@@ -11,7 +11,7 @@ export const SiteHeader: FC<PageProps> = ({}) => {
     <header className="sticky top-0 z-40 border-b bg-background flex justify-around content-center">
       <div className="container flex h-16 items-center justify-between py-4">
         <MainNav items={dashboardConfig.mainNav} />
-        <div className="flex space-x-4 items-center align-middle">
+        <div className="flex space-x-6 items-center align-middle">
           <ModeToggle />
           <UserNav />
         </div>
