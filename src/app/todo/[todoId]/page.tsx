@@ -1,20 +1,11 @@
 import TodoEditPage from "@/components/todo-edit-page";
-import { getTodo } from "@/lib/axios-helper";
 
-interface PageProps {
-  params: {
-    todoId: string;
-  };
-}
+interface PageProps {}
 
-const TodoPage = async ({ params }: PageProps) => {
-  const { todoId } = params;
-
-  const todo = await getTodo(todoId);
-
+const TodoPage = async ({}: PageProps) => {
   return (
     <div className="text-center container flex flex-col items-center">
-      <TodoEditPage todoProp={todo} />
+      <TodoEditPage />
     </div>
   );
 };

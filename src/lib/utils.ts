@@ -17,12 +17,3 @@ export function getDateToLocale(date: number | string | Date) {
     dayPeriod: "short",
   });
 }
-
-export function sortTodoList(todos: Todo[]) {
-  return todos.sort((a, b) => {
-    if (a.done === b.done) {
-      return a.createdAt > b.createdAt ? -1 : 1;
-    }
-    return a.done ? 1 : -1;
-  });
-}

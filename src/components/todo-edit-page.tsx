@@ -1,37 +1,49 @@
 "use client";
 
 import { siteConfig } from "@/config/site";
-import { deleteTodo } from "@/lib/axios-helper";
+import { deleteTodo, getTodo } from "@/lib/axios-helper";
 import { Todo } from "@/types";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { FC, useEffect, useState } from "react";
 import TodoEditForm from "./todo-edit-form";
 import TodoEditItem from "./todo-edit-item";
 import { toast } from "./ui/use-toast";
+import { defaultTodo } from "@/lib/todo";
 
-interface PageProps {
-  todoProp?: Todo;
-}
+interface PageProps {}
 
-const defaultTodo = {
-  id: "i",
-  title: "Tarefa",
-  description: "Carregando...",
-  done: false,
-  userId: "i",
-  createdAt: "2023-05-30T20:25:01.200Z",
-  updatedAt: "2023-05-30T20:25:01.200Z",
-};
-
-const TodoEditPage: FC<PageProps> = ({ todoProp = defaultTodo }) => {
+const TodoEditPage: FC<PageProps> = ({}) => {
   const [todo, setTodo] = useState<Todo>(defaultTodo);
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const router = useRouter();
+  const params = useParams();
+  const { todoId } = params;
 
   useEffect(() => {
-    setTodo(() => todoProp);
     setIsEditing(() => false);
-  }, [todoProp]);
+    const getOnLoad = async () => {
+      const todo = await getTodo(todoId);
+
+      if (!todo) {
+        toast({
+          variant: "destructive",
+          title: "Oops, tarefa não encontrada",
+          description: "Voltando para a página inicial",
+        });
+        router.push(siteConfig.mainNav[0].href);
+        return;
+      }
+
+      setTodo(() => todo);
+    };
+
+    getOnLoad();
+
+    return () => {
+      setTodo(() => defaultTodo);
+      setIsEditing(() => false);
+    };
+  }, []);
 
   async function handleDelete() {
     if (isEditing) return;

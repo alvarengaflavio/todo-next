@@ -26,7 +26,7 @@ export type DashboardConfig = {
 
 export interface ISession extends Session {
   user?: {
-    id?: string | null | undefined;
+    id?: string | undefined;
     name?: string | null | undefined;
     email?: string | null | undefined;
     image?: string | null | undefined;

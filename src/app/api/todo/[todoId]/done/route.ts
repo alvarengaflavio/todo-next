@@ -3,11 +3,21 @@ import { exceptionHandler } from "@/lib/exception-handler";
 import { BadRequestException } from "@/lib/exceptions";
 import { NextRequest, NextResponse } from "next/server";
 
+type Context = {
+  params: {
+    todoId: string;
+  };
+};
+
+type DonePayload = {
+  done: boolean;
+};
+
 export async function PATCH(req: NextRequest, context: Context) {
   try {
     const { params } = context;
     const body = await req.json();
-
+    // ! checar se usuário está autenticado e se o todo pertence a ele
     if (!params.todoId) throw new BadRequestException("ID não informado");
     if (typeof body.done !== "boolean")
       throw new BadRequestException("Done não informado");
@@ -23,13 +33,3 @@ export async function PATCH(req: NextRequest, context: Context) {
     return exceptionHandler(error);
   }
 }
-
-type Context = {
-  params: {
-    todoId: string;
-  };
-};
-
-type DonePayload = {
-  done: boolean;
-};

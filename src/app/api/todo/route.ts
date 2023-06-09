@@ -13,7 +13,6 @@ const todoCreateSchema = createTodoSchema;
 export async function GET() {
   try {
     const user = await getCurrentUser();
-
     if (!user) throw new AuthRequiredException("Usuário não autenticado");
 
     const id = user.id ? user.id : undefined;
