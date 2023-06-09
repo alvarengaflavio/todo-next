@@ -1,6 +1,6 @@
 import { Todo } from "@/types";
 import { StateType } from "./todo-context";
-import { sortTodoList } from "@/lib/utils";
+import { sortTodoList } from "@/lib/todo";
 
 export type ActionType = {
   type: string;
