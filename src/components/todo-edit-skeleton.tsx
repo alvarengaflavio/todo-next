@@ -22,9 +22,7 @@ export const TodoEditSkeleton: FC<TodoPageSkeleton> = ({ className }) => {
         }
       >
         <Skeleton className="h-6 w-1/4 mx-auto mt-6" />
-
         <Skeleton className="h-32 w-3/4 mt-20 rounded-lg mx-auto" />
-
         <Skeleton className="h-6 w-1/4 mx-auto" />
         <Skeleton className="h-4 w-1/3 mx-auto rounded-full" />
       </Card>
