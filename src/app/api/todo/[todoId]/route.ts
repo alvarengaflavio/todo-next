@@ -1,8 +1,13 @@
 import { prisma } from "@/lib/db/db";
 import { exceptionHandler } from "@/lib/exception-handler";
-import { BadRequestException, NotFoundException } from "@/lib/exceptions";
+import {
+  AuthRequiredException,
+  BadRequestException,
+  NotFoundException,
+} from "@/lib/exceptions";
 import { NextRequest, NextResponse } from "next/server";
 import { createTodoSchema } from "@/lib/zod";
+import { getCurrentUser } from "@/lib/session";
 
 type Context = {
   params: {
@@ -12,11 +17,15 @@ type Context = {
 
 export async function PATCH(req: NextRequest, context: Context) {
   try {
+    const user = await getCurrentUser();
+    if (!user) throw new AuthRequiredException("Usuário não autenticado");
+
     const json = await req.json();
     const { params } = context;
-    // ! checar se usuário está autenticado e se o todo pertence a ele
 
     if (!params.todoId) throw new BadRequestException("ID não informado");
+    if (!(await verifyCurrentUserHasAccessToTodo(params.todoId)))
+      throw new AuthRequiredException("Usuário não tem acesso a tarefa");
 
     const zBody = createTodoSchema.parse(json);
     const data = { title: zBody.title };
@@ -64,4 +73,18 @@ export async function DELETE(req: NextRequest, context: Context) {
   } catch (error: any) {
     return exceptionHandler(error);
   }
+}
+
+async function verifyCurrentUserHasAccessToTodo(todoId: string) {
+  const user = await getCurrentUser();
+  const count = await prisma.todo.count({
+    where: {
+      id: todoId,
+      userId: user?.id,
+    },
+  });
+
+  console.log("Dono da Tarefa? ", count);
+
+  return count > 0;
 }
