@@ -43,8 +43,7 @@ export async function GET(req: NextRequest, context: Context) {
   try {
     const { params } = context;
     const user = await getCurrentUser();
-    console.log("Usuário: ", user);
-    console.log("params: ", params);
+
     if (!user) throw new AuthRequiredException("Usuário não autenticado");
     if (!params.todoId) throw new BadRequestException("ID não informado");
     if (!(await verifyCurrentUserHasAccessToTodo(params.todoId)))
@@ -63,10 +62,13 @@ export async function GET(req: NextRequest, context: Context) {
 
 export async function DELETE(req: NextRequest, context: Context) {
   try {
-    // ! checar se usuário está autenticado e se o todo pertence a ele
     const { params } = context;
+    const user = await getCurrentUser();
 
+    if (!user) throw new AuthRequiredException("Usuário não autenticado");
     if (!params.todoId) throw new BadRequestException("ID não informado");
+    if (!(await verifyCurrentUserHasAccessToTodo(params.todoId)))
+      throw new AuthRequiredException("Usuário não tem acesso a tarefa");
 
     const where = { id: params.todoId };
     const todo = await prisma.todo.delete({ where });
@@ -87,8 +89,6 @@ async function verifyCurrentUserHasAccessToTodo(todoId: string) {
       userId: user?.id,
     },
   });
-
-  console.log("Dono da Tarefa? ", count);
 
   return count > 0;
 }
