@@ -14,7 +14,7 @@ const TodoPage = async ({ params }: PageProps) => {
 
   return (
     <div className="text-center container flex flex-col items-center">
-      <TodoEditPage todoProp={todo} />
+      <TodoEditPage />
     </div>
   );
 };
