@@ -26,7 +26,7 @@ export function UserNav() {
 
   if (status === "unauthenticated") {
     return (
-      <Button variant="outline" onClick={() => signIn()}>
+      <Button variant="default" className="h-8" onClick={() => signIn()}>
         Entrar
       </Button>
     );
@@ -39,8 +39,16 @@ export function UserNav() {
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="relative h-8 w-8 rounded-full">
           <Avatar className="h-8 w-8">
-            <AvatarImage src="/avatars/01.png" alt="Avatar do usuário" />
-            <AvatarFallback>SC</AvatarFallback>
+            <AvatarImage src="/avatars/01.png" alt="avatar do usuário" />
+            <AvatarFallback>
+              {session?.user?.name
+                ? session?.user?.name
+                    .split(" ")
+                    .map((n) => n[0])
+                    .join("")
+                    .substring(0, 2)
+                : "AV"}
+            </AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
