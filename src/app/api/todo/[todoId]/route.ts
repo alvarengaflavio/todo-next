@@ -42,9 +42,13 @@ export async function PATCH(req: NextRequest, context: Context) {
 export async function GET(req: NextRequest, context: Context) {
   try {
     const { params } = context;
-    // ! checar se usuário está autenticado e se o todo pertence a ele
-
+    const user = await getCurrentUser();
+    console.log("Usuário: ", user);
+    console.log("params: ", params);
+    if (!user) throw new AuthRequiredException("Usuário não autenticado");
     if (!params.todoId) throw new BadRequestException("ID não informado");
+    if (!(await verifyCurrentUserHasAccessToTodo(params.todoId)))
+      throw new AuthRequiredException("Usuário não tem acesso a tarefa");
 
     const where = { id: params.todoId };
     const todo = await prisma.todo.findUnique({ where });
