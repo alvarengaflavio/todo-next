@@ -38,12 +38,13 @@ export const handleTodoDone = async (
   }
 };
 
-export const getTodo = async (todoId: string): Promise<Todo> => {
+export const getTodo = async (todoId: string): Promise<Todo | null> => {
   try {
     const { data } = await api.get(`/todo/${todoId}`);
     return data;
   } catch (error) {
-    return {} as Todo;
+    console.error("Erro ao buscar todos as tarefas");
+    return null;
   }
 };
 
