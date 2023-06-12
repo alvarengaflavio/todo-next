@@ -1,12 +1,12 @@
-import UserLoginForm from "@/components/user-register-form";
+import UserAuthForm from "@/components/user-auth-form";
 import { FC } from "react";
 
 interface PageProps {}
 
 const LoginPage: FC<PageProps> = () => {
   return (
-    <section>
-      <UserLoginForm />
+    <section className="w-4/5 h-full flex flex-col items-center justify-center">
+      <UserAuthForm />
     </section>
   );
 };
