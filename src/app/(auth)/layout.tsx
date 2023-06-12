@@ -5,8 +5,8 @@ interface LayoutProps {
 }
 
 export const metadata = {
-  title: "Authorization",
-  description: "Authorization page, for logging in and creating new users.",
+  title: "Autenticação",
+  description: "Página de Autenticação",
 };
 
 const layout = async ({ children }: LayoutProps) => {
