@@ -1,12 +1,14 @@
-import { AuthRequiredException } from "@/lib/exceptions";
+import UserLoginForm from "@/components/user-register-form";
 import { FC } from "react";
 
 interface PageProps {}
 
-const page: FC<PageProps> = () => {
-  // throw new AuthRequiredException();
-
-  return <div className="text-7xl">login</div>;
+const LoginPage: FC<PageProps> = () => {
+  return (
+    <section>
+      <UserLoginForm />
+    </section>
+  );
 };
 
-export default page;
+export default LoginPage;
