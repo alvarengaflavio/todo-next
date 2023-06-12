@@ -1,5 +1,4 @@
 import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -12,11 +11,12 @@ export const metadata = {
 
 const layout = async ({ children }: LayoutProps) => {
   return (
-    <div>
-      <SiteHeader />
-      <main>{children}</main>
-      <SiteFooter className="border-t" />
-    </div>
+    <section className="h-screen overflow-hidden">
+      <main className="flex flex-col h-full items-center space-y-6">
+        {children}
+      </main>
+      <SiteFooter className="border-t  sticky bottom-0 left-0" />
+    </section>
   );
 };
 
