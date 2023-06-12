@@ -32,8 +32,6 @@ export function UserNav() {
     );
   }
 
-  console.log(session);
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
