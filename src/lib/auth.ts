@@ -10,7 +10,7 @@ export const authOptions: NextAuthOptions = {
   },
   pages: {
     signIn: "/login",
-    newUser: "/create",
+    newUser: "/",
   },
   providers: [
     CredentialsProvider({
