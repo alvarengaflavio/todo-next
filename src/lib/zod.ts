@@ -26,14 +26,31 @@ export const userAuthSchema = z.object({
     .max(45, {
       message: "A senha deve ter no máximo 45 caracteres",
     })
-    // .regex(
-    //   /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{4,}$/,
-    //   {
-    //     message:
-    //       "A senha deve conter uma letra maiúscula, uma minúscula, um número e um caractere especial",
-    //   }
-    // )
+    .regex(
+      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{4,}$/,
+      {
+        message:
+          "A senha deve conter uma letra maiúscula, uma minúscula, um número e um caractere especial",
+      }
+    )
     .nonempty({
       message: "A senha não pode ser vazia",
     }),
+});
+
+export const userCreateSchema = userAuthSchema.extend({
+  name: z
+    .string()
+    .min(4, {
+      message: "O nome deve ter no mínimo 4 caracteres",
+    })
+    .max(45, {
+      message: "O nome deve ter no máximo 45 caracteres",
+    })
+    .nonempty({
+      message: "O nome não pode ser vazio",
+    }),
+  confirmPassword: z.string().nonempty({
+    message: "A senha não pode ser vazia",
+  }),
 });

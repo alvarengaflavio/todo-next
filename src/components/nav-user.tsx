@@ -46,6 +46,7 @@ export function UserNav() {
                     .split(" ")
                     .map((n) => n[0])
                     .join("")
+                    .toUpperCase()
                     .substring(0, 2)
                 : "AV"}
             </AvatarFallback>
