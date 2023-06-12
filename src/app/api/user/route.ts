@@ -4,9 +4,6 @@ export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const mySearchParam = searchParams.get("search");
 
-  console.log(searchParams);
-  console.log("Search Param:", mySearchParam);
-
   return new Response(JSON.stringify({ message: "Hello World" }), {
     status: 200,
     statusText: "OK",
