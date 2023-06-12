@@ -26,9 +26,9 @@ import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-interface RegisterFormProps {}
+interface AuthFormProps {}
 
-const UserAuthForm: FC<RegisterFormProps> = ({}) => {
+const UserAuthForm: FC<AuthFormProps> = ({}) => {
   const form = useForm<z.infer<typeof userAuthSchema>>({
     defaultValues: {
       email: "",
@@ -38,16 +38,11 @@ const UserAuthForm: FC<RegisterFormProps> = ({}) => {
   });
 
   async function onSubmit(data: z.infer<typeof userAuthSchema>) {
-    console.log(data);
     await signIn("credentials", {
       email: data.email,
       password: data.password,
       redirect: true,
       callbackUrl: `${siteConfig.mainNav[0].href}`,
-
-      // If you need to do something after a successful login,
-      // do it here. For example, redirect somewhere:
-      // callbackUrl: "/app/dashboard",
     });
   }
 
