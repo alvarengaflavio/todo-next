@@ -2,7 +2,7 @@
 
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/db/db";
-import { createTodoSchema, userAuthSchema, userCreateSchema } from "@/lib/zod";
+import { createTodoSchema, userCreateSchema } from "@/lib/zod";
 import { Todo } from "@/types";
 import { Prisma } from "@prisma/client";
 import { hash } from "bcrypt";
@@ -46,9 +46,14 @@ export async function createUserAction(user: {
       password: await hash(password, 12),
     };
 
-    return await prisma.user.create({ data });
-  } catch (error) {
-    console.log(error);
+    await prisma.user.create({ data });
+
+    return { ok: true, message: "Usuário criado com sucesso", status: 201 };
+  } catch (error: any) {
+    if (error?.code === "P2002") {
+      return { ok: false, message: "Email já cadastrado", status: 400 };
+    }
+    return { ok: false, message: "Erro ao criar usuário", status: 500 };
   }
 }
 

@@ -17,26 +17,17 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
-import { userAuthSchema, userCreateSchema } from "@/lib/zod";
+import { userCreateSchema } from "@/lib/zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { toast } from "./ui/use-toast";
 
 interface RegisterFormProps {}
-
-const refinedUserCreateSchema: any = userCreateSchema.refine(
-  (data) => data.password === data.confirmPassword,
-  {
-    message: "As senhas devem ser iguais",
-    path: ["confirmPassword"],
-  }
-);
 
 const UserCreateForm: FC<RegisterFormProps> = ({}) => {
   const router = useRouter();
@@ -47,21 +38,27 @@ const UserCreateForm: FC<RegisterFormProps> = ({}) => {
       password: "",
       confirmPassword: "",
     },
-    resolver: zodResolver(refinedUserCreateSchema),
+    resolver: zodResolver(userCreateSchema),
   });
 
   async function onSubmit(data: z.infer<typeof userCreateSchema>) {
-    if (data.password !== data.confirmPassword) {
+    if (data.password !== data.confirmPassword) return;
+
+    const res = await createUserAction(data);
+    if (!res.ok) {
+      toast({
+        variant: "destructive",
+        title: res.message,
+        description: "Por favor, tente novamente.",
+      });
       return;
     }
 
-    console.log("igual");
-    try {
-      await createUserAction(data);
-      router.push("/login");
-    } catch (error) {
-      console.log(error);
-    }
+    toast({
+      title: "Usuário criado com sucesso!",
+      description: "Você já pode efetuar login.",
+    });
+    router.push("/login");
   }
 
   return (

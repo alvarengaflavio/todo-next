@@ -38,7 +38,7 @@ export const userAuthSchema = z.object({
     }),
 });
 
-export const userCreateSchema = userAuthSchema.extend({
+const _userCreateSchema = userAuthSchema.extend({
   name: z
     .string()
     .min(4, {
@@ -54,3 +54,11 @@ export const userCreateSchema = userAuthSchema.extend({
     message: "A senha não pode ser vazia",
   }),
 });
+
+export const userCreateSchema = _userCreateSchema.refine(
+  (data) => data.password === data.confirmPassword,
+  {
+    message: "As senhas devem ser iguais",
+    path: ["confirmPassword"],
+  }
+);
