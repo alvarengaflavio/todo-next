@@ -7,8 +7,8 @@ export const dashboardConfig: DashboardConfig = {
       href: "/",
     },
     {
-      title: "Criar Todo",
-      href: "/todo/create",
+      title: "Minhas Tarefas",
+      href: "/todos",
     },
     {
       title: "Suporte",
@@ -22,18 +22,18 @@ export const dashboardConfig: DashboardConfig = {
   ],
   sidebarNav: [
     {
-      title: "Posts",
-      href: "/dashboard",
+      title: "Todos",
+      href: "/todos",
       icon: "post",
     },
     {
-      title: "Billing",
-      href: "/dashboard/billing",
-      icon: "billing",
+      title: "Account",
+      href: "/account",
+      icon: "user",
     },
     {
       title: "Settings",
-      href: "/dashboard/settings",
+      href: "/settings",
       icon: "settings",
     },
   ],
