@@ -23,7 +23,7 @@ const TodoEditPage: FC<PageProps> = ({}) => {
 
   useEffect(() => {
     setIsEditing(() => false);
-    const getOnLoad = async () => {
+    (async () => {
       const todo = await getTodo(todoId);
 
       if (!todo) {
@@ -38,9 +38,7 @@ const TodoEditPage: FC<PageProps> = ({}) => {
 
       setTodo(() => todo);
       setIsLoaded(() => true);
-    };
-
-    getOnLoad();
+    })();
 
     return () => {
       setTodo(() => defaultTodo);
@@ -56,20 +54,19 @@ const TodoEditPage: FC<PageProps> = ({}) => {
     const status: boolean = await deleteTodo(todo.id);
 
     if (!status) {
-      toast({
+      return toast({
         variant: "destructive",
         title: "Erro ao excluir tarefa",
         description: "Tente novamente mais tarde",
       });
-      return;
     }
 
     toast({
-      title: "Tarefa excluída com sucesso",
-      description: "Redirecionando para a página inicial",
+      title: "Tarefa excluída!",
+      description: "Redirecionando para Minhas Tarefas",
     });
 
-    router.push(siteConfig.mainNav[0].href);
+    router.push(siteConfig.mainNav[1].href);
   }
 
   const handleEditing = () => setIsEditing((prev) => !prev);

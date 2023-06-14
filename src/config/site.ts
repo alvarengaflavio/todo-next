@@ -8,6 +8,19 @@ export const siteConfig = {
       title: "Página Inicial",
       href: "/",
     },
+    {
+      title: "Minhas Tarefas",
+      href: "/todos",
+    },
+    {
+      title: "Suporte",
+      href: "/support",
+      disabled: true,
+    },
+    {
+      title: "Sobre",
+      href: "/about",
+    },
   ],
   links: {
     twitter: "https://twitter.com/banysan",
