@@ -43,6 +43,11 @@ const TodoEditForm: FC<TodoEditItemProps> = ({
     : getDateToLocale(todo.updatedAt);
 
   async function onSubmit(data: z.infer<typeof createTodoSchema>) {
+    if (todo.title === data.title) {
+      handleEditing();
+      return toast({ title: "Nada foi alterado!" });
+    }
+
     const _todo = { ...todo, ...data };
     const newTodo = await updateTodo(_todo);
 
@@ -61,6 +66,7 @@ const TodoEditForm: FC<TodoEditItemProps> = ({
     toast({
       title: "Tarefa atualizada!",
     });
+
     handleTodo({ ...newTodo, updatedAt: new Date() });
     handleEditing();
   }
@@ -91,6 +97,9 @@ const TodoEditForm: FC<TodoEditItemProps> = ({
                             type="text"
                             className="text-4xl font-bold min-w-full text-center"
                             autoFocus={true}
+                            onKeyUp={(e) => {
+                              if (e.key === "Escape") handleEditing();
+                            }}
                             {...field}
                           />
                         </FormControl>
