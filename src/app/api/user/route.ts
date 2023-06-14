@@ -1,13 +1,11 @@
-import { NextRequest } from "next/server";
+import { authOptions } from "@/lib/auth";
+import { getServerSession } from "next-auth";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(req: NextRequest) {
-  const { searchParams } = new URL(req.url);
-  const mySearchParam = searchParams.get("search");
+export async function GET() {
+  const session = await getServerSession(authOptions);
 
-  return new Response(JSON.stringify({ message: "Hello World" }), {
-    status: 200,
-    statusText: "OK",
-  });
+  return NextResponse.json({ authenticated: !!session?.user });
 }
 
 export async function POST(req: NextRequest) {
