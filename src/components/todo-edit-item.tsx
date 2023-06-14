@@ -26,6 +26,7 @@ const TodoEditItem: FC<TodoEditItemProps> = ({
   const date = !todo.done
     ? getDateToLocale(todo.createdAt)
     : getDateToLocale(todo.updatedAt);
+
   return (
     <>
       <Card className="w-3/4 p-4 my-4 dark:shadow-foreground/10 shadow-md ">
