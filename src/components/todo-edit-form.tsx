@@ -90,6 +90,7 @@ const TodoEditForm: FC<TodoEditItemProps> = ({
                             placeholder="atualizar tarefa"
                             type="text"
                             className="text-4xl font-bold min-w-full text-center"
+                            autoFocus={true}
                             {...field}
                           />
                         </FormControl>
