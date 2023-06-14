@@ -69,7 +69,7 @@ export function UserNav() {
             <DropdownMenuItem>
               <User className="mr-2 h-4 w-4" />
               <span>Perfil</span>
-              <DropdownMenuShortcut>⌘P</DropdownMenuShortcut>
+              <DropdownMenuShortcut>P</DropdownMenuShortcut>
             </DropdownMenuItem>
           </Link>
 
@@ -83,20 +83,20 @@ export function UserNav() {
             <DropdownMenuItem>
               <Settings className="mr-2 h-4 w-4" />
               <span>Configuração</span>
-              <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+              <DropdownMenuShortcut>C</DropdownMenuShortcut>
             </DropdownMenuItem>
           </Link>
 
           <DropdownMenuItem>
             <PlusCircle className="mr-2 h-4 w-4" />
-            <span>New Team</span>
+            <span>Novo Time</span>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={() => signOut()}>
           <LogOut className="mr-2 h-4 w-4" />
           <span>Sair</span>
-          <DropdownMenuShortcut>⌘Q</DropdownMenuShortcut>
+          <DropdownMenuShortcut>S</DropdownMenuShortcut>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
