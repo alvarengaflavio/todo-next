@@ -1,5 +1,6 @@
 import { buttonVariants } from "@/components/ui/button";
 import { siteConfig } from "@/config/site";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { FC } from "react";
 
@@ -28,6 +29,7 @@ function Home({}: FC<HomePageProps>) {
               <Link
                 href={siteConfig.links.github}
                 className="font-semibold text-indigo-600"
+                target="_blank"
               >
                 <span className="absolute inset-0" aria-hidden="true" />
                 Flávio Alvarenga <span aria-hidden="true">&rarr;</span>
@@ -48,16 +50,20 @@ function Home({}: FC<HomePageProps>) {
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <Link
                 href="/todos"
-                className={buttonVariants({ variant: "default" })}
+                className={cn(buttonVariants({ variant: "default" }), "w-36")}
               >
                 Começar Agora
               </Link>
-              <a
-                href="#"
-                className="text-sm font-semibold leading-6 text-gray-900"
+              <Link
+                href={siteConfig.mainNav[3].href}
+                className={cn(buttonVariants({ variant: "outline" }), "w-36")}
               >
-                Learn more <span aria-hidden="true">→</span>
-              </a>
+                Saiba Mais{" "}
+                <span aria-hidden="true" className="ml-1">
+                  {" "}
+                  &rarr;{" "}
+                </span>
+              </Link>
             </div>
           </div>
         </div>
