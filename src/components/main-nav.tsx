@@ -21,13 +21,6 @@ export function MainNav({ items, children }: MainNavProps) {
   const pathname = usePathname();
   const [showMobileMenu, setShowMobileMenu] = React.useState<boolean>(false);
 
-  const navTest = () =>
-    items?.map((item) => {
-      console.log("pathname", item.href, pathname, item.href === pathname);
-    });
-
-  navTest();
-
   return (
     <div className="flex gap-6 md:gap-10">
       <Link href="/" className="hidden items-center space-x-2 md:flex">
