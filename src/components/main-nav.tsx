@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { useSelectedLayoutSegment } from "next/navigation";
+import { usePathname, useSelectedLayoutSegment } from "next/navigation";
 
 import { MainNavItem } from "@/types";
 import { siteConfig } from "@/config/site";
@@ -17,7 +17,16 @@ interface MainNavProps {
 
 export function MainNav({ items, children }: MainNavProps) {
   const segment = useSelectedLayoutSegment();
+  // ? segment com bug // testando com usePathname
+  const pathname = usePathname();
   const [showMobileMenu, setShowMobileMenu] = React.useState<boolean>(false);
+
+  const navTest = () =>
+    items?.map((item) => {
+      console.log("pathname", item.href, pathname, item.href === pathname);
+    });
+
+  navTest();
 
   return (
     <div className="flex gap-6 md:gap-10">
@@ -34,14 +43,21 @@ export function MainNav({ items, children }: MainNavProps) {
               key={index}
               href={item.disabled ? "#" : item.href}
               className={cn(
-                "flex items-center text-lg font-medium transition-colors hover:text-foreground/80 sm:text-sm",
-                item.href.startsWith(`/${segment}`)
-                  ? "text-foreground"
+                " relative flex items-center text-lg font-medium transition-all hover:text-foreground/80 sm:text-sm",
+                item.href === pathname
+                  ? "text-foreground "
                   : "text-foreground/60",
                 item.disabled && "cursor-not-allowed opacity-80"
               )}
             >
               {item.title}
+              <div
+                className={cn(
+                  item.href === pathname ? "before:w-4/5" : "before:w-0",
+                  "absolute before:content-[''] w-full h-full p-0 m-0  hover:before:w-full before:transition-all before:duration-300 before:absolute before:inset-x-0 before:h-[1px] before:bg-foreground before:rounded-full before:bottom-[-0.01rem]",
+                  item.disabled && "hover:before:w-0"
+                )}
+              />
             </Link>
           ))}
         </nav>
