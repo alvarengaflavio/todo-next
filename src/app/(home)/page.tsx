@@ -39,10 +39,10 @@ function Home({}: FC<HomePageProps>) {
               Mantenha suas Tarefas Organizadas{" "}
             </h1>
             <p className="mt-6 text-lg leading-8 text-popover-foreground">
-              Com o <span className="font-semibold">Todo App</span> você pode
-              organizar suas tarefas de forma simples e prática. Crie e gerencie
-              suas tarefas com poucos cliques, mantendo o foco onde realmente
-              importa. Basta criar uma conta e começar a usar.
+              Com o <span className="font-semibold text-primary">Todo App</span>{" "}
+              você pode organizar suas tarefas de forma simples e prática. Crie
+              e gerencie suas tarefas com poucos cliques, mantendo o foco onde
+              realmente importa. Basta criar uma conta e começar a usar.
             </p>
 
             <div className="mt-10 flex items-center justify-center gap-x-6">
