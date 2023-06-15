@@ -1,16 +1,81 @@
-import { CreateTodoForm } from "@/components/todo-create";
-import { TodoList } from "@/components/todo-list";
+import { buttonVariants } from "@/components/ui/button";
+import { siteConfig } from "@/config/site";
+import Link from "next/link";
+import { FC } from "react";
 
-export default async function Home() {
+interface HomePageProps {}
+
+function Home({}: FC<HomePageProps>) {
   return (
-    <main className="flex min-h-screen container flex-col items-center justify-between px-24 py-4">
-      <section className="w-3/4">
-        <div className="mx-2 my-2 bg-slate-100 rounded-sm dark:bg-transparent grid grid-cols-1 gap-4 p-5">
-          <h1 className="text-5xl text-center font-light"> TODO LIST</h1>
-          <CreateTodoForm />
-          <TodoList />
+    <div className="bg-background">
+      <div className="relative isolate px-6 pt-14 lg:px-8">
+        <div
+          className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
+          aria-hidden="true"
+        >
+          <div
+            className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
+            style={{
+              clipPath:
+                "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
+            }}
+          />
         </div>
-      </section>
-    </main>
+        <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+          <div className="hidden sm:mb-8 sm:flex sm:justify-center">
+            <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-popover-foreground ring-1 ring-ring hover:ring-slate-600 transition-colors">
+              Este projeto faz parte do portfólio de{" "}
+              <Link
+                href={siteConfig.links.github}
+                className="font-semibold text-indigo-600"
+              >
+                <span className="absolute inset-0" aria-hidden="true" />
+                Flávio Alvarenga <span aria-hidden="true">&rarr;</span>
+              </Link>
+            </div>
+          </div>
+          <div className="text-center">
+            <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl">
+              Mantenha suas Tarefas Organizadas{" "}
+            </h1>
+            <p className="mt-6 text-lg leading-8 text-popover-foreground">
+              Com o <span className="font-semibold">Todo App</span> você pode
+              organizar suas tarefas de forma simples e prática. Crie e gerencie
+              suas tarefas com poucos cliques, mantendo o foco onde realmente
+              importa. Basta criar uma conta e começar a usar.
+            </p>
+
+            <div className="mt-10 flex items-center justify-center gap-x-6">
+              <Link
+                href="/todos"
+                className={buttonVariants({ variant: "default" })}
+              >
+                Começar Agora
+              </Link>
+              <a
+                href="#"
+                className="text-sm font-semibold leading-6 text-gray-900"
+              >
+                Learn more <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div
+          className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
+          aria-hidden="true"
+        >
+          <div
+            className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
+            style={{
+              clipPath:
+                "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
+            }}
+          />
+        </div>
+      </div>
+    </div>
   );
 }
+
+export default Home;
