@@ -31,11 +31,11 @@ interface LayoutProps {
 
 export default function RootLayout({ children }: LayoutProps) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head />
 
       <body
-        className={inter.className + "min-h-screen bg-background antialiased"}
+        className={inter.className + "min-h-screen bg-background  antialiased"}
       >
         <Providers attribute="class" defaultTheme="system" enableSystem>
           {children}
