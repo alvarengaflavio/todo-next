@@ -7,7 +7,7 @@ interface LayoutProps {
 
 const AboutLayout = async ({ children }: LayoutProps) => {
   return (
-    <div className="flex min-h-screen flex-col space-y-6">
+    <div className="flex flex-col min-h-screen space-y-6">
       <SiteHeader />
       <div className="container flex-1">
         <main className="flex w-full flex-1 flex-col overflow-hidden">

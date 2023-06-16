@@ -6,7 +6,7 @@ import { User } from "@/config/user";
 
 const AboutPage = async () => {
   return (
-    <section>
+    <section className="w-full">
       <h1>About</h1>
       <AuthButtons />
       <User />
