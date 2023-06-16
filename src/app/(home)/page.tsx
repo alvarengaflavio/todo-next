@@ -8,8 +8,8 @@ interface HomePageProps {}
 
 function Home({}: FC<HomePageProps>) {
   return (
-    <div className="bg-background">
-      <div className="relative isolate px-6 pt-14 lg:px-8">
+    <div className="bg-background flex flex-col items-center">
+      <section className="relative isolate px-6 pt-14 lg:px-8">
         <div
           className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
           aria-hidden="true"
@@ -22,32 +22,30 @@ function Home({}: FC<HomePageProps>) {
             }}
           />
         </div>
-        <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
-          <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-            <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-popover-foreground ring-1 ring-ring hover:ring-slate-600 transition-colors">
-              Este projeto faz parte do portfólio de{" "}
-              <Link
-                href={siteConfig.links.github}
-                className="font-semibold text-indigo-600"
-                target="_blank"
-              >
-                <span className="absolute inset-0" aria-hidden="true" />
-                Flávio Alvarenga <span aria-hidden="true">&rarr;</span>
-              </Link>
-            </div>
+        <div className="flex flex-col items-center max-w-full py-12 sm:py-18 lg:py-24">
+          <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-popover-foreground ring-1 ring-ring hover:ring-slate-600 transition-colors">
+            Este projeto faz parte do portfólio de{" "}
+            <Link
+              href={siteConfig.links.github}
+              className="font-semibold text-indigo-600"
+              target="_blank"
+            >
+              <span className="absolute inset-0" aria-hidden="true" />
+              Flávio Alvarenga <span aria-hidden="true">&rarr;</span>
+            </Link>
           </div>
-          <div className="text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl">
-              Mantenha suas Tarefas Organizadas{" "}
+          <div className="text-center flex flex-col items-center ">
+            <h1 className="max-w-[64rem] text-3xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl">
+              Mantenha suas tarefas sempre em dia e organizadas.{" "}
             </h1>
-            <p className="mt-6 text-lg leading-8 text-popover-foreground">
+            <p className="mt-4 max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
               Com o <span className="font-semibold text-primary">Todo App</span>{" "}
               você pode criar e gerenciar suas tarefas de forma prática e fácil,
               mantendo o foco onde realmente importa. Basta criar uma conta e
               começar a usar.
             </p>
 
-            <div className="mt-10 flex items-center justify-center gap-x-6">
+            <div className="mt-6 flex items-center justify-center gap-x-4">
               <Link
                 href="/todos"
                 className={cn(buttonVariants({ variant: "default" }), "w-36")}
@@ -79,7 +77,7 @@ function Home({}: FC<HomePageProps>) {
             }}
           />
         </div>
-      </div>
+      </section>
     </div>
   );
 }
