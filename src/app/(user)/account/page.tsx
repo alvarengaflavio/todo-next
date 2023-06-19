@@ -18,7 +18,10 @@ const AccountPage: FC<AccountPageProps> = ({}) => {
   return (
     <section className="w-full h-full text-center flex flex-col items-center">
       <h2 className="text-2xl font-thin my-6">OPÇÕES DE CONTA</h2>
-      <Tabs defaultValue="account" className="w-[400px]">
+      <Tabs
+        defaultValue="account"
+        className="w-[300px] sm:w-[400px] lg:w-[400px]"
+      >
         <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger value="account">Conta</TabsTrigger>
           <TabsTrigger value="password">Senha</TabsTrigger>
@@ -27,7 +30,7 @@ const AccountPage: FC<AccountPageProps> = ({}) => {
           <Card>
             <CardHeader>
               <CardTitle>Conta</CardTitle>
-              <CardDescription>
+              <CardDescription className="leading-5 text-base sm:leading-6">
                 Faça alterações na sua conta aqui. Clique em salvar quando
                 terminar.
               </CardDescription>
@@ -43,7 +46,7 @@ const AccountPage: FC<AccountPageProps> = ({}) => {
               </div>
             </CardContent>
             <CardFooter>
-              <Button>Salvar Mudanças</Button>
+              <Button className="mx-auto md:mx-0">Salvar Mudanças</Button>
             </CardFooter>
           </Card>
         </TabsContent>
@@ -51,7 +54,7 @@ const AccountPage: FC<AccountPageProps> = ({}) => {
           <Card>
             <CardHeader>
               <CardTitle>Senha</CardTitle>
-              <CardDescription>
+              <CardDescription className="leading-5 text-base sm:leading-6">
                 Altere sua senha aqui. Após salvar, você será desconectado.
               </CardDescription>
             </CardHeader>
@@ -64,9 +67,13 @@ const AccountPage: FC<AccountPageProps> = ({}) => {
                 <Label htmlFor="new">Nova senha</Label>
                 <Input id="new" type="password" />
               </div>
+              <div className="space-y-1">
+                <Label htmlFor="confirm">Confirmar nova senha</Label>
+                <Input id="confirm" type="password" />
+              </div>
             </CardContent>
             <CardFooter>
-              <Button>Salvar Senha</Button>
+              <Button className="mx-auto md:mx-0">Salvar Senha</Button>
             </CardFooter>
           </Card>
         </TabsContent>
