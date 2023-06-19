@@ -38,11 +38,20 @@ const AccountPage: FC<AccountPageProps> = ({}) => {
             <CardContent className="space-y-2">
               <div className="space-y-1">
                 <Label htmlFor="name">Nome</Label>
-                <Input id="name" defaultValue="Pedro Duarte" />
+                <Input id="name" defaultValue="Flávio Alvarenga" />
               </div>
               <div className="space-y-1">
-                <Label htmlFor="username">Nome de Usuário</Label>
-                <Input id="username" defaultValue="@peduarte" />
+                <Label htmlFor="username">Usuário</Label>
+                <Input id="username" defaultValue="@alvarenga" />
+              </div>
+              <div className="space-y-1">
+                <Label htmlFor="email">Email</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  defaultValue="alvarenga@email.com"
+                  disabled
+                />
               </div>
             </CardContent>
             <CardFooter>
