@@ -81,7 +81,7 @@ export const TodoCard: FC<TodoCardProps> = ({
             />
           </CardHeader>
           <CardContent className="flex flex-col flex-1 p-0 justify-between text-center w-10/12">
-            <div onClick={handleCardDone} className="text-3xl mt-20 ">
+            <div onDoubleClick={handleCardDone} className="text-3xl mt-20 ">
               {todo.title ?? ""}
             </div>
             <div className="text-sm text-slate-400 pb-1 mb-10">
