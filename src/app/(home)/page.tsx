@@ -205,8 +205,8 @@ function Home({}: FC<HomePageProps>) {
         </div>
         <div className="mx-auto text-center md:max-w-[58rem]">
           <p className="leading-normal text-muted-foreground sm:text-lg sm:leading-7">
-            Todo App é um projeto construído para portfólio pessoal e sem fins
-            lucrativos. O projeto é open-source e pode ser utilizado por
+            Todo App é um projeto construído para portfólio pessoal e com fins
+            educativos. O projeto é código-aberto e pode ser utilizado por
             qualquer pessoa.
           </p>
         </div>
