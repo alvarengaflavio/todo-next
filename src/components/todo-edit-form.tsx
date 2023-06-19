@@ -20,6 +20,7 @@ import {
 } from "./ui/form";
 import { Input } from "./ui/input";
 import { toast } from "./ui/use-toast";
+import { siteConfig } from "@/config/site";
 
 interface TodoEditItemProps {
   todo: Todo;
@@ -128,7 +129,10 @@ const TodoEditForm: FC<TodoEditItemProps> = ({
       </Card>
 
       <div className="text-4xl w-3/4 font-bold my-2 flex justify-between gap-2">
-        <Link href="/" className={buttonVariants({ variant: "outline" })}>
+        <Link
+          href={siteConfig.mainNav[1].href}
+          className={buttonVariants({ variant: "outline" })}
+        >
           Voltar
         </Link>
 
