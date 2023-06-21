@@ -6,6 +6,7 @@ interface PreferencesPageProps {}
 import fs from "fs";
 import path from "path";
 import { Toggle } from "@/components/ui/toggle";
+import { AvatarToggle } from "./avatar-toggle";
 
 // Caminho absoluto para a pasta public
 const publicFolderPath = path.join(process.cwd(), "public");
@@ -39,24 +40,7 @@ const PreferencesPage = async ({}: PreferencesPageProps) => {
       <h2 className="text-2xl font-thin my-6">PREFERÊNCIAS DE CONTA</h2>
 
       <div className="flex items-center space-x-4 border border-1 p-8 rounded-md">
-        {avatars.map((avatar, i) => {
-          return (
-            <Toggle
-              variant={"outline"}
-              className="w-16 h-16"
-              key={`${i + "" + avatar}`}
-              defaultPressed={avatar === "01.png" ? true : false}
-            >
-              <Image
-                src={`/avatars/${avatar}`}
-                alt={`avatar ${avatar}`}
-                width="40"
-                height="40"
-                className="rounded-full"
-              />
-            </Toggle>
-          );
-        })}
+        <AvatarToggle avatars={avatars} />
       </div>
     </section>
   );
