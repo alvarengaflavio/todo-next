@@ -49,7 +49,7 @@ const AvatarToggle: FC<AvatarsToggleProps> = ({ avatars, className }) => {
           return (
             <Toggle
               variant={"outline"}
-              className="w-16 h-16 px-2 bg-background data-[state=on]:bg-primary"
+              className="w-16 h-16 px-2 bg-background data-[state=on]:bg-primary transition-colors ease-in"
               key={`${i} + "" + ${avatar}`}
               pressed={avatar === pressedAvatar ? true : false}
               onClick={(e) => handleToggle(e.currentTarget)}
