@@ -5,12 +5,11 @@ import Image from "next/image";
 
 interface AvatarsToggleProps {
   avatars: string[];
-  setAvatars: (avatars: boolean) => void;
 }
 
-const AvatarToggle: FC<AvatarsToggleProps> = ({ avatars, setAvatars }) => {
+const AvatarToggle: FC<AvatarsToggleProps> = ({ avatars }) => {
   return (
-    <>
+    <div className="flex items-center space-x-4 border border-1 p-8 rounded-md">
       {avatars.map((avatar, i) => {
         return (
           <Toggle
@@ -30,7 +29,7 @@ const AvatarToggle: FC<AvatarsToggleProps> = ({ avatars, setAvatars }) => {
           </Toggle>
         );
       })}
-    </>
+    </div>
   );
 };
 
