@@ -8,16 +8,14 @@ interface AvatarsToggleProps {
 }
 
 const AvatarToggle: FC<AvatarsToggleProps> = ({ avatars }) => {
-  // implementer useMemo to avoid re-rendering
   const [selectedAvatar, setSelectedAvatar] = useState<string | null>(null);
   const pressedAvatar = useMemo(() => selectedAvatar, [selectedAvatar]);
 
   const handleToggle = (e: HTMLButtonElement) => {
     const { firstChild } = e;
     const { src } = firstChild as HTMLImageElement;
-    console.log("firstChild", firstChild);
-    console.log("src", decodeURIComponent(src));
     const avatarName = decodeURIComponent(src).split("/").pop()?.split("&")[0];
+
     avatarName && setSelectedAvatar(() => avatarName);
   };
 
@@ -28,7 +26,7 @@ const AvatarToggle: FC<AvatarsToggleProps> = ({ avatars }) => {
           <Toggle
             variant={"outline"}
             className="w-16 h-16"
-            key={`${avatar}`}
+            key={`${i} + "" + ${avatar}`}
             pressed={avatar === pressedAvatar ? true : false}
             onPressedChange={(pressed) => console.log(pressed)}
             onClick={(e) => handleToggle(e.currentTarget)}
@@ -38,7 +36,7 @@ const AvatarToggle: FC<AvatarsToggleProps> = ({ avatars }) => {
               alt={`avatar ${avatar}`}
               width="40"
               height="40"
-              className="rounded-full"
+              className="rounded-full w-full"
             />
           </Toggle>
         );
