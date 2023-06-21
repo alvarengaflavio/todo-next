@@ -44,7 +44,6 @@ const PreferencesPage = async ({}: PreferencesPageProps) => {
             key={`${i + "" + avatar}`}
           >
             <Image
-              // className="w-32 h-32 rounded-full"
               src={`/avatars/${avatar}`}
               alt={`avatar ${avatar}`}
               width="40"
