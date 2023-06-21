@@ -9,16 +9,16 @@ interface AvatarsToggleProps {
 
 const AvatarToggle: FC<AvatarsToggleProps> = ({ avatars }) => {
   // implementer useMemo to avoid re-rendering
-  const [selectedAvatar, setSelectedAvatar] = useState<string>("01.png");
+  const [selectedAvatar, setSelectedAvatar] = useState<string | null>(null);
   const pressedAvatar = useMemo(() => selectedAvatar, [selectedAvatar]);
 
   const handleToggle = (e: HTMLButtonElement) => {
     const { firstChild } = e;
     const { src } = firstChild as HTMLImageElement;
     console.log("firstChild", firstChild);
-    console.log("src", decodeURIComponent(src)); // src: http://localhost:3000/_next/image?url=/avatars/01.png&w=96&q=75
-    const _avatar = decodeURIComponent(src).split("/").pop()?.split("&")[0]; //avatar 01.png&w=96&q=75 -> avatar 01.png
-    console.log("avatar", _avatar);
+    console.log("src", decodeURIComponent(src));
+    const avatarName = decodeURIComponent(src).split("/").pop()?.split("&")[0];
+    avatarName && setSelectedAvatar(() => avatarName);
   };
 
   return (
@@ -29,7 +29,7 @@ const AvatarToggle: FC<AvatarsToggleProps> = ({ avatars }) => {
             variant={"outline"}
             className="w-16 h-16"
             key={`${avatar}`}
-            defaultPressed={avatar === pressedAvatar ? true : false}
+            pressed={avatar === pressedAvatar ? true : false}
             onPressedChange={(pressed) => console.log(pressed)}
             onClick={(e) => handleToggle(e.currentTarget)}
           >
