@@ -1,13 +1,13 @@
-import { FC } from "react";
-import Image from "next/image";
-
-interface PreferencesPageProps {}
-
 import fs from "fs";
 import path from "path";
-import { Toggle } from "@/components/ui/toggle";
 import { AvatarToggle } from "./avatar-toggle";
 
+interface PreferencesPageProps {
+  params: {
+    url?: string;
+    query?: string;
+  };
+}
 // Caminho absoluto para a pasta public
 const publicFolderPath = path.join(process.cwd(), "public");
 
@@ -27,7 +27,7 @@ const readAvatarFiles = async () => {
 
 readAvatarFiles();
 
-const PreferencesPage = async ({}: PreferencesPageProps) => {
+const PreferencesPage = async ({ params }: PreferencesPageProps) => {
   const avatars = await readAvatarFiles();
 
   if (!avatars) {
