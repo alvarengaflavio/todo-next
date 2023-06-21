@@ -24,7 +24,7 @@ const AvatarToggle: FC<AvatarsToggleProps> = ({ avatars, className }) => {
   return (
     <div
       className={cn(
-        "flex items-center space-x-4 border border-1 p-8 rounded-md ",
+        "flex items-center space-x-4 border border-border p-8 rounded-md ",
         className
       )}
     >
