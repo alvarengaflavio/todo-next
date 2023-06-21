@@ -46,6 +46,7 @@ const PreferencesPage = async ({}: PreferencesPageProps) => {
               className="w-16 h-16"
               key={`${i + "" + avatar}`}
               defaultPressed={avatar === "01.png" ? true : false}
+              onPressedChange={(pressed) => console.log(pressed)}
             >
               <Image
                 src={`/avatars/${avatar}`}
