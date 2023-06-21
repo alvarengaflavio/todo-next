@@ -1,13 +1,15 @@
 "use client";
 import { Toggle } from "@/components/ui/toggle";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { FC, useState, useMemo } from "react";
 
 interface AvatarsToggleProps {
   avatars: string[];
+  className?: string;
 }
 
-const AvatarToggle: FC<AvatarsToggleProps> = ({ avatars }) => {
+const AvatarToggle: FC<AvatarsToggleProps> = ({ avatars, className }) => {
   const [selectedAvatar, setSelectedAvatar] = useState<string | null>(null);
   const pressedAvatar = useMemo(() => selectedAvatar, [selectedAvatar]);
 
@@ -20,7 +22,12 @@ const AvatarToggle: FC<AvatarsToggleProps> = ({ avatars }) => {
   };
 
   return (
-    <div className="flex items-center space-x-4 border border-1 p-8 rounded-md">
+    <div
+      className={cn(
+        "flex items-center space-x-4 border border-1 p-8 rounded-md ",
+        className
+      )}
+    >
       {avatars.map((avatar, i) => {
         return (
           <Toggle
