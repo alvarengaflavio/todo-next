@@ -5,6 +5,7 @@ interface PreferencesPageProps {}
 
 import fs from "fs";
 import path from "path";
+import { Toggle } from "@/components/ui/toggle";
 
 // Caminho absoluto para a pasta public
 const publicFolderPath = path.join(process.cwd(), "public");
@@ -37,21 +38,17 @@ const PreferencesPage = async ({}: PreferencesPageProps) => {
     <section className="w-full h-full text-center flex flex-col items-center">
       <h2 className="text-2xl font-thin my-6">PREFERÊNCIAS DE CONTA</h2>
 
-      <div className="flex items-center space-x-4">
+      <div className="flex items-center space-x-4 border border-1 p-8 rounded-md">
         {avatars.map((avatar, i) => {
           return (
-            <div
-              className="flex flex-col items-center"
-              key={`${i + "" + avatar}`}
-            >
+            <Toggle className="w-16 h-16" key={`${i + "" + avatar}`}>
               <Image
                 src={`/avatars/${avatar}`}
                 alt={`avatar ${avatar}`}
                 width="40"
                 height="40"
               />
-              <p className="text-xl font-semibold">{avatar}</p>
-            </div>
+            </Toggle>
           );
         })}
       </div>
