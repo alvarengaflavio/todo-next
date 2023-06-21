@@ -41,12 +41,17 @@ const PreferencesPage = async ({}: PreferencesPageProps) => {
       <div className="flex items-center space-x-4 border border-1 p-8 rounded-md">
         {avatars.map((avatar, i) => {
           return (
-            <Toggle className="w-16 h-16" key={`${i + "" + avatar}`}>
+            <Toggle
+              variant={"outline"}
+              className="w-16 h-16"
+              key={`${i + "" + avatar}`}
+            >
               <Image
                 src={`/avatars/${avatar}`}
                 alt={`avatar ${avatar}`}
                 width="40"
                 height="40"
+                className="rounded-full"
               />
             </Toggle>
           );
