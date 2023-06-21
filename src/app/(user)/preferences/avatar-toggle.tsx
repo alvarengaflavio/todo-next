@@ -16,7 +16,7 @@ const AvatarToggle: FC<AvatarsToggleProps> = ({ avatars, className }) => {
   const handleToggle = (e: HTMLButtonElement) => {
     const { firstChild } = e;
     const { src } = firstChild as HTMLImageElement;
-    const avatarName = decodeURIComponent(src).split("/").pop()?.split("&")[0];
+    const avatarName = decodeURIComponent(src).split("/")?.pop()?.split("&")[0];
 
     avatarName && setSelectedAvatar(() => avatarName);
   };
@@ -35,7 +35,6 @@ const AvatarToggle: FC<AvatarsToggleProps> = ({ avatars, className }) => {
             className="w-16 h-16 px-2"
             key={`${i} + "" + ${avatar}`}
             pressed={avatar === pressedAvatar ? true : false}
-            onPressedChange={(pressed) => console.log(pressed)}
             onClick={(e) => handleToggle(e.currentTarget)}
           >
             <Image
