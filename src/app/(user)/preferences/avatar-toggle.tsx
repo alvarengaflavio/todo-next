@@ -9,6 +9,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Toggle } from "@/components/ui/toggle";
+import { toast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { FC, useState, useMemo } from "react";
@@ -30,6 +31,18 @@ const AvatarToggle: FC<AvatarsToggleProps> = ({ avatars, className }) => {
     avatarName && setSelectedAvatar(() => avatarName);
   };
 
+  const handleSave = () => {
+    if (!selectedAvatar) {
+      return toast({
+        title: "Selecione um avatar para salvar",
+        variant: "destructive",
+      });
+    }
+
+    console.log("Avatar selecionado:", selectedAvatar);
+    // todo - salvar avatar no banco de dados - pegar sessão do usuário e salvar o avatar
+  };
+
   return (
     <Card
       className={cn(
@@ -38,7 +51,7 @@ const AvatarToggle: FC<AvatarsToggleProps> = ({ avatars, className }) => {
       )}
     >
       <CardHeader>
-        <CardTitle className="">Escolha seu Avatar</CardTitle>
+        <CardTitle className="">Selecionar Avatar</CardTitle>
         <CardDescription className="text-center leading-5 text-base sm:leading-6">
           Escolha um avatar para que seus amigos possam te identificar
         </CardDescription>
@@ -67,7 +80,9 @@ const AvatarToggle: FC<AvatarsToggleProps> = ({ avatars, className }) => {
       </CardContent>
 
       <CardFooter className=" mt-8">
-        <Button>Salvar Avatar</Button>
+        <Button size={"lg"} onClick={handleSave}>
+          Salvar Avatar
+        </Button>
       </CardFooter>
     </Card>
   );
