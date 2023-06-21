@@ -40,7 +40,12 @@ const AvatarToggle: FC<AvatarsToggleProps> = ({ avatars, className }) => {
     }
 
     console.log("Avatar selecionado:", selectedAvatar);
-    // todo - salvar avatar no banco de dados - pegar sessão do usuário e salvar o avatar
+    // todo - salvar avatar no banco de dados
+    // todo - pegar sessão do usuário e salvar o avatar
+    // todo - adicionar loading page
+    // todo - adicionar toast de sucesso
+    // todo - adicionar toast de erro
+    // todo - talvez adicionar loading no botão
   };
 
   return (
