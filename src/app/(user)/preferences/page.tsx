@@ -45,6 +45,7 @@ const PreferencesPage = async ({}: PreferencesPageProps) => {
               variant={"outline"}
               className="w-16 h-16"
               key={`${i + "" + avatar}`}
+              defaultPressed={avatar === "01.png" ? true : false}
             >
               <Image
                 src={`/avatars/${avatar}`}
