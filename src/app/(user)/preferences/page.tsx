@@ -18,8 +18,7 @@ const avatarsFolderPath = path.join(publicFolderPath, "avatars");
 const readAvatarFiles = async () => {
   try {
     const avatarFiles = await fs.promises.readdir(avatarsFolderPath);
-    console.log(avatarFiles);
-    // Faça algo com os nomes dos arquivos aqui
+
     return avatarFiles;
   } catch (error) {
     console.error("Erro ao ler os arquivos da pasta avatars:", error);
