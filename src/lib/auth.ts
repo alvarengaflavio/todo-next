@@ -10,7 +10,7 @@ export const authOptions: NextAuthOptions = {
   },
   pages: {
     signIn: "/login",
-    newUser: "/",
+    newUser: "/todos",
   },
   providers: [
     CredentialsProvider({
@@ -54,8 +54,11 @@ export const authOptions: NextAuthOptions = {
       if (token.id) {
         if (_session.user) {
           _session.user.id = token.id as string;
+          _session.user.image = token.picture as string;
         }
       }
+
+      console.log("session", _session);
 
       return _session;
     },
@@ -64,6 +67,7 @@ export const authOptions: NextAuthOptions = {
       if (user) {
         token.id = user.id; // neste caso id e sub são iguais
       }
+      console.log("jwt", token);
 
       return token;
     },
