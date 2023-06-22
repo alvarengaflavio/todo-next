@@ -13,9 +13,9 @@ import {
 import { Toggle } from "@/components/ui/toggle";
 import { toast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/utils";
-import { signIn, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
-import { FC, useState, useMemo } from "react";
+import { FC, useMemo, useState } from "react";
 
 interface AvatarsToggleProps {
   avatars: string[];
@@ -43,33 +43,16 @@ const AvatarToggle: FC<AvatarsToggleProps> = ({ avatars, className }) => {
       });
     }
 
-    if (session?.user?.image === selectedAvatar) {
-      return;
+    if (session?.user?.image === selectedAvatar) return;
+    if (!selectedAvatar) return;
+
+    const response = await updateAvatarAction(selectedAvatar, session);
+    if (!response.ok) {
+      return toast({ title: "Erro ao salvar avatar", variant: "destructive" });
     }
-
-    if (!selectedAvatar) {
-      return toast({
-        title: "Selecione um avatar para salvar",
-        variant: "destructive",
-      });
-    }
-
-    // todo - adicionar loading page
-
-    await updateAvatarAction(selectedAvatar, session)
-      .catch(() => {
-        toast({
-          title: "Erro ao salvar avatar",
-          variant: "destructive",
-        });
-      })
-      .then(() => {
-        toast({
-          title: "Avatar salvo com sucesso",
-        });
-      });
 
     await update({ image: selectedAvatar });
+    toast({ title: "Avatar salvo com sucesso" });
   };
 
   return (
