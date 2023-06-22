@@ -1,4 +1,5 @@
 "use client";
+import { updateAvatarAction } from "@/app/_actions";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -33,7 +34,14 @@ const AvatarToggle: FC<AvatarsToggleProps> = ({ avatars, className }) => {
     avatarName && setSelectedAvatar(() => avatarName);
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
+    if (!session) {
+      return toast({
+        title: "Você não está logado",
+        variant: "destructive",
+      });
+    }
+
     if (!selectedAvatar) {
       return toast({
         title: "Selecione um avatar para salvar",
@@ -48,6 +56,22 @@ const AvatarToggle: FC<AvatarsToggleProps> = ({ avatars, className }) => {
     // todo - adicionar toast de sucesso
     // todo - adicionar toast de erro
     // todo - talvez adicionar loading no botão
+
+    await updateAvatarAction(selectedAvatar, session)
+      .catch((error) => {
+        console.error("Erro ao salvar avatar:", error);
+      })
+      .then(() => {
+        toast({
+          title: "Avatar salvo com sucesso",
+        });
+      });
+
+    await update({
+      image: selectedAvatar,
+    }).catch((error) => {
+      console.error("Erro ao salvar avatar:", error);
+    });
   };
 
   if (status === "loading") {
