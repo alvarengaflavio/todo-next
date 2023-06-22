@@ -11,6 +11,7 @@ import {
 import { Toggle } from "@/components/ui/toggle";
 import { toast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/utils";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { FC, useState, useMemo } from "react";
 
@@ -20,6 +21,7 @@ interface AvatarsToggleProps {
 }
 
 const AvatarToggle: FC<AvatarsToggleProps> = ({ avatars, className }) => {
+  const { data: session, status, update } = useSession();
   const [selectedAvatar, setSelectedAvatar] = useState<string | null>(null);
   const pressedAvatar = useMemo(() => selectedAvatar, [selectedAvatar]);
 
@@ -47,6 +49,14 @@ const AvatarToggle: FC<AvatarsToggleProps> = ({ avatars, className }) => {
     // todo - adicionar toast de erro
     // todo - talvez adicionar loading no botão
   };
+
+  if (status === "loading") {
+    return <div>Carregando...</div>;
+  }
+
+  if (!session) {
+    return <div>Você não está logado</div>;
+  }
 
   return (
     <Card
