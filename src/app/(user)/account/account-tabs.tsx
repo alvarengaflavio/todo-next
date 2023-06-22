@@ -19,6 +19,12 @@ interface AccountTabsProps {}
 
 const AccountTabs: FC<AccountTabsProps> = () => {
   const { data: session, status, update } = useSession();
+
+  const { user } = session || {};
+  if (user) {
+    console.log(user);
+  }
+
   return (
     <Tabs
       defaultValue="account"
