@@ -33,7 +33,6 @@ export function UserNav() {
     );
   }
 
-  console.log("session:", session);
   const avatarUrl = session?.user?.image
     ? "/avatars/" + session?.user?.image
     : "";
