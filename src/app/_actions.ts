@@ -57,6 +57,24 @@ export async function createUserAction(user: {
   }
 }
 
+export async function updateAvatarAction(avatar: string, session: ISession) {
+  try {
+    const { user } = session;
+    if (!user) return { ok: false, message: "Unauthorized", status: 403 };
+
+    const id = user.id ? { id: user.id } : undefined;
+    if (!id) return { ok: false, message: "Unauthorized", status: 403 };
+    const data: Prisma.UserUpdateInput = {
+      image: avatar,
+    };
+
+    await prisma.user.update({ where: id, data });
+    return { ok: true, message: "Avatar atualizado com sucesso", status: 200 };
+  } catch (error) {
+    return { ok: false, message: "Erro ao atualizar o avatar", status: 500 };
+  }
+}
+
 interface ISession extends Session {
   user?: {
     id?: string | null | undefined;
