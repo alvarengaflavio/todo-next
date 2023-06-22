@@ -37,7 +37,7 @@ export async function createUserAction(user: {
   name: string;
   password: string;
   confirmPassword: string;
-}) {
+}): Promise<ActionResponse> {
   try {
     const { email, name, password } = userCreateSchema.parse(user);
     const data: Prisma.UserCreateInput = {
@@ -60,7 +60,7 @@ export async function createUserAction(user: {
 export async function updateAvatarAction(
   avatar: string,
   session: ISession
-): Promise<ResponseObj> {
+): Promise<ActionResponse> {
   try {
     const { user } = session;
     if (!user) return { ok: false, message: "Unauthorized", status: 403 };
@@ -87,7 +87,7 @@ interface ISession extends Session {
   };
 }
 
-type ResponseObj = {
+type ActionResponse = {
   ok: boolean;
   message: string;
   status: number;
