@@ -57,7 +57,10 @@ export async function createUserAction(user: {
   }
 }
 
-export async function updateAvatarAction(avatar: string, session: ISession) {
+export async function updateAvatarAction(
+  avatar: string,
+  session: ISession
+): Promise<ResponseObj> {
   try {
     const { user } = session;
     if (!user) return { ok: false, message: "Unauthorized", status: 403 };
@@ -83,3 +86,9 @@ interface ISession extends Session {
     image?: string | null | undefined;
   };
 }
+
+type ResponseObj = {
+  ok: boolean;
+  message: string;
+  status: number;
+};
