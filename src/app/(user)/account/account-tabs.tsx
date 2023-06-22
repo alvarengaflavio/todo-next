@@ -1,4 +1,5 @@
 "use client";
+import { Icons } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -11,11 +12,13 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useSession } from "next-auth/react";
 import { FC } from "react";
 
 interface AccountTabsProps {}
 
 const AccountTabs: FC<AccountTabsProps> = () => {
+  const { data: session, status, update } = useSession();
   return (
     <Tabs
       defaultValue="account"
@@ -54,7 +57,15 @@ const AccountTabs: FC<AccountTabsProps> = () => {
             </div>
           </CardContent>
           <CardFooter>
-            <Button className="mx-auto md:mx-0">Salvar Mudanças</Button>
+            {status === "authenticated" ? (
+              <Button className="mx-auto " size={"lg"}>
+                Salvar Mudanças
+              </Button>
+            ) : (
+              <Button className="mx-auto w-[10.6rem] " size={"lg"} disabled>
+                <Icons.loadingSpinner />
+              </Button>
+            )}
           </CardFooter>
         </Card>
       </TabsContent>
@@ -81,7 +92,15 @@ const AccountTabs: FC<AccountTabsProps> = () => {
             </div>
           </CardContent>
           <CardFooter>
-            <Button className="mx-auto md:mx-0">Salvar Senha</Button>
+            {status === "authenticated" ? (
+              <Button className="mx-auto " size={"lg"}>
+                Salvar Senha
+              </Button>
+            ) : (
+              <Button className="mx-auto w-[8.2rem]" size={"lg"} disabled>
+                <Icons.loadingSpinner />
+              </Button>
+            )}
           </CardFooter>
         </Card>
       </TabsContent>
