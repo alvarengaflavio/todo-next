@@ -51,7 +51,7 @@ const AvatarToggle: FC<AvatarsToggleProps> = ({ avatars, className }) => {
       return toast({ title: "Erro ao salvar avatar", variant: "destructive" });
     }
 
-    await update({ image: selectedAvatar });
+    await update({ picture: selectedAvatar });
     toast({ title: "Avatar salvo com sucesso" });
   };
 
