@@ -42,6 +42,10 @@ const AvatarToggle: FC<AvatarsToggleProps> = ({ avatars, className }) => {
       });
     }
 
+    if (session?.user?.image === selectedAvatar) {
+      return;
+    }
+
     if (!selectedAvatar) {
       return toast({
         title: "Selecione um avatar para salvar",
@@ -49,17 +53,14 @@ const AvatarToggle: FC<AvatarsToggleProps> = ({ avatars, className }) => {
       });
     }
 
-    console.log("Avatar selecionado:", selectedAvatar);
-    // todo - salvar avatar no banco de dados
-    // todo - pegar sessão do usuário e salvar o avatar
     // todo - adicionar loading page
-    // todo - adicionar toast de sucesso
-    // todo - adicionar toast de erro
-    // todo - talvez adicionar loading no botão
 
     await updateAvatarAction(selectedAvatar, session)
-      .catch((error) => {
-        console.error("Erro ao salvar avatar:", error);
+      .catch(() => {
+        toast({
+          title: "Erro ao salvar avatar",
+          variant: "destructive",
+        });
       })
       .then(() => {
         toast({
