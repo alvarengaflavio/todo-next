@@ -12,7 +12,7 @@ import {
 import { Toggle } from "@/components/ui/toggle";
 import { toast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/utils";
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
 import { FC, useState, useMemo } from "react";
 
@@ -67,11 +67,7 @@ const AvatarToggle: FC<AvatarsToggleProps> = ({ avatars, className }) => {
         });
       });
 
-    await update({
-      image: selectedAvatar,
-    }).catch((error) => {
-      console.error("Erro ao salvar avatar:", error);
-    });
+    await update({ image: selectedAvatar });
   };
 
   if (status === "loading") {
