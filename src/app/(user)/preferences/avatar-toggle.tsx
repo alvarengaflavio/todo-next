@@ -1,4 +1,6 @@
 "use client";
+import { updateAvatarAction } from "@/app/_actions";
+import { Icons } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -11,8 +13,9 @@ import {
 import { Toggle } from "@/components/ui/toggle";
 import { toast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/utils";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
-import { FC, useState, useMemo } from "react";
+import { FC, useMemo, useState } from "react";
 
 interface AvatarsToggleProps {
   avatars: string[];
@@ -20,6 +23,7 @@ interface AvatarsToggleProps {
 }
 
 const AvatarToggle: FC<AvatarsToggleProps> = ({ avatars, className }) => {
+  const { data: session, status, update } = useSession();
   const [selectedAvatar, setSelectedAvatar] = useState<string | null>(null);
   const pressedAvatar = useMemo(() => selectedAvatar, [selectedAvatar]);
 
@@ -31,21 +35,24 @@ const AvatarToggle: FC<AvatarsToggleProps> = ({ avatars, className }) => {
     avatarName && setSelectedAvatar(() => avatarName);
   };
 
-  const handleSave = () => {
-    if (!selectedAvatar) {
+  const handleSave = async () => {
+    if (!session) {
       return toast({
-        title: "Selecione um avatar para salvar",
+        title: "Você não está logado",
         variant: "destructive",
       });
     }
 
-    console.log("Avatar selecionado:", selectedAvatar);
-    // todo - salvar avatar no banco de dados
-    // todo - pegar sessão do usuário e salvar o avatar
-    // todo - adicionar loading page
-    // todo - adicionar toast de sucesso
-    // todo - adicionar toast de erro
-    // todo - talvez adicionar loading no botão
+    if (session?.user?.image === selectedAvatar) return;
+    if (!selectedAvatar) return;
+
+    const response = await updateAvatarAction(selectedAvatar, session);
+    if (!response.ok) {
+      return toast({ title: "Erro ao salvar avatar", variant: "destructive" });
+    }
+
+    await update({ picture: selectedAvatar });
+    toast({ title: "Avatar salvo com sucesso" });
   };
 
   return (
@@ -85,9 +92,15 @@ const AvatarToggle: FC<AvatarsToggleProps> = ({ avatars, className }) => {
       </CardContent>
 
       <CardFooter className=" mt-8">
-        <Button size={"lg"} onClick={handleSave}>
-          Salvar Avatar
-        </Button>
+        {status === "authenticated" ? (
+          <Button size={"lg"} onClick={handleSave}>
+            Salvar Avatar
+          </Button>
+        ) : (
+          <Button size={"lg"} className="w-[9.2rem]" disabled>
+            <Icons.loadingSpinner />
+          </Button>
+        )}
       </CardFooter>
     </Card>
   );

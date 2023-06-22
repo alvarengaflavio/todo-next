@@ -10,7 +10,7 @@ export const authOptions: NextAuthOptions = {
   },
   pages: {
     signIn: "/login",
-    newUser: "/",
+    newUser: "/todos",
   },
   providers: [
     CredentialsProvider({
@@ -43,7 +43,7 @@ export const authOptions: NextAuthOptions = {
           id: user.id,
           name: user.name,
           email: user.email,
-          randomKey: "randomValue",
+          image: user.image,
         };
       },
     }),
@@ -54,15 +54,20 @@ export const authOptions: NextAuthOptions = {
       if (token.id) {
         if (_session.user) {
           _session.user.id = token.id as string;
+          _session.user.image = token.picture as string;
         }
       }
 
       return _session;
     },
 
-    jwt: async ({ token, user }) => {
+    jwt: async ({ token, trigger, user, session }) => {
       if (user) {
         token.id = user.id; // neste caso id e sub são iguais
+      }
+
+      if (trigger === "update") {
+        token = { ...token, ...session };
       }
 
       return token;

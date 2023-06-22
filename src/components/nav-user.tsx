@@ -33,12 +33,17 @@ export function UserNav() {
     );
   }
 
+  console.log("session:", session);
+  const avatarUrl = session?.user?.image
+    ? "/avatars/" + session?.user?.image
+    : "";
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="relative h-8 w-8 rounded-full">
           <Avatar className="h-8 w-8">
-            <AvatarImage src="/avatars/01.png" alt="avatar do usuário" />
+            <AvatarImage src={avatarUrl} alt="avatar do usuário" />
             <AvatarFallback>
               {session?.user?.name
                 ? session?.user?.name
