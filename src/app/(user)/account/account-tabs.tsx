@@ -12,6 +12,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { User } from "@/types";
 import { useSession } from "next-auth/react";
 import { FC } from "react";
 
@@ -21,9 +22,9 @@ const AccountTabs: FC<AccountTabsProps> = () => {
   const { data: session, status, update } = useSession();
 
   const { user } = session || {};
-  if (user) {
-    console.log(user);
-  }
+  //   if (!user?.email || !user?.name || !user?.image) {
+  //     return null;
+  //   }
 
   return (
     <Tabs
@@ -46,18 +47,26 @@ const AccountTabs: FC<AccountTabsProps> = () => {
           <CardContent className="space-y-2">
             <div className="space-y-1">
               <Label htmlFor="name">Nome</Label>
-              <Input id="name" defaultValue="Flávio Alvarenga" />
+              <Input
+                id="name"
+                defaultValue={user?.name ?? "carregando..."}
+                disabled={status === "loading" ?? true}
+              />
             </div>
             <div className="space-y-1">
               <Label htmlFor="username">Usuário</Label>
-              <Input id="username" defaultValue="@alvarenga" />
+              <Input
+                id="username"
+                defaultValue={"@me-implemente"}
+                disabled={status === "loading" ?? true}
+              />
             </div>
             <div className="space-y-1">
               <Label htmlFor="email">Email</Label>
               <Input
                 id="email"
                 type="email"
-                defaultValue="alvarenga@email.com"
+                defaultValue={user?.email ?? "carregando..."}
                 disabled
               />
             </div>
