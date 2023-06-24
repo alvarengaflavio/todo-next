@@ -53,7 +53,8 @@ const AccountTabs: FC<AccountTabsProps> = () => {
               <Label htmlFor="username">Usuário</Label>
               <Input
                 id="username"
-                defaultValue={user?.username ?? "carregando..."}
+                defaultValue={user?.username ?? ""}
+                placeholder="@apelido"
                 disabled={status === "loading" ?? true}
               />
             </div>
