@@ -15,6 +15,7 @@ model User {
   email    String  @unique
   password String
   name     String?
+  username String? @unique @map("user_name")
   image    String?
   todos    Todo[]
 
