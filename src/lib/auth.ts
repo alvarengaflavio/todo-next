@@ -1,5 +1,4 @@
 import { prisma } from "@/lib/db/db";
-import { ISession } from "@/types";
 import { compare } from "bcrypt";
 import { type NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -44,16 +43,18 @@ export const authOptions: NextAuthOptions = {
           name: user.name,
           email: user.email,
           image: user.image,
+          username: user.username,
         };
       },
     }),
   ],
   callbacks: {
     session: async ({ session, token }) => {
-      const _session = session as ISession;
+      const _session = session;
       if (token.id) {
         if (_session.user) {
           _session.user.id = token.id as string;
+          _session.user.username = token.username as string;
           _session.user.image = token.picture as string;
         }
       }
@@ -64,6 +65,7 @@ export const authOptions: NextAuthOptions = {
     jwt: async ({ token, trigger, user, session }) => {
       if (user) {
         token.id = user.id; // neste caso id e sub são iguais
+        token.username = user.username;
       }
 
       if (trigger === "update") {

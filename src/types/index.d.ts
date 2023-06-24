@@ -44,10 +44,20 @@ export type Todo = {
 
 export type User = {
   id?: string;
-  name: string;
+  name: string | null;
   email: string;
+  image?: string | null;
+  username?: string | null;
   password: string;
   createdAt: string;
   updatedAt: string;
   todos?: Todo[];
+};
+
+export type AuthUser = {
+  id?: string;
+  name: string | null;
+  email: string;
+  image?: string | null;
+  username?: string | null;
 };
