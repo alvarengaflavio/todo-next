@@ -80,7 +80,7 @@ export function UserNav() {
           <DropdownMenuItem>
             <CreditCard className="mr-2 h-4 w-4" />
             <span>Pagamento</span>
-            <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
+            <DropdownMenuShortcut>B</DropdownMenuShortcut>
           </DropdownMenuItem>
 
           <Link href={"/preferences"}>
@@ -93,7 +93,7 @@ export function UserNav() {
 
           <DropdownMenuItem>
             <PlusCircle className="mr-2 h-4 w-4" />
-            <span>Novo Time</span>
+            <span>Nova Tarefa</span>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
