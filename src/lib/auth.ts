@@ -59,8 +59,6 @@ export const authOptions: NextAuthOptions = {
         }
       }
 
-      // console.log("session", _session);
-
       return _session;
     },
 
