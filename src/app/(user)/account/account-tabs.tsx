@@ -12,7 +12,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { User } from "@/types";
 import { useSession } from "next-auth/react";
 import { FC } from "react";
 
@@ -22,9 +21,6 @@ const AccountTabs: FC<AccountTabsProps> = () => {
   const { data: session, status, update } = useSession();
 
   const { user } = session || {};
-  //   if (!user?.email || !user?.name || !user?.image) {
-  //     return null;
-  //   }
 
   return (
     <Tabs
@@ -57,7 +53,7 @@ const AccountTabs: FC<AccountTabsProps> = () => {
               <Label htmlFor="username">Usuário</Label>
               <Input
                 id="username"
-                defaultValue={"@me-implemente"}
+                defaultValue={user?.username ?? "carregando..."}
                 disabled={status === "loading" ?? true}
               />
             </div>
