@@ -54,9 +54,12 @@ export const authOptions: NextAuthOptions = {
       if (token.id) {
         if (_session.user) {
           _session.user.id = token.id as string;
+          _session.user.username = token.username as string;
           _session.user.image = token.picture as string;
         }
       }
+
+      // console.log("session", _session);
 
       return _session;
     },
@@ -64,6 +67,7 @@ export const authOptions: NextAuthOptions = {
     jwt: async ({ token, trigger, user, session }) => {
       if (user) {
         token.id = user.id; // neste caso id e sub são iguais
+        token.username = user.username;
       }
 
       if (trigger === "update") {
