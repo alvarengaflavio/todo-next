@@ -1,18 +1,17 @@
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/db/db";
 import { AuthRequiredException, BadRequestException } from "@/lib/exceptions";
-import { getCurrentUser } from "@/lib/session";
 import { createTodoSchema } from "@/lib/zod";
-import { ISession } from "@/types";
 import { Prisma } from "@prisma/client";
-import { getServerSession } from "next-auth";
+import { Session, getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
 const todoCreateSchema = createTodoSchema;
 
 export async function GET() {
   try {
-    const user = await getCurrentUser();
+    const session = await getServerSession(authOptions);
+    const user = session?.user;
     if (!user) throw new AuthRequiredException("Usuário não autenticado");
 
     const id = user.id ? user.id : undefined;
@@ -42,7 +41,7 @@ export async function POST(req: NextRequest) {
 
     if (!json.title) throw new BadRequestException("Título não informado");
 
-    const session: Required<ISession> | null = await getServerSession(
+    const session: Required<Session> | null = await getServerSession(
       authOptions
     );
 
