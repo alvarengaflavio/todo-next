@@ -75,9 +75,7 @@ export const userUpdateSchema = z.object({
     .nonempty({
       message: "O nome não pode ser vazio",
     }),
-  email: z.string().email({
-    message: "O email deve ser válido",
-  }),
+
   username: z
     .string()
     .min(4, {
@@ -87,6 +85,6 @@ export const userUpdateSchema = z.object({
       message: "O nome de usuário deve ter no máximo 15 caracteres",
     })
     .regex(/^[a-z0-9_]+$/, {
-      message: "O nome de usuário deve conter apenas letras, números e _",
+      message: "Deve conter apenas letras, números e _",
     }),
 });
