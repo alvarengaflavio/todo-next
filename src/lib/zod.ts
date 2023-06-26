@@ -62,3 +62,31 @@ export const userCreateSchema = _userCreateSchema.refine(
     path: ["confirmPassword"],
   }
 );
+
+export const userUpdateSchema = z.object({
+  name: z
+    .string()
+    .min(4, {
+      message: "O nome deve ter no mínimo 4 caracteres",
+    })
+    .max(45, {
+      message: "O nome deve ter no máximo 45 caracteres",
+    })
+    .nonempty({
+      message: "O nome não pode ser vazio",
+    }),
+  email: z.string().email({
+    message: "O email deve ser válido",
+  }),
+  username: z
+    .string()
+    .min(4, {
+      message: "O nome de usuário deve ter no mínimo 4 caracteres",
+    })
+    .max(15, {
+      message: "O nome de usuário deve ter no máximo 15 caracteres",
+    })
+    .regex(/^[a-z0-9_]+$/, {
+      message: "O nome de usuário deve conter apenas letras, números e _",
+    }),
+});
