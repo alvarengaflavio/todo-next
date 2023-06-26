@@ -1,4 +1,5 @@
 "use client";
+import { updateUserAction } from "@/app/_actions";
 import { Icons } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,6 +16,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -35,31 +37,27 @@ const AccountTabs: FC<AccountTabsProps> = () => {
     defaultValues: {
       name: session?.user?.name ?? "",
       username: session?.user?.username ?? "",
-      email: session?.user?.email ?? "",
     },
 
     resolver: zodResolver(userUpdateSchema),
   });
 
   const onSubmit = async (data: z.infer<typeof userUpdateSchema>) => {
-    // const res = await update(data);
-    // if (res.ok) {
-    //   toast({
-    //     title: "Conta atualizada com sucesso!",
-    //     description: "Você já pode efetuar login.",
-    //   });
-    // } else {
-    //   toast({
-    //     variant: "destructive",
-    //     title: res.message,
-    //     description: "Por favor, tente novamente.",
-    //   });
-    // }
+    if (!session) return;
 
-    toast({
-      title: JSON.stringify(data),
-      description: "Você já pode efetuar login.",
-    });
+    const res = await updateUserAction(data, session);
+    if (res.ok) {
+      update(data);
+      toast({
+        title: "Perfil atualizado com sucesso",
+      });
+    } else {
+      toast({
+        variant: "destructive",
+        title: res.message,
+        description: "Por favor, tente novamente.",
+      });
+    }
   };
 
   return (
@@ -87,7 +85,7 @@ const AccountTabs: FC<AccountTabsProps> = () => {
                   control={form.control}
                   name="name"
                   render={({ field }) => (
-                    <FormItem className="space-y-1">
+                    <FormItem className="relative space-y-1">
                       <FormLabel htmlFor="name">Nome</FormLabel>
                       <FormControl>
                         <Input
@@ -97,6 +95,7 @@ const AccountTabs: FC<AccountTabsProps> = () => {
                           {...field}
                         />
                       </FormControl>
+                      <FormMessage className="absolute w-full bottom-0 left-1/2 transform -translate-x-1/2 translate-y-[90%] text-sm text-center font-thin" />
                     </FormItem>
                   )}
                 />
@@ -104,7 +103,7 @@ const AccountTabs: FC<AccountTabsProps> = () => {
                   control={form.control}
                   name="username"
                   render={({ field }) => (
-                    <FormItem className="space-y-1">
+                    <FormItem className="relative space-y-1">
                       <FormLabel htmlFor="username">Usuário</FormLabel>
                       <FormControl>
                         <Input
@@ -114,27 +113,23 @@ const AccountTabs: FC<AccountTabsProps> = () => {
                           {...field}
                         />
                       </FormControl>
+                      <FormMessage className="absolute w-full bottom-0 left-1/2 transform -translate-x-1/2 translate-y-[90%] text-sm text-center font-thin" />
                     </FormItem>
                   )}
                 />
 
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem className="space-y-1">
-                      <FormLabel htmlFor="email">Email</FormLabel>
-                      <FormControl>
-                        <Input
-                          id="email"
-                          placeholder={session?.user?.email ?? "carregando..."}
-                          disabled
-                          {...field}
-                        />
-                      </FormControl>
-                    </FormItem>
-                  )}
-                />
+                <>
+                  <FormItem className="space-y-1 relative">
+                    <FormLabel htmlFor="email">Email</FormLabel>
+                    <FormControl>
+                      <Input
+                        id="email"
+                        placeholder={session?.user?.email ?? "carregando..."}
+                        disabled
+                      />
+                    </FormControl>
+                  </FormItem>
+                </>
               </CardContent>
               <CardFooter>
                 {status === "authenticated" ? (
