@@ -24,7 +24,9 @@ interface AvatarsToggleProps {
 
 const AvatarToggle: FC<AvatarsToggleProps> = ({ avatars, className }) => {
   const { data: session, status, update } = useSession();
-  const [selectedAvatar, setSelectedAvatar] = useState<string | null>(null);
+  const [selectedAvatar, setSelectedAvatar] = useState<string | null>(
+    session?.user?.image ?? null
+  );
   const pressedAvatar = useMemo(() => selectedAvatar, [selectedAvatar]);
 
   const handleToggle = (e: HTMLButtonElement) => {
