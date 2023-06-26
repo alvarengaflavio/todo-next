@@ -184,18 +184,62 @@ const AccountTabs: FC<AccountTabsProps> = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-2">
-                <div className="space-y-1">
-                  <Label htmlFor="current">Senha atual</Label>
-                  <Input id="current" type="password" />
-                </div>
-                <div className="space-y-1">
-                  <Label htmlFor="new">Nova senha</Label>
-                  <Input id="new" type="password" />
-                </div>
-                <div className="space-y-1">
-                  <Label htmlFor="confirm">Confirmar nova senha</Label>
-                  <Input id="confirm" type="password" />
-                </div>
+                <FormField
+                  control={passwordForm.control}
+                  name="password"
+                  render={({ field }) => (
+                    <FormItem className="relative space-y-1">
+                      <FormLabel htmlFor="password">Senha atual</FormLabel>
+                      <FormControl>
+                        <Input
+                          id="password"
+                          type="password"
+                          placeholder="********"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage className="absolute w-full bottom-0 left-1/2 transform -translate-x-1/2 translate-y-[90%] text-sm text-center font-thin" />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={passwordForm.control}
+                  name="newPassword"
+                  render={({ field }) => (
+                    <FormItem className="relative space-y-1">
+                      <FormLabel htmlFor="newPassword">Nova senha</FormLabel>
+                      <FormControl>
+                        <Input
+                          id="newPassword"
+                          type="password"
+                          placeholder="********"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage className="absolute w-full bottom-0 left-1/2 transform -translate-x-1/2 translate-y-[90%] text-sm text-center font-thin" />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={passwordForm.control}
+                  name="confirmPassword"
+                  render={({ field }) => (
+                    <FormItem className="relative space-y-1">
+                      <FormLabel htmlFor="confirmPassword">
+                        Confirmar nova senha
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          id="confirmPassword"
+                          type="password"
+                          placeholder="********"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage className="absolute w-full bottom-0 left-1/2 transform -translate-x-1/2 translate-y-[90%] text-sm text-center font-thin" />
+                    </FormItem>
+                  )}
+                />
               </CardContent>
               <CardFooter>
                 {status === "authenticated" ? (
