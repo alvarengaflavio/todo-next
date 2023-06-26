@@ -12,13 +12,26 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { userUpdateSchema } from "@/lib/zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useSession } from "next-auth/react";
 import { FC } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
 interface AccountTabsProps {}
 
 const AccountTabs: FC<AccountTabsProps> = () => {
   const { data: session, status, update } = useSession();
+  const form = useForm<z.infer<typeof userUpdateSchema>>({
+    defaultValues: {
+      name: session?.user?.name ?? "",
+      username: session?.user?.username ?? "",
+      email: session?.user?.email ?? "",
+    },
+
+    resolver: zodResolver(userUpdateSchema),
+  });
 
   const { user } = session || {};
 
