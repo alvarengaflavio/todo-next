@@ -75,9 +75,7 @@ export const userUpdateSchema = z.object({
     .nonempty({
       message: "O nome não pode ser vazio",
     }),
-  email: z.string().email({
-    message: "O email deve ser válido",
-  }),
+
   username: z
     .string()
     .min(4, {
@@ -87,6 +85,63 @@ export const userUpdateSchema = z.object({
       message: "O nome de usuário deve ter no máximo 15 caracteres",
     })
     .regex(/^[a-z0-9_]+$/, {
-      message: "O nome de usuário deve conter apenas letras, números e _",
+      message: "Deve conter apenas letras, números e _",
     }),
 });
+
+const _userUpdatePasswordSchema = z.object({
+  password: z
+    .string()
+    .min(6, {
+      message: "A senha deve ter no mínimo 6 caracteres",
+    })
+    .max(45, {
+      message: "A senha deve ter no máximo 45 caracteres",
+    })
+    .regex(
+      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{4,}$/,
+      {
+        message:
+          "A senha deve conter uma letra maiúscula, uma minúscula, um número e um caractere especial",
+      }
+    )
+    .nonempty({
+      message: "A senha não pode ser vazia",
+    }),
+
+  newPassword: z
+    .string()
+    .min(6, {
+      message: "A senha deve ter no mínimo 6 caracteres",
+    })
+    .max(45, {
+      message: "A senha deve ter no máximo 45 caracteres",
+    })
+    .regex(
+      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{4,}$/,
+      {
+        message:
+          "A senha deve conter uma letra maiúscula, uma minúscula, um número e um caractere especial",
+      }
+    )
+    .nonempty({
+      message: "A senha não pode ser vazia",
+    }),
+
+  confirmPassword: z.string().nonempty({
+    message: "A senha não pode ser vazia",
+  }),
+});
+
+const __userUpdatePasswordSchema = _userUpdatePasswordSchema.refine(
+  (data) => data.newPassword === data.confirmPassword,
+  { message: "As senhas devem ser iguais", path: ["confirmPassword"] }
+);
+
+export const userUpdatePasswordSchema = __userUpdatePasswordSchema.refine(
+  (data) => data.password !== data.newPassword,
+  {
+    message: "A nova senha deve ser diferente da senha atual",
+    path: ["newPassword"],
+  }
+);

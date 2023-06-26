@@ -1,9 +1,13 @@
 "use server";
 
 import { prisma } from "@/lib/db/db";
-import { userCreateSchema } from "@/lib/zod";
+import {
+  userCreateSchema,
+  userUpdatePasswordSchema,
+  userUpdateSchema,
+} from "@/lib/zod";
 import { Prisma } from "@prisma/client";
-import { hash } from "bcrypt";
+import { hash, compare } from "bcrypt";
 import { Session } from "next-auth";
 
 export async function createUserAction(user: {
@@ -33,7 +37,7 @@ export async function createUserAction(user: {
 
 export async function updateAvatarAction(
   avatar: string,
-  session: ISession
+  session: Session
 ): Promise<ActionResponse> {
   try {
     const { user } = session;
@@ -52,13 +56,81 @@ export async function updateAvatarAction(
   }
 }
 
-interface ISession extends Session {
-  user?: {
-    id?: string | null | undefined;
-    name?: string | null | undefined;
-    email?: string | null | undefined;
-    image?: string | null | undefined;
-  };
+export async function updateUserAction(
+  user: { name: string; username: string },
+  session: Session
+): Promise<ActionResponse> {
+  try {
+    const { user: sessionUser } = session;
+    if (!sessionUser)
+      return { ok: false, message: "Unauthorized", status: 403 };
+
+    const id = sessionUser.id ? { id: sessionUser.id } : undefined;
+    if (!id) return { ok: false, message: "Unauthorized", status: 403 };
+    const { name, username } = userUpdateSchema.parse(user);
+    const data: Prisma.UserUpdateInput = { name, username };
+
+    await prisma.user.update({ where: id, data });
+    return { ok: true, message: "Usuário atualizado com sucesso", status: 200 };
+  } catch (error: any) {
+    if (error?.code === "P2002") {
+      return {
+        ok: false,
+        message: "Nome de usuário já cadastrado",
+        status: 400,
+      };
+    }
+
+    return {
+      ok: false,
+      message: error?.message ?? "Erro ao atualizar o usuário",
+      status: 500,
+    };
+  }
+}
+
+export async function updateUserPasswordAction(
+  payload: { password: string; newPassword: string; confirmPassword: string },
+  session: Session
+): Promise<ActionResponse> {
+  try {
+    const { user: sessionUser } = session;
+    if (!sessionUser) throw { message: "Unauthorized" };
+
+    const id = sessionUser.id ? { id: sessionUser.id } : undefined;
+    if (!id) throw { message: "Unauthorized" };
+
+    const { password, newPassword } = userUpdatePasswordSchema.parse(payload);
+    const user = await prisma.user.findUnique({
+      where: id,
+      select: { password: true },
+    });
+    if (!user) throw { message: "Unauthorized" };
+
+    const isPasswordValid = await compare(password, user.password);
+    if (!isPasswordValid) throw { message: "Unauthorized" };
+
+    const data: Prisma.UserUpdateInput = {
+      password: await hash(newPassword, 12),
+    };
+
+    await prisma.user.update({ where: id, data, select: { password: true } });
+    return { ok: true, message: "Senha atualizada com sucesso", status: 200 };
+  } catch (error: any) {
+    if (error?.message === "Unauthorized") {
+      return {
+        ok: false,
+        message: "Unauthorized",
+        status: 403,
+      };
+    }
+
+    return {
+      ok: false,
+      message: error?.message ?? "Erro ao atualizar o usuário",
+      status: error.status ?? 500,
+    };
+  }
 }
 
 type ActionResponse = {
