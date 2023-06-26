@@ -22,7 +22,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "@/components/ui/use-toast";
-import { userUpdateSchema } from "@/lib/zod";
+import { userUpdatePasswordSchema, userUpdateSchema } from "@/lib/zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSession } from "next-auth/react";
 import { FC } from "react";
@@ -33,7 +33,7 @@ interface AccountTabsProps {}
 
 const AccountTabs: FC<AccountTabsProps> = () => {
   const { data: session, status, update } = useSession();
-  const form = useForm<z.infer<typeof userUpdateSchema>>({
+  const accountForm = useForm<z.infer<typeof userUpdateSchema>>({
     defaultValues: {
       name: session?.user?.name ?? "",
       username: session?.user?.username ?? "",
@@ -41,8 +41,16 @@ const AccountTabs: FC<AccountTabsProps> = () => {
 
     resolver: zodResolver(userUpdateSchema),
   });
+  const passwordForm = useForm<z.infer<typeof userUpdatePasswordSchema>>({
+    defaultValues: {
+      password: "",
+      confirmPassword: "",
+    },
 
-  const onSubmit = async (data: z.infer<typeof userUpdateSchema>) => {
+    resolver: zodResolver(userUpdatePasswordSchema),
+  });
+
+  const onAccountSubmit = async (data: z.infer<typeof userUpdateSchema>) => {
     if (!session) return;
 
     const res = await updateUserAction(data, session);
@@ -60,6 +68,25 @@ const AccountTabs: FC<AccountTabsProps> = () => {
     }
   };
 
+  const onPasswordSubmit = async (
+    data: z.infer<typeof userUpdatePasswordSchema>
+  ) => {
+    if (!session) return;
+
+    toast({
+      title: JSON.stringify(data),
+    });
+
+    // if (data.password !== data.confirmPassword) {
+    //   toast({
+    //     variant: "destructive",
+    //     title: "As senhas não conferem",
+    //     description: "Por favor, tente novamente.",
+    //   });
+    //   return;
+    // }
+  };
+
   return (
     <Tabs
       defaultValue="account"
@@ -71,8 +98,8 @@ const AccountTabs: FC<AccountTabsProps> = () => {
       </TabsList>
       <TabsContent value="account">
         <Card>
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)}>
+          <Form {...accountForm}>
+            <form onSubmit={accountForm.handleSubmit(onAccountSubmit)}>
               <CardHeader>
                 <CardTitle>Conta</CardTitle>
                 <CardDescription className="leading-5 text-base sm:leading-6">
@@ -82,7 +109,7 @@ const AccountTabs: FC<AccountTabsProps> = () => {
               </CardHeader>
               <CardContent className="space-y-2">
                 <FormField
-                  control={form.control}
+                  control={accountForm.control}
                   name="name"
                   render={({ field }) => (
                     <FormItem className="relative space-y-1">
@@ -100,7 +127,7 @@ const AccountTabs: FC<AccountTabsProps> = () => {
                   )}
                 />
                 <FormField
-                  control={form.control}
+                  control={accountForm.control}
                   name="username"
                   render={({ field }) => (
                     <FormItem className="relative space-y-1">
@@ -148,37 +175,41 @@ const AccountTabs: FC<AccountTabsProps> = () => {
       </TabsContent>
       <TabsContent value="password">
         <Card>
-          <CardHeader>
-            <CardTitle>Senha</CardTitle>
-            <CardDescription className="leading-5 text-base sm:leading-6">
-              Altere sua senha aqui. Após salvar, você será desconectado.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-2">
-            <div className="space-y-1">
-              <Label htmlFor="current">Senha atual</Label>
-              <Input id="current" type="password" />
-            </div>
-            <div className="space-y-1">
-              <Label htmlFor="new">Nova senha</Label>
-              <Input id="new" type="password" />
-            </div>
-            <div className="space-y-1">
-              <Label htmlFor="confirm">Confirmar nova senha</Label>
-              <Input id="confirm" type="password" />
-            </div>
-          </CardContent>
-          <CardFooter>
-            {status === "authenticated" ? (
-              <Button type="submit" className="mx-auto " size={"lg"}>
-                Salvar Senha
-              </Button>
-            ) : (
-              <Button className="mx-auto w-[8.2rem]" size={"lg"} disabled>
-                <Icons.loadingSpinner />
-              </Button>
-            )}
-          </CardFooter>
+          <Form {...passwordForm}>
+            <form onSubmit={passwordForm.handleSubmit(onPasswordSubmit)}>
+              <CardHeader>
+                <CardTitle>Senha</CardTitle>
+                <CardDescription className="leading-5 text-base sm:leading-6">
+                  Altere sua senha aqui. Após salvar, você será desconectado.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-2">
+                <div className="space-y-1">
+                  <Label htmlFor="current">Senha atual</Label>
+                  <Input id="current" type="password" />
+                </div>
+                <div className="space-y-1">
+                  <Label htmlFor="new">Nova senha</Label>
+                  <Input id="new" type="password" />
+                </div>
+                <div className="space-y-1">
+                  <Label htmlFor="confirm">Confirmar nova senha</Label>
+                  <Input id="confirm" type="password" />
+                </div>
+              </CardContent>
+              <CardFooter>
+                {status === "authenticated" ? (
+                  <Button type="submit" className="mx-auto " size={"lg"}>
+                    Salvar Senha
+                  </Button>
+                ) : (
+                  <Button className="mx-auto w-[8.2rem]" size={"lg"} disabled>
+                    <Icons.loadingSpinner />
+                  </Button>
+                )}
+              </CardFooter>
+            </form>
+          </Form>
         </Card>
       </TabsContent>
     </Tabs>
