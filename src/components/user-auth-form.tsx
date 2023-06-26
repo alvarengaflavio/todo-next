@@ -42,7 +42,7 @@ const UserAuthForm: FC<AuthFormProps> = ({}) => {
       email: data.email,
       password: data.password,
       redirect: true,
-      callbackUrl: `${siteConfig.mainNav[0].href}`,
+      callbackUrl: `${siteConfig.mainNav[1].href}`,
     });
   }
 
