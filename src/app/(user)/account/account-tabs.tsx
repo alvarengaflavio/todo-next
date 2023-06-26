@@ -1,5 +1,5 @@
 "use client";
-import { updateUserAction } from "@/app/_actions";
+import { updateUserAction, updateUserPasswordAction } from "@/app/_actions";
 import { Icons } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import {
@@ -24,7 +24,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "@/components/ui/use-toast";
 import { userUpdatePasswordSchema, userUpdateSchema } from "@/lib/zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -44,6 +44,7 @@ const AccountTabs: FC<AccountTabsProps> = () => {
   const passwordForm = useForm<z.infer<typeof userUpdatePasswordSchema>>({
     defaultValues: {
       password: "",
+      newPassword: "",
       confirmPassword: "",
     },
 
@@ -72,19 +73,30 @@ const AccountTabs: FC<AccountTabsProps> = () => {
     data: z.infer<typeof userUpdatePasswordSchema>
   ) => {
     if (!session) return;
+    const { password, confirmPassword, newPassword } = data;
+    if (password !== confirmPassword) return;
+
+    console.log("password", password, "newPassword", newPassword);
+    const res = await updateUserPasswordAction(
+      { password, newPassword },
+      session
+    );
+    console.log("res", res);
+
+    if (res.ok) {
+      toast({
+        title: res.message,
+        description: "Efetue login com a nova senha.",
+      });
+      signOut();
+      return;
+    }
 
     toast({
-      title: JSON.stringify(data),
+      variant: "destructive",
+      title: res.message,
+      description: "Por favor, tente novamente.",
     });
-
-    // if (data.password !== data.confirmPassword) {
-    //   toast({
-    //     variant: "destructive",
-    //     title: "As senhas não conferem",
-    //     description: "Por favor, tente novamente.",
-    //   });
-    //   return;
-    // }
   };
 
   return (
@@ -160,7 +172,7 @@ const AccountTabs: FC<AccountTabsProps> = () => {
               </CardContent>
               <CardFooter>
                 {status === "authenticated" ? (
-                  <Button className="mx-auto " size={"lg"}>
+                  <Button type="submit" className="mx-auto " size={"lg"}>
                     Salvar Mudanças
                   </Button>
                 ) : (
