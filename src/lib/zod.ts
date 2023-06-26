@@ -133,10 +133,15 @@ const _userUpdatePasswordSchema = z.object({
   }),
 });
 
-export const userUpdatePasswordSchema = _userUpdatePasswordSchema.refine(
+const __userUpdatePasswordSchema = _userUpdatePasswordSchema.refine(
   (data) => data.newPassword === data.confirmPassword,
+  { message: "As senhas devem ser iguais", path: ["confirmPassword"] }
+);
+
+export const userUpdatePasswordSchema = __userUpdatePasswordSchema.refine(
+  (data) => data.password !== data.newPassword,
   {
-    message: "As senhas devem ser iguais",
-    path: ["confirmPassword"],
+    message: "A nova senha deve ser diferente da senha atual",
+    path: ["newPassword"],
   }
 );
