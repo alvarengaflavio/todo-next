@@ -9,7 +9,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Form } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -25,12 +31,11 @@ interface AccountTabsProps {}
 
 const AccountTabs: FC<AccountTabsProps> = () => {
   const { data: session, status, update } = useSession();
-  const { user } = session || {};
   const form = useForm<z.infer<typeof userUpdateSchema>>({
     defaultValues: {
-      name: user?.name ?? "",
-      username: user?.username ?? "",
-      email: user?.email ?? "",
+      name: session?.user?.name ?? "",
+      username: session?.user?.username ?? "",
+      email: session?.user?.email ?? "",
     },
 
     resolver: zodResolver(userUpdateSchema),
@@ -68,59 +73,82 @@ const AccountTabs: FC<AccountTabsProps> = () => {
       </TabsList>
       <TabsContent value="account">
         <Card>
-          <CardHeader>
-            <CardTitle>Conta</CardTitle>
-            <CardDescription className="leading-5 text-base sm:leading-6">
-              Faça alterações na sua conta aqui. Clique em salvar quando
-              terminar.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Form {...form}>
-              <form
-                onSubmit={form.handleSubmit(onSubmit)}
-                className="space-y-2"
-              >
-                <div className="space-y-1">
-                  <Label htmlFor="name">Nome</Label>
-                  <Input
-                    id="name"
-                    defaultValue={user?.name ?? "carregando..."}
-                    disabled={status === "loading" ?? true}
-                  />
-                </div>
-                <div className="space-y-1">
-                  <Label htmlFor="username">Usuário</Label>
-                  <Input
-                    id="username"
-                    defaultValue={user?.username ?? ""}
-                    placeholder="@apelido"
-                    disabled={status === "loading" ?? true}
-                  />
-                </div>
-                <div className="space-y-1">
-                  <Label htmlFor="email">Email</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    defaultValue={user?.email ?? "carregando..."}
-                    disabled
-                  />
-                </div>
-              </form>
-            </Form>
-          </CardContent>
-          <CardFooter>
-            {status === "authenticated" ? (
-              <Button className="mx-auto " size={"lg"}>
-                Salvar Mudanças
-              </Button>
-            ) : (
-              <Button className="mx-auto w-[10.6rem] " size={"lg"} disabled>
-                <Icons.loadingSpinner />
-              </Button>
-            )}
-          </CardFooter>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)}>
+              <CardHeader>
+                <CardTitle>Conta</CardTitle>
+                <CardDescription className="leading-5 text-base sm:leading-6">
+                  Faça alterações na sua conta aqui. Clique em salvar quando
+                  terminar.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-2">
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem className="space-y-1">
+                      <FormLabel htmlFor="name">Nome</FormLabel>
+                      <FormControl>
+                        <Input
+                          id="name"
+                          placeholder={session?.user?.name ?? "carregando..."}
+                          disabled={status === "loading" ?? true}
+                          {...field}
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="username"
+                  render={({ field }) => (
+                    <FormItem className="space-y-1">
+                      <FormLabel htmlFor="username">Usuário</FormLabel>
+                      <FormControl>
+                        <Input
+                          id="username"
+                          placeholder={session?.user?.username ?? "@apelido"}
+                          disabled={status === "loading" ?? true}
+                          {...field}
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem className="space-y-1">
+                      <FormLabel htmlFor="email">Email</FormLabel>
+                      <FormControl>
+                        <Input
+                          id="email"
+                          placeholder={session?.user?.email ?? "carregando..."}
+                          disabled
+                          {...field}
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+              </CardContent>
+              <CardFooter>
+                {status === "authenticated" ? (
+                  <Button className="mx-auto " size={"lg"}>
+                    Salvar Mudanças
+                  </Button>
+                ) : (
+                  <Button className="mx-auto w-[10.6rem] " size={"lg"} disabled>
+                    <Icons.loadingSpinner />
+                  </Button>
+                )}
+              </CardFooter>
+            </form>
+          </Form>
         </Card>
       </TabsContent>
       <TabsContent value="password">
@@ -147,7 +175,7 @@ const AccountTabs: FC<AccountTabsProps> = () => {
           </CardContent>
           <CardFooter>
             {status === "authenticated" ? (
-              <Button className="mx-auto " size={"lg"}>
+              <Button type="submit" className="mx-auto " size={"lg"}>
                 Salvar Senha
               </Button>
             ) : (
