@@ -1,9 +1,10 @@
+import { authOptions } from "@/lib/auth";
 import { exceptionHandler } from "@/lib/exception-handler";
 import { AuthRequiredException } from "@/lib/exceptions";
-import { getCurrentUser } from "@/lib/session";
 import { createTodoSchema } from "@/lib/zod";
 import { Todo } from "@/types";
 import { Prisma } from "@prisma/client";
+import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 import { prisma } from "./db";
 
@@ -34,7 +35,8 @@ export async function getTodosAction() {
 export async function postTodoAction(body: Pick<Todo, "title">) {
   try {
     const title = createTodoSchema.parse(body).title;
-    const user = await getCurrentUser();
+    const session = await getServerSession(authOptions);
+    const user = session?.user;
 
     if (!user) throw new AuthRequiredException("Usuário não autenticado");
 
