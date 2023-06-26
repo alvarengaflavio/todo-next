@@ -73,23 +73,21 @@ const AccountTabs: FC<AccountTabsProps> = () => {
     data: z.infer<typeof userUpdatePasswordSchema>
   ) => {
     if (!session) return;
-    const { password, confirmPassword, newPassword } = data;
-    if (newPassword !== confirmPassword) return;
+    if (data.newPassword !== data.confirmPassword) return;
+    if (data.password === data.newPassword) return;
 
-    console.log("password", password, "newPassword", newPassword);
     const res = await updateUserPasswordAction(data, session);
-    console.log("res", res);
 
     if (res.ok) {
       toast({
         title: res.message,
         description: "Efetue login com a nova senha.",
       });
-      signOut({ callbackUrl: "/login" });
-      return;
+
+      return signOut({ callbackUrl: "/login" });
     }
 
-    toast({
+    return toast({
       variant: "destructive",
       title: res.message,
       description: "Por favor, tente novamente.",
