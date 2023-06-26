@@ -135,7 +135,7 @@ const _userUpdatePasswordSchema = z.object({
 
 const __userUpdatePasswordSchema = _userUpdatePasswordSchema.refine(
   (data) => data.newPassword === data.confirmPassword,
-  { message: "As senhas devem ser iguais", path: ["confirmPassword"] }
+  { message: "As senhas não conferem", path: ["confirmPassword"] }
 );
 
 export const userUpdatePasswordSchema = __userUpdatePasswordSchema.refine(
