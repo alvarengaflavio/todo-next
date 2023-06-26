@@ -74,13 +74,10 @@ const AccountTabs: FC<AccountTabsProps> = () => {
   ) => {
     if (!session) return;
     const { password, confirmPassword, newPassword } = data;
-    if (password !== confirmPassword) return;
+    if (newPassword !== confirmPassword) return;
 
     console.log("password", password, "newPassword", newPassword);
-    const res = await updateUserPasswordAction(
-      { password, newPassword },
-      session
-    );
+    const res = await updateUserPasswordAction(data, session);
     console.log("res", res);
 
     if (res.ok) {
@@ -88,7 +85,7 @@ const AccountTabs: FC<AccountTabsProps> = () => {
         title: res.message,
         description: "Efetue login com a nova senha.",
       });
-      signOut();
+      signOut({ callbackUrl: "/login" });
       return;
     }
 
