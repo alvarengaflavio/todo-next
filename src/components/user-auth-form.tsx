@@ -106,7 +106,7 @@ const UserAuthForm: FC<AuthFormProps> = ({}) => {
                   </FormItem>
                 )}
               />
-              <Button type="submit" className="w-full mt-8">
+              <Button type="submit" size={"lg"} className="w-full mt-8 h-16">
                 Entrar
               </Button>
             </div>
