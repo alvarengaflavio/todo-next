@@ -90,7 +90,7 @@ export async function updateUserAction(
 }
 
 export async function updateUserPasswordAction(
-  payload: { password: string; newPassword: string },
+  payload: { password: string; newPassword: string; confirmPassword: string },
   session: Session
 ): Promise<ActionResponse> {
   try {
