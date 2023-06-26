@@ -9,9 +9,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { toast } from "@/components/ui/use-toast";
 import { userUpdateSchema } from "@/lib/zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSession } from "next-auth/react";
@@ -23,17 +25,37 @@ interface AccountTabsProps {}
 
 const AccountTabs: FC<AccountTabsProps> = () => {
   const { data: session, status, update } = useSession();
+  const { user } = session || {};
   const form = useForm<z.infer<typeof userUpdateSchema>>({
     defaultValues: {
-      name: session?.user?.name ?? "",
-      username: session?.user?.username ?? "",
-      email: session?.user?.email ?? "",
+      name: user?.name ?? "",
+      username: user?.username ?? "",
+      email: user?.email ?? "",
     },
 
     resolver: zodResolver(userUpdateSchema),
   });
 
-  const { user } = session || {};
+  const onSubmit = async (data: z.infer<typeof userUpdateSchema>) => {
+    // const res = await update(data);
+    // if (res.ok) {
+    //   toast({
+    //     title: "Conta atualizada com sucesso!",
+    //     description: "Você já pode efetuar login.",
+    //   });
+    // } else {
+    //   toast({
+    //     variant: "destructive",
+    //     title: res.message,
+    //     description: "Por favor, tente novamente.",
+    //   });
+    // }
+
+    toast({
+      title: JSON.stringify(data),
+      description: "Você já pode efetuar login.",
+    });
+  };
 
   return (
     <Tabs
@@ -53,33 +75,40 @@ const AccountTabs: FC<AccountTabsProps> = () => {
               terminar.
             </CardDescription>
           </CardHeader>
-          <CardContent className="space-y-2">
-            <div className="space-y-1">
-              <Label htmlFor="name">Nome</Label>
-              <Input
-                id="name"
-                defaultValue={user?.name ?? "carregando..."}
-                disabled={status === "loading" ?? true}
-              />
-            </div>
-            <div className="space-y-1">
-              <Label htmlFor="username">Usuário</Label>
-              <Input
-                id="username"
-                defaultValue={user?.username ?? ""}
-                placeholder="@apelido"
-                disabled={status === "loading" ?? true}
-              />
-            </div>
-            <div className="space-y-1">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                defaultValue={user?.email ?? "carregando..."}
-                disabled
-              />
-            </div>
+          <CardContent>
+            <Form {...form}>
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-2"
+              >
+                <div className="space-y-1">
+                  <Label htmlFor="name">Nome</Label>
+                  <Input
+                    id="name"
+                    defaultValue={user?.name ?? "carregando..."}
+                    disabled={status === "loading" ?? true}
+                  />
+                </div>
+                <div className="space-y-1">
+                  <Label htmlFor="username">Usuário</Label>
+                  <Input
+                    id="username"
+                    defaultValue={user?.username ?? ""}
+                    placeholder="@apelido"
+                    disabled={status === "loading" ?? true}
+                  />
+                </div>
+                <div className="space-y-1">
+                  <Label htmlFor="email">Email</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    defaultValue={user?.email ?? "carregando..."}
+                    disabled
+                  />
+                </div>
+              </form>
+            </Form>
           </CardContent>
           <CardFooter>
             {status === "authenticated" ? (
