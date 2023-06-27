@@ -1,4 +1,4 @@
-import UserCreateForm from "@/components/user-create-form";
+import UserCreateForm from "@/components/forms/user-create-form";
 import { FC } from "react";
 
 interface PageProps {}
