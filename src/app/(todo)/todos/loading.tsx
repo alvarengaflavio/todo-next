@@ -1,6 +1,6 @@
 import { ToastSimple } from "@/components/toast-simple";
-import { CreateTodoForm } from "@/components/todo-create";
-import { TodoSkeleton } from "@/components/todo-skeleton";
+import { CreateTodoForm } from "@/components/forms/todo-create-form";
+import { TodoSkeleton } from "@/components/skeletons/todo-skeleton";
 
 export default async function LoadingHome() {
   return (

@@ -21,7 +21,7 @@ import { postTodo } from "@/lib/axios-helper";
 import { createTodoSchema } from "@/lib/zod";
 import { Todo } from "@/types";
 import { useContext, useState } from "react";
-import { Card } from "./ui/card";
+import { Card } from "../ui/card";
 
 const FormSchema = createTodoSchema;
 

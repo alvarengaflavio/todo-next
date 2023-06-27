@@ -1,4 +1,4 @@
-import { TodoEditSkeleton } from "@/components/todo-edit-skeleton";
+import { TodoEditSkeleton } from "@/components/skeletons/todo-edit-skeleton";
 import { FC } from "react";
 
 interface LoadingProps {}

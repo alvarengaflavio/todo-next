@@ -5,11 +5,11 @@ import { deleteTodo, getTodo } from "@/lib/axios-helper";
 import { Todo } from "@/types";
 import { useParams, useRouter } from "next/navigation";
 import { FC, useEffect, useState } from "react";
-import TodoEditForm from "./todo-edit-form";
+import TodoEditForm from "./forms/todo-edit-form";
 import TodoEditItem from "./todo-edit-item";
 import { toast } from "./ui/use-toast";
 import { defaultTodo } from "@/lib/todo";
-import { TodoEditSkeleton } from "./todo-edit-skeleton";
+import { TodoEditSkeleton } from "./skeletons/todo-edit-skeleton";
 
 interface PageProps {}
 

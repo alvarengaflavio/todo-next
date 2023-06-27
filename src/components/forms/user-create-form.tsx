@@ -25,7 +25,7 @@ import { useRouter } from "next/navigation";
 import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { toast } from "./ui/use-toast";
+import { toast } from "../ui/use-toast";
 
 interface RegisterFormProps {}
 

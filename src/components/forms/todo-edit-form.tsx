@@ -7,8 +7,8 @@ import Link from "next/link";
 import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Button, buttonVariants } from "./ui/button";
-import { Card, CardContent, CardDescription, CardFooter } from "./ui/card";
+import { Button, buttonVariants } from "../ui/button";
+import { Card, CardContent, CardDescription, CardFooter } from "../ui/card";
 import {
   Form,
   FormControl,
@@ -17,9 +17,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "./ui/form";
-import { Input } from "./ui/input";
-import { toast } from "./ui/use-toast";
+} from "../ui/form";
+import { Input } from "../ui/input";
+import { toast } from "../ui/use-toast";
 import { siteConfig } from "@/config/site";
 
 interface TodoEditItemProps {

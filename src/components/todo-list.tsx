@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { Todo } from "@/types";
 import { FC, useContext, useEffect, useState } from "react";
 import TodoCard from "./todo-card";
-import { TodoListSkeleton } from "./todo-list-skeleton";
+import { TodoListSkeleton } from "./skeletons/todo-list-skeleton";
 
 interface TodoListProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;
