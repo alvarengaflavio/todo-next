@@ -48,12 +48,18 @@ const AccountForm: FC<AccountFormProps> = ({
   const onAccountSubmit = async (data: z.infer<typeof userUpdateSchema>) => {
     if (!session) return;
 
+    if (data.username && data.username[0] !== "@")
+      data.username = "@" + data.username;
+    if (data.username === session.user.username) delete data?.username;
+
     const res = await updateUserAction(data, session);
     if (res.ok) {
       update(data);
       toast({
         title: "Perfil atualizado com sucesso",
       });
+
+      accountForm.setValue("username", data.username);
     } else {
       toast({
         variant: "destructive",

@@ -78,15 +78,13 @@ export const userUpdateSchema = z.object({
 
   username: z
     .string()
-    .min(4, {
-      message: "O nome de usuário deve ter no mínimo 4 caracteres",
-    })
     .max(15, {
-      message: "O nome de usuário deve ter no máximo 15 caracteres",
+      message: "máximo 15 caracteres",
     })
-    .regex(/^[a-z0-9_]+$/, {
-      message: "Deve conter apenas letras, números e _",
-    }),
+    .regex(/^(@?[A-Za-z0-9]{4,15})?$/, {
+      message: "mínimo de 4 letras e números",
+    })
+    .optional(),
 });
 
 const _userUpdatePasswordSchema = z.object({
