@@ -87,59 +87,68 @@ export const userUpdateSchema = z.object({
     .optional(),
 });
 
-const _userUpdatePasswordSchema = z.object({
-  password: z
-    .string()
-    .min(6, {
-      message: "A senha deve ter no mínimo 6 caracteres",
-    })
-    .max(45, {
-      message: "A senha deve ter no máximo 45 caracteres",
-    })
-    .regex(
-      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{4,}$/,
-      {
-        message:
-          "A senha deve conter uma letra maiúscula, uma minúscula, um número e um caractere especial",
-      }
-    )
-    .nonempty({
+export const userUpdatePasswordSchema = z
+  .object({
+    password: z
+      .string()
+      .min(6, {
+        message: "A senha deve ter no mínimo 6 caracteres",
+      })
+      .max(45, {
+        message: "A senha deve ter no máximo 45 caracteres",
+      })
+      .regex(
+        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{4,}$/,
+        {
+          message:
+            "A senha deve conter uma letra maiúscula, uma minúscula, um número e um caractere especial",
+        }
+      )
+      .nonempty({
+        message: "A senha não pode ser vazia",
+      }),
+
+    newPassword: z
+      .string()
+      .min(6, {
+        message: "A senha deve ter no mínimo 6 caracteres",
+      })
+      .max(45, {
+        message: "A senha deve ter no máximo 45 caracteres",
+      })
+      .regex(
+        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{4,}$/,
+        {
+          message:
+            "A senha deve conter uma letra maiúscula, uma minúscula, um número e um caractere especial",
+        }
+      )
+      .nonempty({
+        message: "A senha não pode ser vazia",
+      }),
+
+    confirmPassword: z.string().nonempty({
       message: "A senha não pode ser vazia",
     }),
-
-  newPassword: z
-    .string()
-    .min(6, {
-      message: "A senha deve ter no mínimo 6 caracteres",
-    })
-    .max(45, {
-      message: "A senha deve ter no máximo 45 caracteres",
-    })
-    .regex(
-      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{4,}$/,
-      {
-        message:
-          "A senha deve conter uma letra maiúscula, uma minúscula, um número e um caractere especial",
-      }
-    )
-    .nonempty({
-      message: "A senha não pode ser vazia",
-    }),
-
-  confirmPassword: z.string().nonempty({
-    message: "A senha não pode ser vazia",
-  }),
-});
-
-const __userUpdatePasswordSchema = _userUpdatePasswordSchema.refine(
-  (data) => data.newPassword === data.confirmPassword,
-  { message: "As senhas não conferem", path: ["confirmPassword"] }
-);
-
-export const userUpdatePasswordSchema = __userUpdatePasswordSchema.refine(
-  (data) => data.password !== data.newPassword,
-  {
+  })
+  .refine((data) => data.newPassword === data.confirmPassword, {
+    message: "As senhas não conferem",
+    path: ["confirmPassword"],
+  })
+  .refine((data) => data.password !== data.newPassword, {
     message: "A nova senha deve ser diferente da senha atual",
     path: ["newPassword"],
-  }
-);
+  });
+
+// const __userUpdatePasswordSchema = _userUpdatePasswordSchema.refine(
+//   (data) => data.newPassword === data.confirmPassword,
+//   { message: "As senhas não conferem", path: ["confirmPassword"] }
+// );
+
+// export const userUpdatePasswordSchema = __userUpdatePasswordSchema.refine(
+//   (data) => data.password !== data.newPassword,
+//   {
+//     message: "A nova senha deve ser diferente da senha atual",
+//     path: ["newPassword"],
+//   }
+// );
