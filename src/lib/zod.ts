@@ -64,13 +64,13 @@ export const userUpdateSchema = z.object({
   name: z
     .string()
     .min(4, {
-      message: "O nome deve ter no mínimo 4 caracteres",
+      message: "deve ter no mínimo 4 caracteres",
     })
     .max(45, {
-      message: "O nome deve ter no máximo 45 caracteres",
+      message: "deve ter no máximo 45 caracteres",
     })
     .nonempty({
-      message: "O nome não pode ser vazio",
+      message: "o nome não pode ser vazio",
     }),
 
   username: z
