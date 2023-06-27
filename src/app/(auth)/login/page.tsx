@@ -1,4 +1,4 @@
-import UserAuthForm from "@/components/user-auth-form";
+import UserAuthForm from "@/components/forms/user-auth-form";
 import { FC } from "react";
 
 interface PageProps {}
