@@ -139,16 +139,3 @@ export const userUpdatePasswordSchema = z
     message: "A nova senha deve ser diferente da senha atual",
     path: ["newPassword"],
   });
-
-// const __userUpdatePasswordSchema = _userUpdatePasswordSchema.refine(
-//   (data) => data.newPassword === data.confirmPassword,
-//   { message: "As senhas não conferem", path: ["confirmPassword"] }
-// );
-
-// export const userUpdatePasswordSchema = __userUpdatePasswordSchema.refine(
-//   (data) => data.password !== data.newPassword,
-//   {
-//     message: "A nova senha deve ser diferente da senha atual",
-//     path: ["newPassword"],
-//   }
-// );
