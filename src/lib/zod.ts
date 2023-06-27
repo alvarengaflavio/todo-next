@@ -38,30 +38,35 @@ export const userAuthSchema = z.object({
     }),
 });
 
-const _userCreateSchema = userAuthSchema.extend({
-  name: z
-    .string()
-    .min(4, {
-      message: "O nome deve ter no mínimo 4 caracteres",
-    })
-    .max(45, {
-      message: "O nome deve ter no máximo 45 caracteres",
-    })
-    .nonempty({
-      message: "O nome não pode ser vazio",
+export const userCreateSchema = userAuthSchema
+  .extend({
+    name: z
+      .string()
+      .min(4, {
+        message: "O nome deve ter no mínimo 4 caracteres",
+      })
+      .max(45, {
+        message: "O nome deve ter no máximo 45 caracteres",
+      })
+      .nonempty({
+        message: "O nome não pode ser vazio",
+      }),
+    confirmPassword: z.string().nonempty({
+      message: "A senha não pode ser vazia",
     }),
-  confirmPassword: z.string().nonempty({
-    message: "A senha não pode ser vazia",
-  }),
-});
-
-export const userCreateSchema = _userCreateSchema.refine(
-  (data) => data.password === data.confirmPassword,
-  {
+  })
+  .refine((data) => data.password === data.confirmPassword, {
     message: "As senhas devem ser iguais",
     path: ["confirmPassword"],
-  }
-);
+  });
+
+// export const userCreateSchema = _userCreateSchema.refine(
+//   (data) => data.password === data.confirmPassword,
+//   {
+//     message: "As senhas devem ser iguais",
+//     path: ["confirmPassword"],
+//   }
+// );
 
 export const userUpdateSchema = z.object({
   name: z
