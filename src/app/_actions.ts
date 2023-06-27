@@ -57,7 +57,7 @@ export async function updateAvatarAction(
 }
 
 export async function updateUserAction(
-  user: { name: string; username: string },
+  user: { name: string; username?: string },
   session: Session
 ): Promise<ActionResponse> {
   try {
@@ -67,7 +67,8 @@ export async function updateUserAction(
 
     const id = sessionUser.id ? { id: sessionUser.id } : undefined;
     if (!id) return { ok: false, message: "Unauthorized", status: 403 };
-    const { name, username } = userUpdateSchema.parse(user);
+    let { name, username } = userUpdateSchema.parse(user);
+    if (username === "") username = null as any;
     const data: Prisma.UserUpdateInput = { name, username };
 
     await prisma.user.update({ where: id, data });
