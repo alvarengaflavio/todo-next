@@ -1,4 +1,4 @@
-import { CreateTodoForm } from "@/components/todo-create";
+import { CreateTodoForm } from "@/components/forms/todo-create-form";
 import { TodoList } from "@/components/todo-list";
 
 export default async function Home() {
