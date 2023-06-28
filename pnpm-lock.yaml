@@ -98,6 +98,9 @@ dependencies:
   tailwindcss-animate:
     specifier: ^1.0.6
     version: 1.0.6(tailwindcss@3.3.2)
+  typescript:
+    specifier: 5.2.0-dev.20230628
+    version: 5.2.0-dev.20230628
   zod:
     specifier: ^3.21.4
     version: 3.21.4
@@ -109,9 +112,6 @@ devDependencies:
   prisma:
     specifier: ^4.15.0
     version: 4.15.0
-  typescript:
-    specifier: 5.2.0-dev.20230628
-    version: 5.2.0-dev.20230628
 
 packages:
 
@@ -3921,6 +3921,7 @@ packages:
     resolution: {integrity: sha512-dWItHqHLu37lksKsUBRDXlnWdI8WVhKQoVRxlv8w2XfbL/jAA6vFeJLtmb6C3pQKm1X0Sl9BFHJgYWdyiN3u9g==}
     engines: {node: '>=14.17'}
     hasBin: true
+    dev: false
 
   /unbox-primitive@1.0.2:
     resolution: {integrity: sha512-61pPlCD9h51VoreyJ0BReideM3MDKMKnh6+V9L08331ipq6Q8OFXZYiqP6n/tbHx4s5I9uRhcye6BrbkizkBDw==}
