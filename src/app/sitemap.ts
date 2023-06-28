@@ -1,18 +1,11 @@
 import { Todo } from "@/types";
 
 export default async function sitemap() {
-  const res = await fetch("http://jsonplaceholder.typicode.com/todos");
-  const allTodos = (await res.json()) as Todo[];
-
-  const todos = allTodos.map((todo) => ({
-    url: `http://localhost:3000/todo/${todo.id}`,
-    lastModified: new Date().toISOString(),
-  }));
-
   const routes = [
     "",
     "/register",
     "/login",
+    "/todo/[todoId]",
     "/todos",
     "/about",
     "/account",
@@ -22,5 +15,5 @@ export default async function sitemap() {
     lastModified: new Date().toISOString(),
   }));
 
-  return [...routes, ...todos];
+  return [...routes];
 }
