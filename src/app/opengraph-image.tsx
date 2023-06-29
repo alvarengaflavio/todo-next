@@ -2,7 +2,13 @@ import { ImageResponse } from "next/server";
 
 export const runtime = "edge";
 
-export async function og({ params }: { params: { slug: string } }) {
+export const size = {
+  width: 1200,
+  height: 600,
+};
+export const contentType = "image/png";
+
+export default async function og({ params }: { params: { slug: string } }) {
   return new ImageResponse(
     (
       <div
@@ -20,9 +26,6 @@ export async function og({ params }: { params: { slug: string } }) {
         Hello world!
       </div>
     ),
-    {
-      width: 1200,
-      height: 600,
-    }
+    size
   );
 }
