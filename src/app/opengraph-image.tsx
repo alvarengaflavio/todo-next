@@ -2,7 +2,7 @@ import { ImageResponse } from "next/server";
 
 export const runtime = "edge";
 
-export async function openGraphImage() {
+export async function og({ params }: { params: { slug: string } }) {
   return new ImageResponse(
     (
       <div
