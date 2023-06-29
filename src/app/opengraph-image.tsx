@@ -12,18 +12,13 @@ export default async function og({ params }: { params: { slug: string } }) {
   return new ImageResponse(
     (
       <div
-        style={{
-          fontSize: 128,
-          background: "white",
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          textAlign: "center",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
+        tw="relative w-full h-full text-black text-9xl text-center background-white rounded-md flex justify-center items-center"
+        className="w-full top-1/2 transform -translate-y-1/2"
       >
-        Hello world!
+        TODO APP
+        <div tw="absolute top-[63%] left-3/4 flex text-xl">
+          by <div tw="text-blue-600"> Alvarenga</div>
+        </div>
       </div>
     ),
     size
