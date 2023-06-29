@@ -32,7 +32,7 @@ export const TodoList: FC<TodoListProps> = ({
     return () => {
       setIsLoaded(() => false);
     };
-  }, []);
+  }, [dispatch]);
 
   const handleTodoDone = (id: string) => {
     dispatch({ type: "SET_DONE", payload: id });

@@ -2,11 +2,8 @@ import { buttonVariants } from "@/components/ui/button";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { FC } from "react";
 
-interface HomePageProps {}
-
-function Home({}: FC<HomePageProps>) {
+function Home({}) {
   return (
     <div className="bg-background flex flex-col items-center">
       <section

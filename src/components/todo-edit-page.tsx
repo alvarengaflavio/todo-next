@@ -45,7 +45,7 @@ const TodoEditPage: FC<PageProps> = ({}) => {
       setIsEditing(() => false);
       setIsLoaded(() => false);
     };
-  }, []);
+  }, [todoId, router]);
 
   async function handleDelete() {
     if (isEditing) return;
