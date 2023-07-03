@@ -11,18 +11,7 @@ export const contentType = "image/png";
 export default function Icon() {
   return new ImageResponse(
     (
-      <div
-        style={{
-          fontSize: 24,
-          background: "black",
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          color: "white",
-        }}
-      >
+      <div tw="w-full h-full flex items-center justify-center text-white bg-black text-4xl">
         A
       </div>
     ),
