@@ -19,6 +19,10 @@ export type SiteConfig = {
   };
 };
 
+export type SidebarNavItem = Omit<NavItem, "disabled"> & {
+  icon: string;
+};
+
 export type DashboardConfig = {
   mainNav: MainNavItem[];
   sidebarNav: SidebarNavItem[];
