@@ -12,7 +12,7 @@ export const metadata = {
 const layout = async ({ children }: LayoutProps) => {
   return (
     <section className="h-screen overflow-hidden">
-      <main className="flex flex-col h-full items-center space-y-6 bg-background">
+      <main className=" flex flex-col h-full items-center space-y-6 ">
         {children}
       </main>
       <SiteFooter className="border-t sticky bottom-0 left-0" />
