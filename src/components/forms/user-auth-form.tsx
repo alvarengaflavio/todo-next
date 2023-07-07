@@ -34,6 +34,7 @@ const UserAuthForm: FC<AuthFormProps> = ({}) => {
       email: "",
       password: "",
     },
+
     resolver: zodResolver(userAuthSchema),
   });
 
