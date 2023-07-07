@@ -24,16 +24,6 @@ export type DashboardConfig = {
   sidebarNav: SidebarNavItem[];
 };
 
-export interface ISession extends Session {
-  user?: {
-    id?: string | undefined;
-    name?: string | null | undefined;
-    email?: string | null | undefined;
-    image?: string | null | undefined;
-    username?: string | null | undefined;
-  };
-}
-
 export type Todo = {
   id?: string;
   title: string;
