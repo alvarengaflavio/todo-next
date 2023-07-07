@@ -5,7 +5,7 @@ interface PageProps {}
 
 const LoginPage: FC<PageProps> = () => {
   return (
-    <section className="w-4/5 h-full flex flex-col items-center justify-center bg-secondary">
+    <section className="w-full md:w-4/5 h-full flex flex-col items-center justify-centers">
       <UserAuthForm />
     </section>
   );
