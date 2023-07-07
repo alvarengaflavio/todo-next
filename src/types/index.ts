@@ -1,5 +1,3 @@
-import { Session } from "next-auth";
-
 export type NavItem = {
   title: string;
   href: string;
@@ -19,19 +17,14 @@ export type SiteConfig = {
   };
 };
 
+export type SidebarNavItem = Omit<NavItem, "disabled"> & {
+  icon: string;
+};
+
 export type DashboardConfig = {
   mainNav: MainNavItem[];
   sidebarNav: SidebarNavItem[];
 };
-
-export interface ISession extends Session {
-  user?: {
-    id?: string | undefined;
-    name?: string | null | undefined;
-    email?: string | null | undefined;
-    image?: string | null | undefined;
-  };
-}
 
 export type Todo = {
   id?: string;
