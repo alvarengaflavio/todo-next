@@ -1,5 +1,7 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+Projeto para aprendizado e prática do framework Next js 13.
+
 ## Getting Started
 
 First, run the development server:
