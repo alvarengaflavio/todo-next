@@ -5,6 +5,8 @@ Projeto para aprendizado e prática do framework Next js 13.
 Mantenha suas tarefas sempre em dia e organizadas.  
 Com o Todo App você pode criar e gerenciar suas tarefas de forma prática e fácil, mantendo o foco onde realmente importa. Basta criar uma conta e começar a usar.
 
+Este projeto foi desenvolvido para aprendizagem de Next 13. Com o fim de desenvolver uma aplicação moderna, utilizo features como autenticação, assinaturas, rotas de API, páginas estáticas e dinâmicas.
+
 ## Getting Started
 
 First, run the development server:
