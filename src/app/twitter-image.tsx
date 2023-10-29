@@ -1,4 +1,4 @@
-import { ImageResponse } from "next/server";
+import { ImageResponse } from "next/og";
 import { size } from "./opengraph-image";
 
 export const runtime = "edge";
