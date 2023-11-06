@@ -8,13 +8,13 @@ console.log("vercel_url2", vercel_url2);
 
 const api = axios.create({
   baseURL:
-    process.env.NEXT_PUBLIC_API_URL ||
-    // `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api`,
-    (vercel_url as string),
+    process.env.NEXT_PUBLIC_API_URL || `https://${process.env.VERCEL_URL}/api`,
 
   headers: {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods":
+      "GET, POST, PUT, DELETE, OPTIONS, HEAD, PATCH",
   },
 });
 
