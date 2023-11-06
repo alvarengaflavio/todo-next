@@ -6,6 +6,7 @@ const api = axios.create({
     `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api`,
   headers: {
     "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*",
   },
 });
 
