@@ -1,13 +1,22 @@
 import axios from "axios";
 
-const api = axios.create({
-  baseURL:
-    process.env.NEXT_PUBLIC_API_URL ||
-    `https://${process.env.NEXT_PUBLIC_VERCEL_BRANCH_URL}/api` ||
-    `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api`,
+let url = "";
 
+if (process.env.NEXT_PUBLIC_VERCEL_ENV === "preview") {
+  url = `https://${process.env.NEXT_PUBLIC_VERCEL_BRANCH_URL}/api`;
+} else if (process.env.NEXT_PUBLIC_VERCEL_ENV === "production") {
+  url = "https://todo-next-alvalenda.vercel.app/api";
+} else {
+  url =
+    `https://${process.env.NEXT_PUBLIC_API_URL}/api` ||
+    "http://localhost:3000/api";
+}
+
+const api = axios.create({
+  baseURL: `${url}`,
   headers: {
     "Content-Type": "application/json",
+    Origin: `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`,
   },
 });
 
