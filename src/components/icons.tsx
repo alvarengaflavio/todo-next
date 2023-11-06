@@ -10,11 +10,11 @@ import {
   SunMedium,
   Twitter,
   X,
-  type Icon as LucideIcon,
+  type XIcon as LucideIcon,
 } from "lucide-react";
 import Image from "next/image";
 
-export type Icon = LucideIcon;
+export type Icon = typeof LucideIcon;
 
 export const Icons = {
   code: Binary,
