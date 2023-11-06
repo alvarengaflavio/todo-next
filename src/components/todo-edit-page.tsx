@@ -24,7 +24,7 @@ const TodoEditPage: FC<PageProps> = ({}) => {
   useEffect(() => {
     setIsEditing(() => false);
     (async () => {
-      const todo = await getTodo(todoId);
+      const todo = await getTodo(todoId as string);
 
       if (!todo) {
         toast({
