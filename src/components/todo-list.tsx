@@ -36,6 +36,7 @@ export const TodoList: FC<TodoListProps> = ({
 
   const handleTodoDone = (id: string) => {
     dispatch({ type: "SET_DONE", payload: id });
+    // TODO: update todo on server
   };
 
   if (!isLoaded) {
