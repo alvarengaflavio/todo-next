@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {},
+  reactStrictMode: false,
   async headers() {
     return [
       {

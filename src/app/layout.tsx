@@ -5,6 +5,7 @@ import "@/styles/globals.css";
 import { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Providers } from "./providers";
+import { Analytics } from "@/components/analytics";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
     shortcut: "/favicon.png",
     apple: "/favicon.png",
   },
-  metadataBase: new URL("https://alvarenga.dev/"),
+  metadataBase: new URL("https://todo-next-alvalenda.vercel.app/"),
 };
 
 export const viewport = {
@@ -41,7 +42,7 @@ interface LayoutProps {
 
 export default function RootLayout({ children }: LayoutProps) {
   return (
-    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+    <html lang="pt-BR" className="scroll-smooth" suppressHydrationWarning>
       <head />
 
       <body
@@ -50,6 +51,7 @@ export default function RootLayout({ children }: LayoutProps) {
         <Providers attribute="class" defaultTheme="system" enableSystem>
           {children}
           <TailwindIndicator />
+          <Analytics />
           <Toaster />
         </Providers>
       </body>

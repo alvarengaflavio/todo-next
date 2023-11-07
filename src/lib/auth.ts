@@ -64,7 +64,7 @@ export const authOptions: NextAuthOptions = {
 
     jwt: async ({ token, trigger, user, session }) => {
       if (user) {
-        token.id = user.id; // neste caso id e sub são iguais
+        token.id = user.id; //* neste caso id e sub são iguais
         token.username = user.username;
       }
 
