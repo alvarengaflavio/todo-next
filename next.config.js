@@ -19,6 +19,11 @@ const nextConfig = {
             value:
               "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
           },
+          {
+            key: "Content-Security-Policy",
+            value:
+              "default-src 'self', img-src *, content-src vitals.vercel-insights.com, script-src 'self' 'unsafe-inline' 'unsafe-eval' vitals.vercel-insights.com",
+          },
         ],
       },
     ];
