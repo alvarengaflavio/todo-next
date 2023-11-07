@@ -1,5 +1,3 @@
-"use client";
-
 import { Todo } from "@/types";
 import { StateType } from "./todo-context";
 import { sortTodoList } from "@/lib/todo";
@@ -31,8 +29,6 @@ export const reducer = (state: StateType, action: ActionType) => {
         }
       });
       sortTodoList(state.todos);
-      console.log("atualizando lista de tarefas");
-      console.table(state.todos);
 
       return { ...state, todos: [...state.todos] };
 
