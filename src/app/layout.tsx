@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     shortcut: "/favicon.png",
     apple: "/favicon.png",
   },
-  metadataBase: new URL("https://alvarenga.dev/"),
+  metadataBase: new URL("https://todo-next-alvalenda.vercel.app/"),
 };
 
 export const viewport = {
