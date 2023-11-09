@@ -59,9 +59,30 @@ const AboutPage = async () => {
           , um conjunto de componentes React com design moderno e minimalista.
         </p>
 
-        <Card className="w-[90%] max-w-[64rem]">
-          <AuthButtons />
-          <User />
+        <Card className="w-[90%] max-w-[64rem] flex flex-col items-center">
+          <CardHeader className="flex flex-col items-center">
+            <CardTitle className="">Autenticação com NextAuth.js</CardTitle>
+            <CardDescription className="text-center leading-5 text-base sm:leading-6">
+              NextAuth.js é uma biblioteca de autenticação para Next.js que
+              suporta vários provedores de identidade. No caso deste projeto,
+              foi utilizado a autenticação por email e senha, com um banco de
+              dados para armazenamento de seções e usuários.
+            </CardDescription>
+          </CardHeader>
+
+          <CardContent className="rounded-md leading-normal max-w-[80%]">
+            Para autenticar um usuário, foi utilizado o método signIn() do
+            NextAuth.js, que recebe como parâmetro um objeto com os campos email
+            e password. Caso a autenticação seja bem sucedida, o método retorna
+            um objeto com os dados do usuário autenticado. Caso contrário, o
+            método retorna um objeto com o erro ocorrido. Você pode testar a
+            autenticação através dos botões abaixo. Caso você não tenha uma
+            conta, você pode criar uma clicando no botão "Criar Conta" acessível
+            através do botão "Entrar". Caso já esteja logado, você pode clicar
+            no botão "Sair" para encerrar a sessão.
+            <AuthButtons />
+            <User />
+          </CardContent>
         </Card>
 
         <div id="toasts">
