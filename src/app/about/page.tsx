@@ -11,7 +11,7 @@ const AboutPage = async () => {
       className="container space-y-6 bg-slate-50 py-8 dark:bg-transparent md:py-10 lg:py-16"
     >
       <div className="w-full h-full space-y-6 text-center flex flex-col items-center">
-        <h1 className="max-w-[64rem] text-2xl font-bold tracking-tighter text-foreground mb-10 sm:text-4xl md:text-5xl lg:text-6xl">
+        <h1 className="max-w-[64rem] text-2xl font-bold tracking-tighter text-foreground mb-4 sm:text-4xl md:text-5xl lg:text-6xl">
           Sobre este Projeto
         </h1>
 
@@ -53,9 +53,12 @@ const AboutPage = async () => {
 
         <AuthButtons />
         <User />
-        <ToastSimple />
-        <ToastWithAction />
-        <ToastDestructive />
+
+        <div id="toasts">
+          <ToastSimple />
+          <ToastWithAction />
+          <ToastDestructive />
+        </div>
       </div>
     </section>
   );
