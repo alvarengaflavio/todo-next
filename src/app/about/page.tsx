@@ -3,6 +3,14 @@ import { ToastSimple } from "@/components/toast-simple";
 import { ToastWithAction } from "@/components/toast-with-action";
 import AuthButtons from "@/components/user-auth";
 import { User } from "@/config/user";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 const AboutPage = async () => {
   return (
@@ -51,8 +59,10 @@ const AboutPage = async () => {
           , um conjunto de componentes React com design moderno e minimalista.
         </p>
 
-        <AuthButtons />
-        <User />
+        <Card className="w-[90%] max-w-[64rem]">
+          <AuthButtons />
+          <User />
+        </Card>
 
         <div id="toasts">
           <ToastSimple />
