@@ -9,7 +9,7 @@ export const User = () => {
 
   const sessionList = JSON.stringify(session, null, 3).split("\n");
   if (sessionList.length === 1) {
-    sessionList[0] = " ";
+    sessionList[0] = " Usuário não autenticado. ";
   }
 
   return (
