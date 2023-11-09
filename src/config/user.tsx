@@ -11,7 +11,7 @@ export const User = () => {
 
   return (
     <>
-      <pre className="mb-6">{JSON.stringify(status, null, 2)}</pre>
+      <pre className="mb-4 font-bold">{JSON.stringify(status, null, 2)}</pre>
       <pre className="flex flex-col bg-slate-50 w-full">
         {sessionList.map((line, index) => (
           <code
