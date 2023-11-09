@@ -8,6 +8,9 @@ export const User = () => {
   if (status === "loading") return <p>Carregando...</p>;
 
   const sessionList = JSON.stringify(session, null, 3).split("\n");
+  if (sessionList.length === 1) {
+    sessionList[0] = " ";
+  }
 
   return (
     <>
