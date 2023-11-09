@@ -11,7 +11,7 @@ interface AuthButtons {
 
 const AuthButtons: FC<AuthButtons> = ({ className }) => {
   return (
-    <div className={cn(className, " flex items-center space-x-2 my-2 ")}>
+    <div className={cn(className, " space-x-2 my-2 ")}>
       <Button variant={"default"} onClick={() => signIn()}>
         Entrar
       </Button>
