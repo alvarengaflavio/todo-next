@@ -61,8 +61,10 @@ const AboutPage = async () => {
 
         <Card className="w-[90%] max-w-[64rem] flex flex-col items-center">
           <CardHeader className="flex flex-col items-center">
-            <CardTitle className="">Autenticação com NextAuth.js</CardTitle>
-            <CardDescription className="text-center leading-5 text-base sm:leading-6">
+            <CardTitle className="text-xl md:text-2xl lg:text-3xl lg:mb-2 font-bold">
+              Autenticação com NextAuth.js
+            </CardTitle>
+            <CardDescription className="max-w-[90%] leading-5 text-base sm:leading-6">
               NextAuth.js é uma biblioteca de autenticação para Next.js que
               suporta vários provedores de identidade. No caso deste projeto,
               foi utilizado a autenticação por email e senha, com um banco de
@@ -71,15 +73,18 @@ const AboutPage = async () => {
           </CardHeader>
 
           <CardContent className="rounded-md leading-normal max-w-[80%]">
-            Para autenticar um usuário, foi utilizado o método signIn() do
-            NextAuth.js, que recebe como parâmetro um objeto com os campos email
-            e password. Caso a autenticação seja bem sucedida, o método retorna
-            um objeto com os dados do usuário autenticado. Caso contrário, o
-            método retorna um objeto com o erro ocorrido. Você pode testar a
-            autenticação através dos botões abaixo. Caso você não tenha uma
-            conta, você pode criar uma clicando no botão "Criar Conta" acessível
-            através do botão "Entrar". Caso já esteja logado, você pode clicar
-            no botão "Sair" para encerrar a sessão.
+            Para autenticar um usuário, foi utilizado o método{" "}
+            <code className="bg-slate-200 dark:bg-slate-800 px-0.5 rounded-sm">
+              signIn()
+            </code>{" "}
+            do NextAuth.js, que recebe como parâmetro um objeto com os campos
+            email e password. Caso a autenticação seja bem sucedida, o método
+            retorna um objeto com os dados do usuário autenticado. Caso
+            contrário, o método retorna um objeto com o erro ocorrido. Você pode
+            testar a autenticação através dos botões abaixo. Caso você não tenha
+            uma conta, você pode criar uma clicando no botão "Criar Conta"
+            acessível através do botão "Entrar". Caso já esteja logado, você
+            pode clicar no botão "Sair" para encerrar a sessão.
             <AuthButtons className="w-full mx-auto my-6" />
             <User />
           </CardContent>
