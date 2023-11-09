@@ -80,7 +80,7 @@ const AboutPage = async () => {
             conta, você pode criar uma clicando no botão "Criar Conta" acessível
             através do botão "Entrar". Caso já esteja logado, você pode clicar
             no botão "Sair" para encerrar a sessão.
-            <AuthButtons className="w-full mx-auto my-8" />
+            <AuthButtons className="w-full mx-auto my-6" />
             <User />
           </CardContent>
         </Card>
