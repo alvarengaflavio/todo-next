@@ -82,9 +82,12 @@ const AboutPage = async () => {
             retorna um objeto com os dados do usuário autenticado. Caso
             contrário, o método retorna um objeto com o erro ocorrido. Você pode
             testar a autenticação através dos botões abaixo. Caso você não tenha
-            uma conta, você pode criar uma clicando no botão "Criar Conta"
-            acessível através do botão "Entrar". Caso já esteja logado, você
-            pode clicar no botão "Sair" para encerrar a sessão.
+            uma conta, você pode criar uma clicando no botão{" "}
+            <pre className="font-semibold">Criar Conta</pre>
+            acessível através do botão{" "}
+            <pre className="font-semibold">Entrar</pre>. Caso já esteja logado,
+            você pode clicar no botão <pre className="font-semibold">Sair</pre>{" "}
+            para encerrar a sessão.
             <AuthButtons className="w-full mx-auto my-6" />
             <User />
           </CardContent>
