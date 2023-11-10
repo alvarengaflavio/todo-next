@@ -27,5 +27,6 @@ export const siteConfig = {
     github: "https://github.com/alvalenda",
     linkedIn: "https://www.linkedin.com/in/flavio-alvarenga/",
     email: "mailto:flavio.alva@outlook.com",
+    discord: "flavioalvarenga",
   },
 };
