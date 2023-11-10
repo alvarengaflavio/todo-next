@@ -2,11 +2,11 @@
 import { useTheme } from "next-themes";
 import { FC, useEffect, useState } from "react";
 
-interface PageProps {}
+interface ThemeSwitchProps {}
 
 const themes = [{ name: "Light" }, { name: "Dark" }, { name: "System" }];
 
-const ThemeSwitch: FC<PageProps> = () => {
+const ThemeSwitch: FC<ThemeSwitchProps> = () => {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
