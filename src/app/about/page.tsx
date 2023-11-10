@@ -130,12 +130,15 @@ const AboutPage = async () => {
               shadcn/ui
             </a>
             .
-            <BaseAccordion className="w-full mx-auto my-6">
+            <BaseAccordion
+              title="Exemplo de componentes"
+              className="w-full mx-auto my-6"
+            >
               Seguem abaixo alguns exemplos de componentes Toast do shadcn/ui. O
               componente Toast é um componente de notificação que pode ser
               utilizado para exibir mensagens de sucesso, erro, alerta e
               informativas.
-              <div className="w-full flex align-middle justify-center gap-2 mt-5">
+              <div className="w-full flex align-middle justify-center gap-2 mt-6 mb-4">
                 <ToastSimple />
                 <ToastWithAction />
                 <ToastDestructive />
