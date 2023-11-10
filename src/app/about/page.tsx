@@ -11,6 +11,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import UserAccordion from "@/components/user-accordian";
 
 const AboutPage = async () => {
   return (
@@ -38,7 +39,7 @@ const AboutPage = async () => {
           rotas de API e server actions. Para autenticação de usuários, foi
           utilizado o{" "}
           <a
-            href="https://tailwindcss.com/"
+            href="https://next-auth.js.org/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-500 hover:text-blue-600"
@@ -87,7 +88,9 @@ const AboutPage = async () => {
             <strong>Entrar</strong>. Caso já esteja logado, você pode clicar no
             botão <strong>Sair</strong> para encerrar a sessão.
             <AuthButtons className="w-full mx-auto my-6" />
-            <User />
+            <UserAccordion className="w-full mx-auto my-6">
+              <User />
+            </UserAccordion>
           </CardContent>
         </Card>
 

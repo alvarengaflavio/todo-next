@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/card";
 import { FC } from "react";
 
-interface PageProps {
+interface EditTodoCardProps {
   id: number;
   title: string;
   description?: string;
@@ -16,7 +16,7 @@ interface PageProps {
   footer: string;
 }
 
-const EditTodoCard: FC<PageProps> = (props) => {
+const EditTodoCard: FC<EditTodoCardProps> = (props) => {
   const { title, description, content, footer, id } = props;
 
   return (

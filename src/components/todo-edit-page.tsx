@@ -11,9 +11,9 @@ import { toast } from "./ui/use-toast";
 import { defaultTodo } from "@/lib/todo";
 import { TodoEditSkeleton } from "./skeletons/todo-edit-skeleton";
 
-interface PageProps {}
+interface TodoEditPageProps {}
 
-const TodoEditPage: FC<PageProps> = ({}) => {
+const TodoEditPage: FC<TodoEditPageProps> = ({}) => {
   const [todo, setTodo] = useState<Todo>(defaultTodo);
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
