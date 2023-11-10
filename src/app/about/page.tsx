@@ -93,11 +93,49 @@ const AboutPage = async () => {
           </CardContent>
         </Card>
 
-        <div id="toasts">
-          <ToastSimple />
-          <ToastWithAction />
-          <ToastDestructive />
-        </div>
+        <Card className="w-[90%] max-w-[64rem] flex flex-col items-center">
+          <CardHeader className="flex flex-col items-center">
+            <CardTitle className="text-xl md:text-2xl lg:text-3xl lg:mb-2 font-bold">
+              Construção de Interfaces com shadcn/ui
+            </CardTitle>
+
+            <CardDescription className="max-w-[90%] leading-5 text-base sm:leading-6">
+              shadcn/ui é um conjunto de componentes React com design moderno e
+              minimalista. Os componentes são estilizados com{" "}
+              <a
+                href="https://tailwindcss.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-500 hover:text-blue-600"
+              >
+                Tailwind CSS
+              </a>
+              , um framework CSS de baixo nível que fornece utilitários para
+              construção de interfaces customizadas.
+            </CardDescription>
+          </CardHeader>
+
+          <CardContent className="rounded-md leading-normal max-w-[80%]">
+            Os componentes usam como primitivos os componentes do Radix UI, que
+            são componentes React acessíveis e com foco em teclado. Você pode
+            testar os componentes abaixo. Para mais informações, acesse a
+            documentação do{" "}
+            <a
+              href="https://ui.shadcn.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-500 hover:text-blue-600"
+            >
+              shadcn/ui
+            </a>
+            .
+          </CardContent>
+          <div id="toasts">
+            <ToastSimple />
+            <ToastWithAction />
+            <ToastDestructive />
+          </div>
+        </Card>
       </div>
     </section>
   );
