@@ -8,7 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import UserAccordion from "@/components/user-accordian";
+import UserAccordion from "@/components/accordions/user-accordion";
 import AuthButtons from "@/components/user-auth";
 import { User } from "@/config/user";
 
