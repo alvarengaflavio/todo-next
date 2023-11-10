@@ -211,7 +211,7 @@ const AboutPage = async () => {
             Atualmente no penúltimo semestre do curso de Análise e
             Desenvolvimento de Sistemas.
             <BaseAccordion
-              title="Entre em contato comigo através de um dos links"
+              title="Entre em contato comigo"
               className="w-full mx-auto my-6"
             >
               <div className="flex flex-col space-y-1 my-4 text-left">
