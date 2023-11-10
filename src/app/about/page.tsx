@@ -1,17 +1,16 @@
 import { ToastDestructive } from "@/components/toast-destructive";
 import { ToastSimple } from "@/components/toast-simple";
 import { ToastWithAction } from "@/components/toast-with-action";
-import AuthButtons from "@/components/user-auth";
-import { User } from "@/config/user";
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import UserAccordion from "@/components/user-accordian";
+import AuthButtons from "@/components/user-auth";
+import { User } from "@/config/user";
 
 const AboutPage = async () => {
   return (
