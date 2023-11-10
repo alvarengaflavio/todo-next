@@ -150,7 +150,7 @@ const AboutPage = async () => {
         <Card className="w-[90%] max-w-[64rem] flex flex-col items-center">
           <CardHeader className="flex flex-col items-center">
             <CardTitle className="text-xl md:text-2xl lg:text-3xl lg:mb-2 font-bold">
-              Prisma como ORM
+              Prisma ORM
             </CardTitle>
             <CardDescription className="max-w-[90%] leading-5 text-base sm:leading-6">
               Prisma é um ORM de código aberto. Ele contém as seguintes
