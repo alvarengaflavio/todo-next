@@ -13,6 +13,7 @@ import AuthButtons from "@/components/user-auth";
 import { User } from "@/config/user";
 import BaseAccordion from "@/components/accordions/base-accordion";
 import { siteConfig } from "@/config/site";
+import Link from "next/link";
 
 const AboutPage = async () => {
   return (
@@ -28,36 +29,36 @@ const AboutPage = async () => {
         <p className="max-w-[64rem] text-lg text-foreground">
           Este projeto foi criado com o objetivo de demonstrar algumas das
           funcionalidades do{" "}
-          <a
+          <Link
             href="https://nextjs.org/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-500 hover:text-blue-600"
           >
             Next.js 14
-          </a>{" "}
+          </Link>{" "}
           como rotas dinâmicas, geração de páginas estáticas, páginas dinâmicas,
           rotas de API e server actions. Para autenticação de usuários, foi
           utilizado o{" "}
-          <a
+          <Link
             href="https://next-auth.js.org/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-500 hover:text-blue-600"
           >
             NextAuth.js
-          </a>{" "}
+          </Link>{" "}
           implementado com um banco de dados para armazenamento de seções e
           usuários. Para a construção das componentes de interface, foi
           utilizado o{" "}
-          <a
+          <Link
             href="https://ui.shadcn.com/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-500 hover:text-blue-600"
           >
             shadcn/ui
-          </a>{" "}
+          </Link>{" "}
           , um conjunto de componentes React com design moderno e minimalista.
         </p>
 
@@ -104,14 +105,14 @@ const AboutPage = async () => {
             <CardDescription className="max-w-[90%] leading-5 text-base sm:leading-6">
               shadcn/ui é um conjunto de componentes React com design moderno e
               minimalista. Os componentes são estilizados com{" "}
-              <a
+              <Link
                 href="https://tailwindcss.com/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-500 hover:text-blue-600"
               >
                 Tailwind CSS
-              </a>
+              </Link>
               , um framework CSS de baixo nível que fornece utilitários para
               construção de interfaces customizadas.
             </CardDescription>
@@ -122,14 +123,14 @@ const AboutPage = async () => {
             são componentes React acessíveis e com foco em teclado. Você pode
             testar os componentes abaixo. Para mais informações, acesse a
             documentação do{" "}
-            <a
+            <Link
               href="https://ui.shadcn.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-500 hover:text-blue-600"
             >
               shadcn/ui
-            </a>
+            </Link>
             .
             <BaseAccordion
               title="Mostrar Componentes Toast construídos com shadcn/ui"
@@ -170,14 +171,14 @@ const AboutPage = async () => {
             Prisma permite a criação de modelos de dados e a geração de um
             cliente para acesso ao banco de dados. Para mais informações, acesse
             a documentação do{" "}
-            <a
+            <Link
               href="https://www.prisma.io/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-500 hover:text-blue-600"
             >
               Prisma
-            </a>
+            </Link>
             .
           </CardContent>
         </Card>
@@ -189,14 +190,14 @@ const AboutPage = async () => {
             </CardTitle>
             <CardDescription className="max-w-[90%] leading-5 text-base sm:leading-6">
               Este projeto foi criado por{" "}
-              <a
+              <Link
                 href="https://www.linkedin.com/in/flavio-alvarenga/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-500 hover:text-blue-600"
               >
                 Flávio Alvarenga Rodrigues
-              </a>
+              </Link>
               , um desenvolvedor web apaixonado por tecnologia e que adora
               aprender coisas novas. Trata-se de um projeto open source, então
               sinta-se livre para contribuir com o projeto.
@@ -207,25 +208,25 @@ const AboutPage = async () => {
             Entre em contato comigo através de um dos links abaixo:
             <p>
               <strong>LinkedIn:</strong>{" "}
-              <a
+              <Link
                 href={siteConfig.links.linkedIn}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-500 hover:text-blue-600"
               >
                 {siteConfig.links.linkedIn}
-              </a>
+              </Link>
             </p>
             <p>
               <strong>GitHub:</strong>{" "}
-              <a
+              <Link
                 href={siteConfig.links.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-500 hover:text-blue-600"
               >
                 {siteConfig.links.github}
-              </a>
+              </Link>
             </p>
           </CardContent>
         </Card>
