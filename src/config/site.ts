@@ -25,6 +25,6 @@ export const siteConfig = {
   links: {
     twitter: "https://twitter.com/banysan",
     github: "https://github.com/alvalenda",
-    linkedIn: "https://www.linkedin.com/in/flavio-alvarenga",
+    linkedIn: "https://www.linkedin.com/in/flavio-alvarenga/",
   },
 };
