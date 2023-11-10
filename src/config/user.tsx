@@ -5,7 +5,8 @@ import { useSession } from "next-auth/react";
 export const User = () => {
   const { data: session, status } = useSession();
 
-  if (status === "loading") return <p>Carregando...</p>;
+  if (status === "loading")
+    return <p className="mb-4 font-bold animate-pulse">carregando...</p>;
 
   const sessionList = JSON.stringify(session, null, 3).split("\n");
   if (sessionList.length === 1) {
