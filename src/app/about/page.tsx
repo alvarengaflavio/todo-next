@@ -131,7 +131,7 @@ const AboutPage = async () => {
             </a>
             .
             <BaseAccordion
-              title="Exemplo de componentes"
+              title="Mostrar Componentes Toast construídos com shadcn/ui"
               className="w-full mx-auto my-6"
             >
               Seguem abaixo alguns exemplos de componentes Toast do shadcn/ui. O
