@@ -2,7 +2,7 @@ export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
   name: "Todo App",
-  description: "Lista de Tarefas simples com Next.js 13 e TypeScript",
+  description: "Lista de Tarefas simples com Next.js 14 e TypeScript",
   mainNav: [
     {
       title: "Página Inicial",
@@ -25,5 +25,8 @@ export const siteConfig = {
   links: {
     twitter: "https://twitter.com/banysan",
     github: "https://github.com/alvalenda",
+    linkedIn: "https://www.linkedin.com/in/flavio-alvarenga/",
+    email: "mailto:flavio.alva@outlook.com",
+    discord: "flavioalvarenga",
   },
 };

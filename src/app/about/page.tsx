@@ -12,6 +12,8 @@ import UserAccordion from "@/components/accordions/user-accordion";
 import AuthButtons from "@/components/user-auth";
 import { User } from "@/config/user";
 import BaseAccordion from "@/components/accordions/base-accordion";
+import { siteConfig } from "@/config/site";
+import Link from "next/link";
 
 const AboutPage = async () => {
   return (
@@ -27,36 +29,36 @@ const AboutPage = async () => {
         <p className="max-w-[64rem] text-lg text-foreground">
           Este projeto foi criado com o objetivo de demonstrar algumas das
           funcionalidades do{" "}
-          <a
+          <Link
             href="https://nextjs.org/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-500 hover:text-blue-600"
           >
             Next.js 14
-          </a>{" "}
+          </Link>{" "}
           como rotas dinâmicas, geração de páginas estáticas, páginas dinâmicas,
           rotas de API e server actions. Para autenticação de usuários, foi
           utilizado o{" "}
-          <a
+          <Link
             href="https://next-auth.js.org/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-500 hover:text-blue-600"
           >
             NextAuth.js
-          </a>{" "}
+          </Link>{" "}
           implementado com um banco de dados para armazenamento de seções e
           usuários. Para a construção das componentes de interface, foi
           utilizado o{" "}
-          <a
+          <Link
             href="https://ui.shadcn.com/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-500 hover:text-blue-600"
           >
             shadcn/ui
-          </a>{" "}
+          </Link>{" "}
           , um conjunto de componentes React com design moderno e minimalista.
         </p>
 
@@ -103,14 +105,14 @@ const AboutPage = async () => {
             <CardDescription className="max-w-[90%] leading-5 text-base sm:leading-6">
               shadcn/ui é um conjunto de componentes React com design moderno e
               minimalista. Os componentes são estilizados com{" "}
-              <a
+              <Link
                 href="https://tailwindcss.com/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-500 hover:text-blue-600"
               >
                 Tailwind CSS
-              </a>
+              </Link>
               , um framework CSS de baixo nível que fornece utilitários para
               construção de interfaces customizadas.
             </CardDescription>
@@ -121,14 +123,14 @@ const AboutPage = async () => {
             são componentes React acessíveis e com foco em teclado. Você pode
             testar os componentes abaixo. Para mais informações, acesse a
             documentação do{" "}
-            <a
+            <Link
               href="https://ui.shadcn.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-500 hover:text-blue-600"
             >
               shadcn/ui
-            </a>
+            </Link>
             .
             <BaseAccordion
               title="Mostrar Componentes Toast construídos com shadcn/ui"
@@ -142,6 +144,119 @@ const AboutPage = async () => {
                 <ToastSimple />
                 <ToastWithAction />
                 <ToastDestructive />
+              </div>
+            </BaseAccordion>
+          </CardContent>
+        </Card>
+
+        <Card className="w-[90%] max-w-[64rem] flex flex-col items-center">
+          <CardHeader className="flex flex-col items-center">
+            <CardTitle className="text-xl md:text-2xl lg:text-3xl lg:mb-2 font-bold">
+              Prisma ORM
+            </CardTitle>
+            <CardDescription className="max-w-[90%] leading-5 text-base sm:leading-6">
+              Prisma é um ORM de código aberto. Ele contém as seguintes
+              ferramentas: Prisma Client (Construtor de consultas gerado
+              automaticamente e com verificação de tipo para Node.js e
+              TypeScript), Prisma Migrate (Sistema de migração) e Prisma Studio
+              (GUI para visualizar e editar dados no banco de dados).
+            </CardDescription>
+          </CardHeader>
+
+          <CardContent className="rounded-md leading-normal max-w-[80%]">
+            Neste projeto, foi utilizado o Prisma para conectar um banco de
+            dados <strong>PostgreSQL</strong>. O Prisma é um ORM (Object
+            Relational Mapper) que permite a conexão com diversos bancos de
+            dados, como PostgreSQL, MySQL, SQLite e Microsoft SQL Server. O
+            Prisma permite a criação de modelos de dados e a geração de um
+            cliente para acesso ao banco de dados. Para mais informações, acesse
+            a documentação do{" "}
+            <Link
+              href="https://www.prisma.io/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-500 hover:text-blue-600"
+            >
+              Prisma
+            </Link>
+            .
+          </CardContent>
+        </Card>
+
+        <Card className="w-[90%] max-w-[64rem] flex flex-col items-center">
+          <CardHeader className="flex flex-col items-center">
+            <CardTitle className="text-xl md:text-2xl lg:text-3xl lg:mb-2 font-bold">
+              Sobre o Autor
+            </CardTitle>
+            <CardDescription className="max-w-[90%] leading-5 text-base sm:leading-6">
+              Este projeto foi criado por{" "}
+              <Link
+                href={siteConfig.links.linkedIn}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-500 hover:text-blue-600"
+              >
+                Flávio Alvarenga Rodrigues
+              </Link>
+              , um desenvolvedor web apaixonado por tecnologia e que adora
+              aprender coisas novas. Trata-se de um projeto open source, então
+              sinta-se livre para contribuir com o projeto.
+            </CardDescription>
+          </CardHeader>
+
+          <CardContent className="rounded-md leading-normal max-w-[80%]">
+            Desenvolvedor Web Full Stack com conhecimento em desenvolvimento de
+            aplicações web utilizando tecnologias como React, Next.js, Node.js,
+            NestJs TypeScript, GraphQL, PostgreSQL, MongoDB entre outras.
+            Atualmente no penúltimo semestre do curso de Análise e
+            Desenvolvimento de Sistemas.
+            <BaseAccordion
+              title="Entre em contato comigo"
+              className="w-full mx-auto my-6"
+            >
+              <div className="flex flex-col space-y-1 my-4 text-left">
+                <p className="ml-10 sm:ml-14 md:ml-24 lg:ml-40 xl:ml-60 2xl:ml-64">
+                  <strong>LinkedIn:</strong>{" "}
+                  <Link
+                    href={siteConfig.links.linkedIn}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:text-blue-600"
+                  >
+                    {siteConfig.links.linkedIn}
+                  </Link>
+                </p>
+                <p className="ml-10 sm:ml-14 md:ml-24 lg:ml-40 xl:ml-60 2xl:ml-64">
+                  <strong>GitHub:</strong>{" "}
+                  <Link
+                    href={siteConfig.links.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:text-blue-600"
+                  >
+                    {siteConfig.links.github}
+                  </Link>
+                </p>
+                <p className="ml-10 sm:ml-14 md:ml-24 lg:ml-40 xl:ml-60 2xl:ml-64">
+                  <strong>E-Mail: </strong>
+                  <Link
+                    href={`${siteConfig.links.email}`}
+                    className="text-blue-500 hover:text-blue-600"
+                  >
+                    {siteConfig.links.email.replace("mailto:", "")}
+                  </Link>
+                </p>
+                <p className="ml-10 sm:ml-14 md:ml-24 lg:ml-40 xl:ml-60 2xl:ml-64">
+                  <strong>Discord:</strong> username{" "}
+                  <Link
+                    href="https://discord.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:text-blue-600"
+                  >
+                    {siteConfig.links.discord}
+                  </Link>
+                </p>
               </div>
             </BaseAccordion>
           </CardContent>
