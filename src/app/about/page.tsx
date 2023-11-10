@@ -11,7 +11,7 @@ import {
 import UserAccordion from "@/components/accordions/user-accordion";
 import AuthButtons from "@/components/user-auth";
 import { User } from "@/config/user";
-import ShadcnAccordion from "@/components/accordions/about-shadcn-accordion";
+import BaseAccordion from "@/components/accordions/base-accordion";
 
 const AboutPage = async () => {
   return (
@@ -130,7 +130,7 @@ const AboutPage = async () => {
               shadcn/ui
             </a>
             .
-            <ShadcnAccordion className="w-full mx-auto my-6">
+            <BaseAccordion className="w-full mx-auto my-6">
               Seguem abaixo alguns exemplos de componentes Toast do shadcn/ui. O
               componente Toast é um componente de notificação que pode ser
               utilizado para exibir mensagens de sucesso, erro, alerta e
@@ -140,7 +140,7 @@ const AboutPage = async () => {
                 <ToastWithAction />
                 <ToastDestructive />
               </div>
-            </ShadcnAccordion>
+            </BaseAccordion>
           </CardContent>
         </Card>
       </div>
