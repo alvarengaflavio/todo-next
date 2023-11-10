@@ -191,7 +191,7 @@ const AboutPage = async () => {
             <CardDescription className="max-w-[90%] leading-5 text-base sm:leading-6">
               Este projeto foi criado por{" "}
               <Link
-                href="https://www.linkedin.com/in/flavio-alvarenga/"
+                href={siteConfig.links.linkedIn}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-500 hover:text-blue-600"
@@ -206,28 +206,50 @@ const AboutPage = async () => {
 
           <CardContent className="rounded-md leading-normal max-w-[80%]">
             Entre em contato comigo através de um dos links abaixo:
-            <p>
-              <strong>LinkedIn:</strong>{" "}
-              <Link
-                href={siteConfig.links.linkedIn}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-500 hover:text-blue-600"
-              >
-                {siteConfig.links.linkedIn}
-              </Link>
-            </p>
-            <p>
-              <strong>GitHub:</strong>{" "}
-              <Link
-                href={siteConfig.links.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-500 hover:text-blue-600"
-              >
-                {siteConfig.links.github}
-              </Link>
-            </p>
+            <div className="flex flex-col space-y-1 my-4 text-left">
+              <p>
+                <strong>LinkedIn:</strong>{" "}
+                <Link
+                  href={siteConfig.links.linkedIn}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-500 hover:text-blue-600"
+                >
+                  {siteConfig.links.linkedIn}
+                </Link>
+              </p>
+              <p>
+                <strong>GitHub:</strong>{" "}
+                <Link
+                  href={siteConfig.links.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-500 hover:text-blue-600"
+                >
+                  {siteConfig.links.github}
+                </Link>
+              </p>
+              <p>
+                <strong>E-Mail: </strong>
+                <Link
+                  href={`${siteConfig.links.email}`}
+                  className="text-blue-500 hover:text-blue-600"
+                >
+                  {siteConfig.links.email.replace("mailto:", "")}
+                </Link>
+              </p>
+              <p>
+                <strong>Discord:</strong> username{" "}
+                <Link
+                  href="https://discord.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-500 hover:text-blue-600"
+                >
+                  {siteConfig.links.discord}
+                </Link>
+              </p>
+            </div>
           </CardContent>
         </Card>
       </div>
