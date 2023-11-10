@@ -10,28 +10,26 @@ import { cn } from "@/lib/utils";
 interface ShadcnAccordionProps {
   className?: string;
   children?: React.ReactNode;
+  title?: string;
 }
 
-const ShadcnAccordion: FC<ShadcnAccordionProps> = ({ className, children }) => {
+const ShadcnAccordion: FC<ShadcnAccordionProps> = ({
+  className,
+  children,
+  title,
+}) => {
   return (
     <Accordion type="single" className={cn(" ", className)} collapsible>
       <AccordionItem value="item-1">
-        <AccordionTrigger>Estou devidamente autenticado?</AccordionTrigger>
-        <AccordionContent>
-          Abaixo segue o status da autenticação do usuário seguido dos dados da
-          seção do usuário. Caso o usuário não esteja autenticado, será recebido
-          o objeto{" "}
-          <code className="bg-slate-200 dark:bg-slate-800 px-0.5 rounded-sm">
-            null
-          </code>
-          .
-          <br />
-          <br /> {children}
-          <br />
-        </AccordionContent>
+        <AccordionTrigger>{title}</AccordionTrigger>
+        <AccordionContent>{children}</AccordionContent>
       </AccordionItem>
     </Accordion>
   );
+};
+
+ShadcnAccordion.defaultProps = {
+  title: "Título do Accordion",
 };
 
 export default ShadcnAccordion;
