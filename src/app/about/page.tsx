@@ -12,6 +12,7 @@ import UserAccordion from "@/components/accordions/user-accordion";
 import AuthButtons from "@/components/user-auth";
 import { User } from "@/config/user";
 import BaseAccordion from "@/components/accordions/base-accordion";
+import { siteConfig } from "@/config/site";
 
 const AboutPage = async () => {
   return (
@@ -178,6 +179,54 @@ const AboutPage = async () => {
               Prisma
             </a>
             .
+          </CardContent>
+        </Card>
+
+        <Card className="w-[90%] max-w-[64rem] flex flex-col items-center">
+          <CardHeader className="flex flex-col items-center">
+            <CardTitle className="text-xl md:text-2xl lg:text-3xl lg:mb-2 font-bold">
+              Sobre o Autor
+            </CardTitle>
+            <CardDescription className="max-w-[90%] leading-5 text-base sm:leading-6">
+              Este projeto foi criado por{" "}
+              <a
+                href="https://www.linkedin.com/in/flavio-alvarenga/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-500 hover:text-blue-600"
+              >
+                Flávio Alvarenga Rodrigues
+              </a>
+              , um desenvolvedor web apaixonado por tecnologia e que adora
+              aprender coisas novas. Trata-se de um projeto open source, então
+              sinta-se livre para contribuir com o projeto.
+            </CardDescription>
+          </CardHeader>
+
+          <CardContent className="rounded-md leading-normal max-w-[80%]">
+            Entre em contato comigo através de um dos links abaixo:
+            <p>
+              <strong>LinkedIn:</strong>{" "}
+              <a
+                href={siteConfig.links.linkedIn}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-500 hover:text-blue-600"
+              >
+                {siteConfig.links.linkedIn}
+              </a>
+            </p>
+            <p>
+              <strong>GitHub:</strong>{" "}
+              <a
+                href={siteConfig.links.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-500 hover:text-blue-600"
+              >
+                {siteConfig.links.github}
+              </a>
+            </p>
           </CardContent>
         </Card>
       </div>
