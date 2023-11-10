@@ -38,7 +38,7 @@ const AboutPage = async () => {
           rotas de API e server actions. Para autenticação de usuários, foi
           utilizado o{" "}
           <a
-            href="https://tailwindcss.com/"
+            href="https://next-auth.js.org/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-500 hover:text-blue-600"
