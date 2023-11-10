@@ -146,6 +146,40 @@ const AboutPage = async () => {
             </BaseAccordion>
           </CardContent>
         </Card>
+
+        <Card className="w-[90%] max-w-[64rem] flex flex-col items-center">
+          <CardHeader className="flex flex-col items-center">
+            <CardTitle className="text-xl md:text-2xl lg:text-3xl lg:mb-2 font-bold">
+              Prisma como ORM
+            </CardTitle>
+            <CardDescription className="max-w-[90%] leading-5 text-base sm:leading-6">
+              Prisma é um ORM de código aberto. Ele contém as seguintes
+              ferramentas: Prisma Client (Construtor de consultas gerado
+              automaticamente e com verificação de tipo para Node.js e
+              TypeScript), Prisma Migrate (Sistema de migração) e Prisma Studio
+              (GUI para visualizar e editar dados no banco de dados).
+            </CardDescription>
+          </CardHeader>
+
+          <CardContent className="rounded-md leading-normal max-w-[80%]">
+            Neste projeto, foi utilizado o Prisma para conectar um banco de
+            dados <strong>PostgreSQL</strong>. O Prisma é um ORM (Object
+            Relational Mapper) que permite a conexão com diversos bancos de
+            dados, como PostgreSQL, MySQL, SQLite e Microsoft SQL Server. O
+            Prisma permite a criação de modelos de dados e a geração de um
+            cliente para acesso ao banco de dados. Para mais informações, acesse
+            a documentação do{" "}
+            <a
+              href="https://www.prisma.io/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-500 hover:text-blue-600"
+            >
+              Prisma
+            </a>
+            .
+          </CardContent>
+        </Card>
       </div>
     </section>
   );
