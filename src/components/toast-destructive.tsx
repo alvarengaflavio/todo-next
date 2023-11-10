@@ -39,7 +39,7 @@ export function ToastDestructive({}: ToastDestructiveProps) {
         });
       }}
     >
-      Excluir
+      Mostrar Toast Destrutivo
     </Button>
   );
 }
