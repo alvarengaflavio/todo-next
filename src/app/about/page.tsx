@@ -1,17 +1,17 @@
 import { ToastDestructive } from "@/components/toast-destructive";
 import { ToastSimple } from "@/components/toast-simple";
 import { ToastWithAction } from "@/components/toast-with-action";
-import AuthButtons from "@/components/user-auth";
-import { User } from "@/config/user";
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import UserAccordion from "@/components/user-accordian";
+import UserAccordion from "@/components/accordions/user-accordion";
+import AuthButtons from "@/components/user-auth";
+import { User } from "@/config/user";
+import BaseAccordion from "@/components/accordions/base-accordion";
 
 const AboutPage = async () => {
   return (
@@ -94,11 +94,58 @@ const AboutPage = async () => {
           </CardContent>
         </Card>
 
-        <div id="toasts">
-          <ToastSimple />
-          <ToastWithAction />
-          <ToastDestructive />
-        </div>
+        <Card className="w-[90%] max-w-[64rem] flex flex-col items-center">
+          <CardHeader className="flex flex-col items-center">
+            <CardTitle className="text-xl md:text-2xl lg:text-3xl lg:mb-2 font-bold">
+              Construção de Interfaces com shadcn/ui
+            </CardTitle>
+
+            <CardDescription className="max-w-[90%] leading-5 text-base sm:leading-6">
+              shadcn/ui é um conjunto de componentes React com design moderno e
+              minimalista. Os componentes são estilizados com{" "}
+              <a
+                href="https://tailwindcss.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-500 hover:text-blue-600"
+              >
+                Tailwind CSS
+              </a>
+              , um framework CSS de baixo nível que fornece utilitários para
+              construção de interfaces customizadas.
+            </CardDescription>
+          </CardHeader>
+
+          <CardContent className="rounded-md leading-normal max-w-[80%]">
+            Os componentes usam como primitivos os componentes do Radix UI, que
+            são componentes React acessíveis e com foco em teclado. Você pode
+            testar os componentes abaixo. Para mais informações, acesse a
+            documentação do{" "}
+            <a
+              href="https://ui.shadcn.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-500 hover:text-blue-600"
+            >
+              shadcn/ui
+            </a>
+            .
+            <BaseAccordion
+              title="Mostrar Componentes Toast construídos com shadcn/ui"
+              className="w-full mx-auto my-6"
+            >
+              Seguem abaixo alguns exemplos de componentes Toast do shadcn/ui. O
+              componente Toast é um componente de notificação que pode ser
+              utilizado para exibir mensagens de sucesso, erro, alerta e
+              informativas.
+              <div className="w-full flex align-middle justify-center gap-2 mt-6 mb-4">
+                <ToastSimple />
+                <ToastWithAction />
+                <ToastDestructive />
+              </div>
+            </BaseAccordion>
+          </CardContent>
+        </Card>
       </div>
     </section>
   );

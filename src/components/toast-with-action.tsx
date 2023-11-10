@@ -20,7 +20,7 @@ export function ToastWithAction() {
         });
       }}
     >
-      Mostrar Toast
+      Mostrar Toast com Ação
     </Button>
   );
 }
