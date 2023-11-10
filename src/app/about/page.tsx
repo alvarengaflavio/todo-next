@@ -205,51 +205,60 @@ const AboutPage = async () => {
           </CardHeader>
 
           <CardContent className="rounded-md leading-normal max-w-[80%]">
-            Entre em contato comigo através de um dos links abaixo:
-            <div className="flex flex-col space-y-1 my-4 text-left">
-              <p>
-                <strong>LinkedIn:</strong>{" "}
-                <Link
-                  href={siteConfig.links.linkedIn}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-500 hover:text-blue-600"
-                >
-                  {siteConfig.links.linkedIn}
-                </Link>
-              </p>
-              <p>
-                <strong>GitHub:</strong>{" "}
-                <Link
-                  href={siteConfig.links.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-500 hover:text-blue-600"
-                >
-                  {siteConfig.links.github}
-                </Link>
-              </p>
-              <p>
-                <strong>E-Mail: </strong>
-                <Link
-                  href={`${siteConfig.links.email}`}
-                  className="text-blue-500 hover:text-blue-600"
-                >
-                  {siteConfig.links.email.replace("mailto:", "")}
-                </Link>
-              </p>
-              <p>
-                <strong>Discord:</strong> username{" "}
-                <Link
-                  href="https://discord.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-500 hover:text-blue-600"
-                >
-                  {siteConfig.links.discord}
-                </Link>
-              </p>
-            </div>
+            Desenvolvedor Web Full Stack com conhecimento em desenvolvimento de
+            aplicações web utilizando tecnologias como React, Next.js, Node.js,
+            NestJs TypeScript, GraphQL, PostgreSQL, MongoDB entre outras.
+            Atualmente no penúltimo semestre do curso de Análise e
+            Desenvolvimento de Sistemas.
+            <BaseAccordion
+              title="Entre em contato comigo através de um dos links"
+              className="w-full mx-auto my-6"
+            >
+              <div className="flex flex-col space-y-1 my-4 text-left">
+                <p className="ml-10 sm:ml-14 md:ml-24 lg:ml-40 xl:ml-60 2xl:ml-64">
+                  <strong>LinkedIn:</strong>{" "}
+                  <Link
+                    href={siteConfig.links.linkedIn}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:text-blue-600"
+                  >
+                    {siteConfig.links.linkedIn}
+                  </Link>
+                </p>
+                <p className="ml-10 sm:ml-14 md:ml-24 lg:ml-40 xl:ml-60 2xl:ml-64">
+                  <strong>GitHub:</strong>{" "}
+                  <Link
+                    href={siteConfig.links.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:text-blue-600"
+                  >
+                    {siteConfig.links.github}
+                  </Link>
+                </p>
+                <p className="ml-10 sm:ml-14 md:ml-24 lg:ml-40 xl:ml-60 2xl:ml-64">
+                  <strong>E-Mail: </strong>
+                  <Link
+                    href={`${siteConfig.links.email}`}
+                    className="text-blue-500 hover:text-blue-600"
+                  >
+                    {siteConfig.links.email.replace("mailto:", "")}
+                  </Link>
+                </p>
+                <p className="ml-10 sm:ml-14 md:ml-24 lg:ml-40 xl:ml-60 2xl:ml-64">
+                  <strong>Discord:</strong> username{" "}
+                  <Link
+                    href="https://discord.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:text-blue-600"
+                  >
+                    {siteConfig.links.discord}
+                  </Link>
+                </p>
+              </div>
+            </BaseAccordion>
           </CardContent>
         </Card>
       </div>
