@@ -15,7 +15,7 @@ export function ToastSimple() {
         });
       }}
     >
-      Mostrar Toast
+      Mostrar Toast Simples
     </Button>
   );
 }
