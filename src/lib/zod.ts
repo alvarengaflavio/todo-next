@@ -8,9 +8,6 @@ export const createTodoSchema = z.object({
     })
     .max(45, {
       message: "deve ter no máximo 45 caracteres.",
-    })
-    .nonempty({
-      message: "a tarefa não pode ser vazia.",
     }),
 });
 
@@ -32,10 +29,7 @@ export const userAuthSchema = z.object({
         message:
           "deve conter uma letra maiúscula, uma minúscula, um número e um caractere especial",
       }
-    )
-    .nonempty({
-      message: "a senha não pode ser vazia",
-    }),
+    ),
 });
 
 export const userCreateSchema = userAuthSchema
@@ -47,11 +41,8 @@ export const userCreateSchema = userAuthSchema
       })
       .max(45, {
         message: "deve ter no máximo 45 caracteres",
-      })
-      .nonempty({
-        message: "o nome não pode ser vazio",
       }),
-    confirmPassword: z.string().nonempty({
+    confirmPassword: z.string().min(1, {
       message: "a senha não pode ser vazia",
     }),
   })
@@ -68,9 +59,6 @@ export const userUpdateSchema = z.object({
     })
     .max(45, {
       message: "deve ter no máximo 45 caracteres",
-    })
-    .nonempty({
-      message: "o nome não pode ser vazio",
     }),
 
   username: z
@@ -100,10 +88,7 @@ export const userUpdatePasswordSchema = z
           message:
             "deve conter uma letra maiúscula, uma minúscula, um número e um caractere especial",
         }
-      )
-      .nonempty({
-        message: "a senha não pode ser vazia",
-      }),
+      ),
 
     newPassword: z
       .string()
@@ -119,12 +104,9 @@ export const userUpdatePasswordSchema = z
           message:
             "deve conter uma letra maiúscula, uma minúscula, um número e um caractere especial",
         }
-      )
-      .nonempty({
-        message: "a senha não pode ser vazia",
-      }),
+      ),
 
-    confirmPassword: z.string().nonempty({
+    confirmPassword: z.string().min(1, {
       message: "a senha não pode ser vazia",
     }),
   })
