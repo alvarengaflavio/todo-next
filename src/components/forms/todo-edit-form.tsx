@@ -53,13 +53,8 @@ const TodoEditForm: FC<TodoEditItemProps> = ({
       return toast({ title: "Nada foi alterado!" });
     }
 
-    console.log(data);
-    console.log(isCompleted);
-
     const _todo = { ...todo, title: data.title, done: isCompleted };
     const newTodo = await updateTodo(_todo);
-
-    console.log(newTodo);
 
     if (!newTodo || newTodo instanceof Error)
       return toast({
