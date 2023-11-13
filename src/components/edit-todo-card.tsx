@@ -37,7 +37,8 @@ const EditTodoCard: FC<EditTodoCardProps> = (props) => {
       <CardFooter className="flex justify-around align-bottom">
         <Toggle
           variant={"outline"}
-          className="flex justify-around align-bottom"
+          className="w-16 h-16 px-2 bg-background data-[state=on]:bg-primary transition-colors ease-in"
+          size={"lg"}
           pressed={footer === "true" ? true : false}
           onClick={() => {
             console.log("toggle");
