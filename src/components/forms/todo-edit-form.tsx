@@ -5,7 +5,7 @@ import { updateTodoSchema } from "@/lib/zod";
 import { Todo } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button, buttonVariants } from "../ui/button";
@@ -34,10 +34,12 @@ const TodoEditForm: FC<TodoEditItemProps> = ({
   handleEditing,
   handleTodo,
 }: TodoEditItemProps) => {
+  const [isCompleted, setIsCompleted] = useState<boolean>(todo.done ?? false);
+
   const form = useForm<z.infer<typeof updateTodoSchema>>({
     defaultValues: {
       title: todo.title ?? "",
-      completed: todo.done ?? false,
+      done: todo.done ?? false,
     },
     resolver: zodResolver(updateTodoSchema),
   });
@@ -46,13 +48,18 @@ const TodoEditForm: FC<TodoEditItemProps> = ({
     : getDateToLocale(todo.updatedAt);
 
   async function onSubmit(data: z.infer<typeof updateTodoSchema>) {
-    if (todo.title === data.title) {
+    if (todo.title === data.title && todo.done === isCompleted) {
       handleEditing();
       return toast({ title: "Nada foi alterado!" });
     }
 
-    const _todo = { ...todo, ...data };
+    console.log(data);
+    console.log(isCompleted);
+
+    const _todo = { ...todo, title: data.title, done: isCompleted };
     const newTodo = await updateTodo(_todo);
+
+    console.log(newTodo);
 
     if (!newTodo || newTodo instanceof Error)
       return toast({
@@ -122,13 +129,14 @@ const TodoEditForm: FC<TodoEditItemProps> = ({
         <CardDescription className="text-xl -mt-12 p-0">
           <Toggle
             variant={"default"}
-            className="px-2 translate-y-[-6px] text-xl font-normal bg-background data-[state=on]:bg-primary transition-colors ease-in"
-            pressed={todo.done ? true : false}
+            className="px-2 translate-y-[-6px] text-xl font-normal bg-background data-[state=on]:bg-primary data-[state=on]:text-secondary transition-colors ease-in"
+            pressed={isCompleted}
             onClick={() => {
               console.log("toggle");
+              setIsCompleted(() => !isCompleted);
             }}
           >
-            {todo.done ? `Completa` : `Incompleta`}
+            {isCompleted ? `Completa` : `Incompleta`}
           </Toggle>
         </CardDescription>
 
