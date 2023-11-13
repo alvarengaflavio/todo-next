@@ -20,7 +20,7 @@ export const updateTodoSchema = z.object({
     .max(45, {
       message: "deve ter no máximo 45 caracteres.",
     }),
-  completed: z.boolean(),
+  done: z.boolean(),
 });
 
 export const userAuthSchema = z.object({
