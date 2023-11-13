@@ -11,6 +11,18 @@ export const createTodoSchema = z.object({
     }),
 });
 
+export const updateTodoSchema = z.object({
+  title: z
+    .string()
+    .min(6, {
+      message: "deve ter no mínimo 6 caracteres.",
+    })
+    .max(45, {
+      message: "deve ter no máximo 45 caracteres.",
+    }),
+  completed: z.boolean(),
+});
+
 export const userAuthSchema = z.object({
   email: z.string().email({
     message: "o email deve ser válido",
