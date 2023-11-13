@@ -7,6 +7,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { FC } from "react";
+import { Toggle } from "./ui/toggle";
 
 interface EditTodoCardProps {
   id: number;
@@ -34,7 +35,16 @@ const EditTodoCard: FC<EditTodoCardProps> = (props) => {
       </CardContent>
 
       <CardFooter className="flex justify-around align-bottom">
-        <p>{footer === "true" ? "Completa" : "Incompleta"}</p>
+        <Toggle
+          variant={"outline"}
+          className="flex justify-around align-bottom"
+          pressed={footer === "true" ? true : false}
+          onClick={() => {
+            console.log("toggle");
+          }}
+        >
+          {footer === "true" ? "Completa" : "Incompleta"}
+        </Toggle>
       </CardFooter>
     </Card>
   );
