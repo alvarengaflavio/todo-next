@@ -128,7 +128,7 @@ const TodoEditForm: FC<TodoEditItemProps> = ({
               console.log("toggle");
             }}
           >
-            <span>{todo.done ? `Completa` : `Incompleta`}</span>
+            {todo.done ? `Completa` : `Incompleta`}
           </Toggle>
         </CardDescription>
 
