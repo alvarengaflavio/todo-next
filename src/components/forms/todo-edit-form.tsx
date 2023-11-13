@@ -1,10 +1,11 @@
+import { siteConfig } from "@/config/site";
 import { updateTodo } from "@/lib/axios-helper";
 import { getDateToLocale } from "@/lib/utils";
-import { createTodoSchema } from "@/lib/zod";
+import { updateTodoSchema } from "@/lib/zod";
 import { Todo } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button, buttonVariants } from "../ui/button";
@@ -19,8 +20,8 @@ import {
   FormMessage,
 } from "../ui/form";
 import { Input } from "../ui/input";
+import { Toggle } from "../ui/toggle";
 import { toast } from "../ui/use-toast";
-import { siteConfig } from "@/config/site";
 
 interface TodoEditItemProps {
   todo: Todo;
@@ -33,23 +34,26 @@ const TodoEditForm: FC<TodoEditItemProps> = ({
   handleEditing,
   handleTodo,
 }: TodoEditItemProps) => {
-  const form = useForm<z.infer<typeof createTodoSchema>>({
+  const [isCompleted, setIsCompleted] = useState<boolean>(todo.done ?? false);
+
+  const form = useForm<z.infer<typeof updateTodoSchema>>({
     defaultValues: {
       title: todo.title ?? "",
+      done: todo.done ?? false,
     },
-    resolver: zodResolver(createTodoSchema),
+    resolver: zodResolver(updateTodoSchema),
   });
   const date = !todo.done
     ? getDateToLocale(todo.createdAt)
     : getDateToLocale(todo.updatedAt);
 
-  async function onSubmit(data: z.infer<typeof createTodoSchema>) {
-    if (todo.title === data.title) {
+  async function onSubmit(data: z.infer<typeof updateTodoSchema>) {
+    if (todo.title === data.title && todo.done === isCompleted) {
       handleEditing();
       return toast({ title: "Nada foi alterado!" });
     }
 
-    const _todo = { ...todo, ...data };
+    const _todo = { ...todo, title: data.title, done: isCompleted };
     const newTodo = await updateTodo(_todo);
 
     if (!newTodo || newTodo instanceof Error)
@@ -118,7 +122,16 @@ const TodoEditForm: FC<TodoEditItemProps> = ({
         </CardContent>
 
         <CardDescription className="text-xl -mt-12 p-0">
-          <span>{todo.done ? `Completa` : `Incompleta`}</span>
+          <Toggle
+            variant={"default"}
+            className="px-2 translate-y-[-6px] text-xl text-primary font-normal bg-background data-[state=on]:bg-primary data-[state=on]:text-secondary transition-colors ease-in outline outline-2 outline-slate-400"
+            pressed={isCompleted}
+            onClick={() => {
+              setIsCompleted(() => !isCompleted);
+            }}
+          >
+            {isCompleted ? `Completa` : `Incompleta`}
+          </Toggle>
         </CardDescription>
 
         <CardFooter className="text-center text-lg text-slate-500">
