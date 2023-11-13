@@ -21,6 +21,7 @@ import {
 import { Input } from "../ui/input";
 import { toast } from "../ui/use-toast";
 import { siteConfig } from "@/config/site";
+import { Toggle } from "../ui/toggle";
 
 interface TodoEditItemProps {
   todo: Todo;
@@ -118,7 +119,17 @@ const TodoEditForm: FC<TodoEditItemProps> = ({
         </CardContent>
 
         <CardDescription className="text-xl -mt-12 p-0">
-          <span>{todo.done ? `Completa` : `Incompleta`}</span>
+          <Toggle
+            variant={"outline"}
+            className="w-16 h-16 px-2 bg-background data-[state=on]:bg-primary transition-colors ease-in"
+            size={"lg"}
+            pressed={todo.done ? true : false}
+            onClick={() => {
+              console.log("toggle");
+            }}
+          >
+            <span>{todo.done ? `Completa` : `Incompleta`}</span>
+          </Toggle>
         </CardDescription>
 
         <CardFooter className="text-center text-lg text-slate-500">
