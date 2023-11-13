@@ -1,6 +1,7 @@
+import { siteConfig } from "@/config/site";
 import { updateTodo } from "@/lib/axios-helper";
 import { getDateToLocale } from "@/lib/utils";
-import { createTodoSchema } from "@/lib/zod";
+import { updateTodoSchema } from "@/lib/zod";
 import { Todo } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
@@ -19,9 +20,8 @@ import {
   FormMessage,
 } from "../ui/form";
 import { Input } from "../ui/input";
-import { toast } from "../ui/use-toast";
-import { siteConfig } from "@/config/site";
 import { Toggle } from "../ui/toggle";
+import { toast } from "../ui/use-toast";
 
 interface TodoEditItemProps {
   todo: Todo;
@@ -34,17 +34,18 @@ const TodoEditForm: FC<TodoEditItemProps> = ({
   handleEditing,
   handleTodo,
 }: TodoEditItemProps) => {
-  const form = useForm<z.infer<typeof createTodoSchema>>({
+  const form = useForm<z.infer<typeof updateTodoSchema>>({
     defaultValues: {
       title: todo.title ?? "",
+      completed: todo.done ?? false,
     },
-    resolver: zodResolver(createTodoSchema),
+    resolver: zodResolver(updateTodoSchema),
   });
   const date = !todo.done
     ? getDateToLocale(todo.createdAt)
     : getDateToLocale(todo.updatedAt);
 
-  async function onSubmit(data: z.infer<typeof createTodoSchema>) {
+  async function onSubmit(data: z.infer<typeof updateTodoSchema>) {
     if (todo.title === data.title) {
       handleEditing();
       return toast({ title: "Nada foi alterado!" });
