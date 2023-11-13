@@ -6,7 +6,7 @@ import {
   BadRequestException,
   NotFoundException,
 } from "@/lib/exceptions";
-import { createTodoSchema } from "@/lib/zod";
+import { createTodoSchema, updateTodoSchema } from "@/lib/zod";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -29,8 +29,8 @@ export async function PATCH(req: NextRequest, context: Context) {
     if (!(await verifyCurrentUserHasAccessToTodo(params.todoId)))
       throw new AuthRequiredException("Usuário não tem acesso a tarefa");
 
-    const zBody = createTodoSchema.parse(json);
-    const data = { title: zBody.title };
+    const zBody = updateTodoSchema.parse(json);
+    const data = { title: zBody.title, done: zBody.done };
     const where = { id: params.todoId };
 
     const updatedTodo = await prisma.todo.update({ where, data });
