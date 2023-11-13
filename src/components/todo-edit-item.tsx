@@ -40,7 +40,7 @@ const TodoEditItem: FC<TodoEditItemProps> = ({
           className={
             todo.done
               ? "mx-auto text-xl bg-primary text-normal text-secondary w-[102px] py-[6px] rounded-md translate-y-[-6px]"
-              : "text-xl text-normal "
+              : "mx-auto text-xl text-normal w-[102px] py-[6px] rounded-md translate-y-[-6px]"
           }
         >
           <span>{todo.done ? `Completa` : `Incompleta`}</span>
