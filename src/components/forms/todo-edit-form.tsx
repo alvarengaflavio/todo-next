@@ -120,9 +120,8 @@ const TodoEditForm: FC<TodoEditItemProps> = ({
 
         <CardDescription className="text-xl -mt-12 p-0">
           <Toggle
-            variant={"outline"}
-            className="px-2 text-xl font-normal bg-background data-[state=on]:bg-primary transition-colors ease-in"
-            // size={"lg"}
+            variant={"default"}
+            className="px-2 translate-y-[-6px] text-xl font-normal bg-background data-[state=on]:bg-primary transition-colors ease-in"
             pressed={todo.done ? true : false}
             onClick={() => {
               console.log("toggle");
