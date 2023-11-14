@@ -78,7 +78,7 @@ const TodoEditForm: FC<TodoEditItemProps> = ({
 
   return (
     <>
-      <Card className="w-3/4 p-4 my-4 dark:shadow-foreground/10 shadow-md ">
+      <Card className="w-full lg:w-3/4 p-4 my-4 dark:shadow-foreground/10 shadow-md ">
         <CardContent className="text-4xl">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
@@ -100,7 +100,7 @@ const TodoEditForm: FC<TodoEditItemProps> = ({
                             id="title"
                             placeholder="atualizar tarefa"
                             type="text"
-                            className="text-4xl font-bold min-w-full text-center"
+                            className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-4xl font-bold min-w-full text-center resize-y"
                             autoFocus={true}
                             onKeyUp={(e) => {
                               if (e.key === "Escape") handleEditing();
