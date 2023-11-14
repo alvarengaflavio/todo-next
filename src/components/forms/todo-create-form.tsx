@@ -65,9 +65,9 @@ export function CreateTodoForm() {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="w-3/4 space-y-6"
+          className="w-full xl:w-3/4 space-y-6"
         >
-          <div className="flex h-[200px] w-[750px] justify-center items-center space-x-6">
+          <div className="flex h-[200px] xl:w-[725px] 2xl:w-[750px] justify-center items-center space-x-6">
             <FormField
               control={form.control}
               name="title"
