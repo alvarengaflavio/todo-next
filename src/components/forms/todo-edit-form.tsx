@@ -100,7 +100,7 @@ const TodoEditForm: FC<TodoEditItemProps> = ({
                             id="title"
                             placeholder="atualizar tarefa"
                             type="text"
-                            className="text-base sm:text-lg lg:text-4xl font-bold min-w-full text-center resize-y"
+                            className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-4xl font-bold min-w-full text-center resize-y"
                             autoFocus={true}
                             onKeyUp={(e) => {
                               if (e.key === "Escape") handleEditing();
