@@ -78,7 +78,7 @@ const TodoEditForm: FC<TodoEditItemProps> = ({
 
   return (
     <>
-      <Card className="w-3/4 p-4 my-4 dark:shadow-foreground/10 shadow-md ">
+      <Card className="w-full lg:w-3/4 p-4 my-4 dark:shadow-foreground/10 shadow-md ">
         <CardContent className="text-4xl">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
