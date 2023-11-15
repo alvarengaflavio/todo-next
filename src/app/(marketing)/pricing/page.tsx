@@ -62,7 +62,7 @@ export default function PricingPage() {
             </p>
           </div>
           <Link href="/login" className={cn(buttonVariants({ size: "lg" }))}>
-            Get Started
+            Assine Já
           </Link>
         </div>
       </div>
