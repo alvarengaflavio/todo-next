@@ -20,7 +20,7 @@ import {
   FormMessage,
 } from "../ui/form";
 import { Input } from "../ui/input";
-import { Toggle } from "../ui/toggle";
+import { Toggle } from "@/components/ui/toggle";
 import { toast } from "@/components/ui/use-toast";
 
 interface TodoEditItemProps {
