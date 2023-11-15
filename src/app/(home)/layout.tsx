@@ -10,7 +10,7 @@ export const metadata = {
   description: "Lista de todas as tarefas",
 };
 
-const Layout = async ({ children }: LayoutProps) => {
+const HomeLayout = async ({ children }: LayoutProps) => {
   return (
     <div className="flex min-h-screen flex-col space-y-6">
       <SiteHeader />
@@ -24,4 +24,4 @@ const Layout = async ({ children }: LayoutProps) => {
   );
 };
 
-export default Layout;
+export default HomeLayout;
