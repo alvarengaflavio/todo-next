@@ -21,7 +21,7 @@ import {
 } from "../ui/form";
 import { Input } from "../ui/input";
 import { Toggle } from "../ui/toggle";
-import { toast } from "../ui/use-toast";
+import { toast } from "@/components/ui/use-toast";
 
 interface TodoEditItemProps {
   todo: Todo;
