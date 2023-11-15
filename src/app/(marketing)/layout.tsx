@@ -6,11 +6,11 @@ interface LayoutProps {
 }
 
 export const metadata = {
-  title: "Lista de Tarefas",
-  description: "Lista de todas as tarefas",
+  title: "Preços e Planos",
+  description: "Veja os planos e preços do nosso produto",
 };
 
-const HomeLayout = async ({ children }: LayoutProps) => {
+const MarketingLayout = async ({ children }: LayoutProps) => {
   return (
     <div className="flex min-h-screen flex-col space-y-6">
       <SiteHeader />
@@ -24,4 +24,4 @@ const HomeLayout = async ({ children }: LayoutProps) => {
   );
 };
 
-export default HomeLayout;
+export default MarketingLayout;

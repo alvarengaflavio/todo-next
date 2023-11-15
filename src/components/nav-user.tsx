@@ -77,11 +77,13 @@ export function UserNav() {
             </DropdownMenuItem>
           </Link>
 
-          <DropdownMenuItem>
-            <CreditCard className="mr-2 h-4 w-4" />
-            <span>Pagamento</span>
-            <DropdownMenuShortcut>B</DropdownMenuShortcut>
-          </DropdownMenuItem>
+          <Link href={"/pricing"}>
+            <DropdownMenuItem>
+              <CreditCard className="mr-2 h-4 w-4" />
+              <span>Pagamento</span>
+              <DropdownMenuShortcut>B</DropdownMenuShortcut>
+            </DropdownMenuItem>
+          </Link>
 
           <Link href={"/preferences"}>
             <DropdownMenuItem>

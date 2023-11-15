@@ -89,7 +89,13 @@ const AboutPage = async () => {
             <strong>Criar Conta</strong> acessível através do botão{" "}
             <strong>Entrar</strong>. Caso já esteja logado, você pode clicar no
             botão <strong>Sair</strong> para encerrar a sessão.
-            <AuthButtons className="w-full mx-auto my-6" />
+            <BaseAccordion
+              title="Precisar Entrar ou Sair?"
+              className="w-full mx-auto my-6"
+            >
+              Use os botões abaixo para testar a autenticação.
+              <AuthButtons className="w-full mx-auto my-6" />
+            </BaseAccordion>
             <UserAccordion className="w-full mx-auto my-6">
               <User />
             </UserAccordion>

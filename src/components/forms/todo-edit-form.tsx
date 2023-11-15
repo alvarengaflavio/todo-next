@@ -1,3 +1,22 @@
+import { Button, buttonVariants } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+} from "@/components/ui/card";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Toggle } from "@/components/ui/toggle";
+import { toast } from "@/components/ui/use-toast";
 import { siteConfig } from "@/config/site";
 import { updateTodo } from "@/lib/axios-helper";
 import { getDateToLocale } from "@/lib/utils";
@@ -8,20 +27,6 @@ import Link from "next/link";
 import { FC, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Button, buttonVariants } from "../ui/button";
-import { Card, CardContent, CardDescription, CardFooter } from "../ui/card";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "../ui/form";
-import { Input } from "../ui/input";
-import { Toggle } from "../ui/toggle";
-import { toast } from "../ui/use-toast";
 
 interface TodoEditItemProps {
   todo: Todo;
