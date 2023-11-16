@@ -73,7 +73,7 @@ export default function PricingPage() {
         </p>
       </div>
 
-      <div className="grid w-full mt-10 items-start gap-10 rounded-lg border-8 border-foreground p-10 md:grid-cols-[1fr_200px]">
+      <div className="grid w-full mt-10 items-start gap-10 rounded-lg border outline outline-8 outline-foreground p-10 md:grid-cols-[1fr_200px]">
         <div className="grid gap-6">
           <h3 className="text-xl font-bold sm:text-2xl">
             Plano Gratuito{" "}
