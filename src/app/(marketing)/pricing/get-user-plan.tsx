@@ -44,7 +44,7 @@ const GetUserPlan: FC<GetUserPlanProps> = ({}) => {
     // setPlan(user.plan);
   }
 
-  const planName = plan?.name || "loading";
+  const planName = plan?.name || "basic";
   return (
     <>
       <div className="mx-auto flex w-full flex-col gap-4 md:max-w-[58rem]">
@@ -58,8 +58,8 @@ const GetUserPlan: FC<GetUserPlanProps> = ({}) => {
       </div>
       <div
         className={cn(
-          "grid w-full mt-10 items-start gap-10 rounded-lg border p-10 md:grid-cols-[1fr_200px]",
-          planName === "basic" ? addSelectedOutline : " "
+          "grid w-full items-start gap-10 rounded-lg border p-10 md:grid-cols-[1fr_200px]",
+          planName === "premium" ? addSelectedOutline : " "
         )}
       >
         <div className="grid gap-6">
