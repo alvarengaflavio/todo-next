@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { FC, useState } from "react";
-import PricingSkeleton from "./pricing-skeleton";
+import PricingSkeleton from "../../../components/skeletons/pricing-skeleton";
 import { redirect } from "next/navigation";
 
 interface GetUserPlanProps {}
