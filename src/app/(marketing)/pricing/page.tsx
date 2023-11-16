@@ -54,7 +54,7 @@ export default function PricingPage() {
             </li>
           </ul>
         </div>
-        <div className="flex flex-col gap-3 text-center">
+        <div className="flex flex-col gap-3 text-center md:ml-[-15px]">
           <div>
             <h4 className="text-7xl font-bold">{formattedValue}</h4>
             <p className="text-sm font-medium text-muted-foreground mt-1">
