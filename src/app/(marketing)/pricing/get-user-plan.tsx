@@ -40,8 +40,8 @@ const GetUserPlan: FC<GetUserPlanProps> = ({}) => {
 
   if (status === "authenticated") {
     const { user } = session;
-    // const { plan } = user;
-    // setPlan(user.plan);
+    // * const { plan } = user;
+    // * setPlan(user.plan);
   }
 
   const planName = plan?.name || "basic";
