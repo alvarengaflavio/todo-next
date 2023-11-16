@@ -1,4 +1,4 @@
-import PricingSkeleton from "../../../components/skeletons/pricing-skeleton";
+import PricingSkeleton from "@/components/skeletons/pricing-skeleton";
 
 export default async function LoadingPricingPage() {
   return (
