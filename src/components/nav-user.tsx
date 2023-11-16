@@ -15,8 +15,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { signIn, signOut, useSession } from "next-auth/react";
-import { Skeleton } from "./ui/skeleton";
 import Link from "next/link";
+import { Skeleton } from "./ui/skeleton";
 
 export function UserNav() {
   const { data: session, status } = useSession();
