@@ -73,7 +73,7 @@ export default function PricingPage() {
         </p>
       </div>
 
-      <div className="grid w-full mt-10 items-start gap-10 rounded-lg border p-10 md:grid-cols-[1fr_200px]">
+      <div className="grid w-full mt-10 items-start gap-10 rounded-lg border-8 border-foreground p-10 md:grid-cols-[1fr_200px]">
         <div className="grid gap-6">
           <h3 className="text-xl font-bold sm:text-2xl">
             Plano Gratuito{" "}
@@ -109,8 +109,14 @@ export default function PricingPage() {
               por tempo limitado
             </p>
           </div>
-          <Link href="/login" className={cn(buttonVariants({ size: "lg" }))}>
-            Assine Já
+          <Link
+            href="/login"
+            className={cn(
+              buttonVariants({ size: "lg", variant: "secondary" }),
+              "pointer-events-none"
+            )}
+          >
+            Seu Plano Atual
           </Link>
         </div>
       </div>
