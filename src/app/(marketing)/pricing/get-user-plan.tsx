@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 
 interface GetUserPlanProps {}
 
@@ -29,19 +29,29 @@ const GetUserPlan: FC<GetUserPlanProps> = ({}) => {
       currency: "BRL",
     })
     .replace(/\s/g, "");
+  const defaultPlan: Plan = {
+    id: "1",
+    name: "basic",
+    price: 0,
+    features: [],
+  };
+
+  useEffect(() => {
+    if (status === "authenticated") {
+      // *  const { user } = session;
+      // * const { plan } = user;
+      // * if (plan) {
+      // *  setPlan(plan);
+      // * } else {
+      setPlan(defaultPlan);
+      // * }
+    } else if (status === "unauthenticated") {
+      redirect("/login");
+    }
+  }, [status, session]);
 
   if (status === "loading") {
     return <PricingSkeleton />;
-  }
-
-  if (status === "unauthenticated") {
-    redirect("/login");
-  }
-
-  if (status === "authenticated") {
-    const { user } = session;
-    // * const { plan } = user;
-    // * setPlan(user.plan);
   }
 
   const planName = plan?.name || "basic";
