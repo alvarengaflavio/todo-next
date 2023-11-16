@@ -68,6 +68,48 @@ export default function LoadingPricingPage() {
           <strong>Testar a assinatura não resultará em cobrança.</strong>
         </p>
       </div>
+
+      <div className="grid w-full mt-10 items-start gap-10 rounded-lg border p-10 md:grid-cols-[1fr_200px]">
+        <div className="grid gap-6">
+          <h3 className="text-xl font-bold sm:text-2xl">
+            Plano Gratuito{" "}
+            <span className="text-sm font-medium text-muted-foreground mt-1">
+              por tempo limitado
+            </span>
+          </h3>
+          <ul className="grid gap-3 text-sm text-muted-foreground sm:grid-cols-2">
+            <li className="flex items-center">
+              <Icons.close className="mr-2 h-4 w-4" /> Tarefas ilimitadas
+            </li>
+            <li className="flex items-center">
+              <Icons.check className="mr-2 h-4 w-4" /> Avatares exclusivos
+            </li>
+            <li className="flex items-center">
+              <Icons.check className="mr-2 h-4 w-4" /> Acesso ao Discord
+            </li>
+            <li className="flex items-center">
+              <Icons.close className="mr-2 h-4 w-4" /> Prioridade de Acesso
+            </li>
+            <li className="flex items-center">
+              <Icons.close className="mr-2 h-4 w-4" /> Suporte Premium
+            </li>
+            <li className="flex items-center">
+              <Icons.close className="mr-2 h-4 w-4" /> Acesso a API
+            </li>
+          </ul>
+        </div>
+        <div className="flex flex-col gap-3 text-center md:ml-[-15px]">
+          <div>
+            <h4 className="text-7xl font-bold">Grátis</h4>
+            <p className="text-sm font-medium text-muted-foreground mt-1">
+              por tempo limitado
+            </p>
+          </div>
+          <Link href="/login" className={cn(buttonVariants({ size: "lg" }))}>
+            Assine Já
+          </Link>
+        </div>
+      </div>
     </section>
   );
 }
