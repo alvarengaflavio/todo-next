@@ -1,13 +1,13 @@
 "use client";
 
 import { Icons } from "@/components/icons";
+import PricingSkeleton from "@/components/skeletons/pricing-skeleton";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import { FC, useState } from "react";
-import PricingSkeleton from "@/components/skeletons/pricing-skeleton";
 import { redirect } from "next/navigation";
+import { FC, useState } from "react";
 
 interface GetUserPlanProps {}
 
