@@ -57,7 +57,13 @@ export default function LoadingPricingPage() {
               plano mensal
             </p>
           </div>
-          <Link href="/login" className={cn(buttonVariants({ size: "lg" }))}>
+          <Link
+            href="/login"
+            className={cn(
+              buttonVariants({ size: "lg", variant: "secondary" }),
+              "pointer-events-none"
+            )}
+          >
             Assine Já
           </Link>
         </div>
@@ -105,7 +111,13 @@ export default function LoadingPricingPage() {
               por tempo limitado
             </p>
           </div>
-          <Link href="/login" className={cn(buttonVariants({ size: "lg" }))}>
+          <Link
+            href="/login"
+            className={cn(
+              buttonVariants({ size: "lg", variant: "secondary" }),
+              "pointer-events-none"
+            )}
+          >
             Assine Já
           </Link>
         </div>
