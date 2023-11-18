@@ -1,7 +1,4 @@
 import UserAuthForm from "@/components/forms/user-auth-form";
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import Link from "next/link";
 import { FC } from "react";
 
 interface PageProps {}
