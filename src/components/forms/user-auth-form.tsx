@@ -50,7 +50,7 @@ const UserAuthForm: FC<AuthFormProps> = ({}) => {
   return (
     <Card className="p-4 my-4 mx-auto dark:shadow-foreground/10 shadow-md ">
       <CardHeader className="px-0 py-2 text-lg font-normal text-center">
-        <span>Faça seu login</span>
+        <span className="text-2xl md:text-3xl font-light">Faça seu login</span>
       </CardHeader>
       <CardContent className="text-xl">
         <Form {...form}>
