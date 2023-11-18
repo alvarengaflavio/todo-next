@@ -50,7 +50,7 @@ const UserAuthForm: FC<AuthFormProps> = ({}) => {
   return (
     <Card className="p-4 my-4 mx-auto dark:shadow-foreground/10 shadow-md ">
       <CardHeader className="px-0 py-2 text-lg font-normal text-center">
-        <span>Faça seu login</span>
+        <span className="text-2xl md:text-3xl font-light">Faça seu login</span>
       </CardHeader>
       <CardContent className="text-xl">
         <Form {...form}>
@@ -116,13 +116,23 @@ const UserAuthForm: FC<AuthFormProps> = ({}) => {
       </CardContent>
 
       <CardFooter className="text-center text-lg text-slate-500 pb-2">
-        <span className="min-w-full">
+        <span className=" min-w-full mt-[-15px]">
           Não tem uma conta?{" "}
           <Link
             href="/register"
             className={cn(buttonVariants({ variant: "link" }), "text-blue-700")}
           >
             Cadastre-se
+          </Link>
+          <br />
+          <Link
+            href="/"
+            className={cn(
+              buttonVariants({ variant: "outline" }),
+              ` w-full md:w-1/2 lg:w-2/5 mt-10 `
+            )}
+          >
+            Voltar
           </Link>
         </span>
       </CardFooter>

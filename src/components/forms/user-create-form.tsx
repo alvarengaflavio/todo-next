@@ -64,7 +64,9 @@ const UserCreateForm: FC<RegisterFormProps> = ({}) => {
   return (
     <Card className="p-4 my-4 mx-auto dark:shadow-foreground/10 shadow-md ">
       <CardHeader className="px-0 py-2 text-lg font-normal text-center">
-        <span>Crie novo usuário</span>
+        <span className="text-2xl md:text-3xl font-light">
+          Crie novo usuário
+        </span>
       </CardHeader>
       <CardContent className="text-xl">
         <Form {...form}>
@@ -181,13 +183,23 @@ const UserCreateForm: FC<RegisterFormProps> = ({}) => {
       </CardContent>
 
       <CardFooter className="text-center text-lg text-slate-500 pb-2">
-        <span className="min-w-full">
+        <span className="min-w-full mt-[-15px]">
           Voltar para a tela de login?{" "}
           <Link
             href="/login"
             className={cn(buttonVariants({ variant: "link" }), "text-blue-700")}
           >
             Entrar
+          </Link>
+          <br />
+          <Link
+            href="/"
+            className={cn(
+              buttonVariants({ variant: "outline" }),
+              ` w-full md:w-1/2 lg:w-2/5 mt-10 mb-4`
+            )}
+          >
+            Voltar
           </Link>
         </span>
       </CardFooter>
