@@ -15,7 +15,6 @@ const AuthLayout = async ({ children }: LayoutProps) => {
       <main className=" flex flex-col h-full items-center space-y-6 ">
         {children}
       </main>
-      <SiteFooter className="border-t sticky bottom-0 left-0" />
     </section>
   );
 };
