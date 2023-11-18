@@ -116,13 +116,23 @@ const UserAuthForm: FC<AuthFormProps> = ({}) => {
       </CardContent>
 
       <CardFooter className="text-center text-lg text-slate-500 pb-2">
-        <span className="min-w-full">
+        <span className=" min-w-full">
           Não tem uma conta?{" "}
           <Link
             href="/register"
             className={cn(buttonVariants({ variant: "link" }), "text-blue-700")}
           >
             Cadastre-se
+          </Link>
+          <br />
+          <Link
+            href="/"
+            className={cn(
+              buttonVariants({ variant: "outline" }),
+              ` w-full md:w-2/6 mt-4 `
+            )}
+          >
+            Voltar
           </Link>
         </span>
       </CardFooter>
