@@ -64,7 +64,9 @@ const UserCreateForm: FC<RegisterFormProps> = ({}) => {
   return (
     <Card className="p-4 my-4 mx-auto dark:shadow-foreground/10 shadow-md ">
       <CardHeader className="px-0 py-2 text-lg font-normal text-center">
-        <span>Crie novo usuário</span>
+        <span className="text-2xl md:text-3xl font-light">
+          Crie novo usuário
+        </span>
       </CardHeader>
       <CardContent className="text-xl">
         <Form {...form}>
