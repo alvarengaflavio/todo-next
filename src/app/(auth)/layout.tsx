@@ -9,7 +9,7 @@ export const metadata = {
   description: "Página de Autenticação",
 };
 
-const layout = async ({ children }: LayoutProps) => {
+const AuthLayout = async ({ children }: LayoutProps) => {
   return (
     <section className="h-screen overflow-hidden">
       <main className=" flex flex-col h-full items-center space-y-6 ">
@@ -20,4 +20,4 @@ const layout = async ({ children }: LayoutProps) => {
   );
 };
 
-export default layout;
+export default AuthLayout;
