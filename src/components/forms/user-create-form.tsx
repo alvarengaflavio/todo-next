@@ -181,13 +181,23 @@ const UserCreateForm: FC<RegisterFormProps> = ({}) => {
       </CardContent>
 
       <CardFooter className="text-center text-lg text-slate-500 pb-2">
-        <span className="min-w-full">
+        <span className="min-w-full mt-[-15px]">
           Voltar para a tela de login?{" "}
           <Link
             href="/login"
             className={cn(buttonVariants({ variant: "link" }), "text-blue-700")}
           >
             Entrar
+          </Link>
+          <br />
+          <Link
+            href="/"
+            className={cn(
+              buttonVariants({ variant: "outline" }),
+              ` w-full md:w-1/2 lg:w-2/5 mt-10 mb-4`
+            )}
+          >
+            Voltar
           </Link>
         </span>
       </CardFooter>
