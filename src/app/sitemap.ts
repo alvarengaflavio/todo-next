@@ -1,5 +1,3 @@
-import { Todo } from "@/types";
-
 export default async function sitemap() {
   const routes = [
     "",
@@ -10,6 +8,7 @@ export default async function sitemap() {
     "/about",
     "/account",
     "/preferences",
+    "/pricing",
   ].map((route) => ({
     url: `https://todo-next-alvalenda.vercel.app${route}`,
     lastModified: new Date().toISOString(),
