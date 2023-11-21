@@ -11,12 +11,7 @@ import { FC, useEffect, useState } from "react";
 
 interface GetUserPlanProps {}
 
-type Plan = {
-  id: string;
-  name: "basic" | "premium";
-  price: number;
-  features: string[];
-};
+type Plan = "basic" | "premium";
 
 const GetUserPlan: FC<GetUserPlanProps> = ({}) => {
   const { data: session, status } = useSession();
@@ -29,12 +24,7 @@ const GetUserPlan: FC<GetUserPlanProps> = ({}) => {
       currency: "BRL",
     })
     .replace(/\s/g, "");
-  const defaultPlan: Plan = {
-    id: "1",
-    name: "basic",
-    price: 0,
-    features: [],
-  };
+  const defaultPlan: Plan = "basic";
 
   useEffect(() => {
     if (status === "authenticated") {
@@ -54,7 +44,7 @@ const GetUserPlan: FC<GetUserPlanProps> = ({}) => {
     return <PricingSkeleton />;
   }
 
-  const planName = plan?.name || "basic";
+  const planName = plan || "basic";
   return (
     <>
       <div className="mx-auto flex w-full flex-col gap-4 md:max-w-[58rem]">
