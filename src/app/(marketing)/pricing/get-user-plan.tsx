@@ -52,16 +52,16 @@ const GetUserPlan: FC<GetUserPlanProps> = ({}) => {
     if (plan === "premium") {
       setPlan(() => plan);
       return toast({
-        title: "Plano PRO efetuado com sucesso.",
-        description: "Seu plano foi atualizado com sucesso.",
+        title: "Bem vindo ao PRO!",
+        description: "Você já pode aproveitar todos os benefícios!",
       });
     }
 
     if (plan === "basic") {
       setPlan(() => plan);
       return toast({
-        title: "Plano Gratuito efetuado com sucesso.",
-        description: "Você já pode começar a usar o TodoApp.",
+        title: "Bem vindo ao TodoApp!",
+        description: "Considere assinar o plano PRO. É muito melhor!",
       });
     }
 
