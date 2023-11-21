@@ -50,6 +50,7 @@ const GetUserPlan: FC<GetUserPlanProps> = ({}) => {
 
   const handleSubscribe = (plan: Plan) => {
     if (plan === "premium") {
+      setPlan(() => plan);
       return toast({
         title: "Plano PRO efetuado com sucesso.",
         description: "Seu plano foi atualizado com sucesso.",
@@ -57,6 +58,7 @@ const GetUserPlan: FC<GetUserPlanProps> = ({}) => {
     }
 
     if (plan === "basic") {
+      setPlan(() => plan);
       return toast({
         title: "Plano Gratuito efetuado com sucesso.",
         description: "Você já pode começar a usar o TodoApp.",
@@ -66,7 +68,7 @@ const GetUserPlan: FC<GetUserPlanProps> = ({}) => {
     return toast({
       title: "Erro ao efetuar assinatura.",
       description: "Por favor, tente novamente.",
-      action: <ToastAction altText="Try again">Try again</ToastAction>,
+      action: <ToastAction altText="Try again"> OK </ToastAction>,
       variant: "destructive",
     });
   };
@@ -192,6 +194,7 @@ const GetUserPlan: FC<GetUserPlanProps> = ({}) => {
               ),
               planName === "basic" ? " pointer-events-none" : " "
             )}
+            onClick={() => handleSubscribe("basic")}
           >
             {planName === "basic" ? "Plano Atual" : "Assine Já"}
           </Button>
