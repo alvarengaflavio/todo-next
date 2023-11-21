@@ -2,7 +2,9 @@
 
 import { Icons } from "@/components/icons";
 import PricingSkeleton from "@/components/skeletons/pricing-skeleton";
-import { buttonVariants } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { ToastAction } from "@/components/ui/toast";
+import { toast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/utils";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
@@ -45,6 +47,30 @@ const GetUserPlan: FC<GetUserPlanProps> = ({}) => {
   }
 
   const planName = plan || "basic";
+
+  const handleSubscribe = (plan: Plan) => {
+    if (plan === "premium") {
+      return toast({
+        title: "Plano PRO efetuado com sucesso.",
+        description: "Seu plano foi atualizado com sucesso.",
+      });
+    }
+
+    if (plan === "basic") {
+      return toast({
+        title: "Plano Gratuito efetuado com sucesso.",
+        description: "Você já pode começar a usar o TodoApp.",
+      });
+    }
+
+    return toast({
+      title: "Erro ao efetuar assinatura.",
+      description: "Por favor, tente novamente.",
+      action: <ToastAction altText="Try again">Try again</ToastAction>,
+      variant: "destructive",
+    });
+  };
+
   return (
     <>
       <div className="mx-auto flex w-full flex-col gap-4 md:max-w-[58rem]">
@@ -94,8 +120,7 @@ const GetUserPlan: FC<GetUserPlanProps> = ({}) => {
               plano mensal
             </p>
           </div>
-          <Link
-            href="/login"
+          <Button
             className={cn(
               buttonVariants(
                 planName === "premium"
@@ -104,9 +129,10 @@ const GetUserPlan: FC<GetUserPlanProps> = ({}) => {
               ),
               planName === "premium" ? " pointer-events-none" : " "
             )}
+            onClick={() => handleSubscribe("premium")}
           >
             {planName === "premium" ? "Plano Atual" : "Assine Já"}
-          </Link>
+          </Button>
         </div>
       </div>
       <div className="mx-auto flex w-full max-w-[58rem] flex-col gap-4">
@@ -157,8 +183,7 @@ const GetUserPlan: FC<GetUserPlanProps> = ({}) => {
               por tempo limitado
             </p>
           </div>
-          <Link
-            href="/login"
+          <Button
             className={cn(
               buttonVariants(
                 planName === "basic"
@@ -169,7 +194,7 @@ const GetUserPlan: FC<GetUserPlanProps> = ({}) => {
             )}
           >
             {planName === "basic" ? "Plano Atual" : "Assine Já"}
-          </Link>
+          </Button>
         </div>
       </div>
     </>
