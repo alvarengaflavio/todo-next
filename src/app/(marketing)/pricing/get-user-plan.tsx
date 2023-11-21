@@ -2,7 +2,9 @@
 
 import { Icons } from "@/components/icons";
 import PricingSkeleton from "@/components/skeletons/pricing-skeleton";
-import { buttonVariants } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { ToastAction } from "@/components/ui/toast";
+import { toast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/utils";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
@@ -11,12 +13,7 @@ import { FC, useEffect, useState } from "react";
 
 interface GetUserPlanProps {}
 
-type Plan = {
-  id: string;
-  name: "basic" | "premium";
-  price: number;
-  features: string[];
-};
+type Plan = "basic" | "premium";
 
 const GetUserPlan: FC<GetUserPlanProps> = ({}) => {
   const { data: session, status } = useSession();
@@ -29,12 +26,7 @@ const GetUserPlan: FC<GetUserPlanProps> = ({}) => {
       currency: "BRL",
     })
     .replace(/\s/g, "");
-  const defaultPlan: Plan = {
-    id: "1",
-    name: "basic",
-    price: 0,
-    features: [],
-  };
+  const defaultPlan: Plan = "basic";
 
   useEffect(() => {
     if (status === "authenticated") {
@@ -54,7 +46,33 @@ const GetUserPlan: FC<GetUserPlanProps> = ({}) => {
     return <PricingSkeleton />;
   }
 
-  const planName = plan?.name || "basic";
+  const planName = plan || "basic";
+
+  const handleSubscribe = (plan: Plan) => {
+    if (plan === "premium") {
+      setPlan(() => plan);
+      return toast({
+        title: "Bem vindo ao PRO!",
+        description: "Você já pode aproveitar todos os benefícios!",
+      });
+    }
+
+    if (plan === "basic") {
+      setPlan(() => plan);
+      return toast({
+        title: "Bem vindo ao TodoApp!",
+        description: "Considere assinar o plano PRO. É muito melhor!",
+      });
+    }
+
+    return toast({
+      title: "Erro ao efetuar assinatura.",
+      description: "Por favor, tente novamente.",
+      action: <ToastAction altText="Try again"> OK </ToastAction>,
+      variant: "destructive",
+    });
+  };
+
   return (
     <>
       <div className="mx-auto flex w-full flex-col gap-4 md:max-w-[58rem]">
@@ -104,8 +122,7 @@ const GetUserPlan: FC<GetUserPlanProps> = ({}) => {
               plano mensal
             </p>
           </div>
-          <Link
-            href="/login"
+          <Button
             className={cn(
               buttonVariants(
                 planName === "premium"
@@ -114,9 +131,10 @@ const GetUserPlan: FC<GetUserPlanProps> = ({}) => {
               ),
               planName === "premium" ? " pointer-events-none" : " "
             )}
+            onClick={() => handleSubscribe("premium")}
           >
             {planName === "premium" ? "Plano Atual" : "Assine Já"}
-          </Link>
+          </Button>
         </div>
       </div>
       <div className="mx-auto flex w-full max-w-[58rem] flex-col gap-4">
@@ -167,8 +185,7 @@ const GetUserPlan: FC<GetUserPlanProps> = ({}) => {
               por tempo limitado
             </p>
           </div>
-          <Link
-            href="/login"
+          <Button
             className={cn(
               buttonVariants(
                 planName === "basic"
@@ -177,9 +194,10 @@ const GetUserPlan: FC<GetUserPlanProps> = ({}) => {
               ),
               planName === "basic" ? " pointer-events-none" : " "
             )}
+            onClick={() => handleSubscribe("basic")}
           >
             {planName === "basic" ? "Plano Atual" : "Assine Já"}
-          </Link>
+          </Button>
         </div>
       </div>
     </>
