@@ -1,5 +1,3 @@
-import { SiteFooter } from "@/components/site-footer";
-
 interface LayoutProps {
   children: React.ReactNode;
 }
