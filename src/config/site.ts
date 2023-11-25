@@ -23,9 +23,9 @@ export const siteConfig = {
     },
   ],
   links: {
-    twitter: "https://twitter.com/banysan",
-    github: "https://github.com/alvalenda",
-    linkedIn: "https://www.linkedin.com/in/flavio-alvarenga/",
+    twitter: "https://twitter.com/import_flavio",
+    github: "https://github.com/alvarengaflavio",
+    linkedIn: "https://www.linkedin.com/in/flavio-alvarenga",
     email: "mailto:flavio.alva@outlook.com",
     discord: "flavioalvarenga",
   },
