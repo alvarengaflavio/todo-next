@@ -140,7 +140,7 @@ const GetUserPlan: FC<GetUserPlanProps> = ({}) => {
 
       <div
         className={cn(
-          "grid w-full mt-10 items-start gap-10 rounded-lg border p-10 md:grid-cols-[1fr_200px]",
+          "grid w-full mt-4 items-start gap-10 rounded-lg border p-10 md:grid-cols-[1fr_200px]",
           planName === "basic" ? addSelectedOutline : " "
         )}
       >
