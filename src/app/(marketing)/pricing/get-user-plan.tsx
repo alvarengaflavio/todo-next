@@ -7,7 +7,6 @@ import { ToastAction } from "@/components/ui/toast";
 import { toast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/utils";
 import { useSession } from "next-auth/react";
-import Link from "next/link";
 import { redirect } from "next/navigation";
 import { FC, useEffect, useState } from "react";
 
@@ -137,16 +136,10 @@ const GetUserPlan: FC<GetUserPlanProps> = ({}) => {
           </Button>
         </div>
       </div>
-      <div className="mx-auto flex w-full max-w-[58rem] flex-col gap-4">
-        <p className="max-w-[85%] leading-normal text-muted-foreground sm:leading-7">
-          Todo App é um app demonstrativo.{"  "}
-          <strong>Testar a assinatura não resultará em cobrança.</strong>
-        </p>
-      </div>
 
       <div
         className={cn(
-          "grid w-full mt-10 items-start gap-10 rounded-lg border p-10 md:grid-cols-[1fr_200px]",
+          "grid w-full mt-4 items-start gap-10 rounded-lg border p-10 md:grid-cols-[1fr_200px]",
           planName === "basic" ? addSelectedOutline : " "
         )}
       >
@@ -199,6 +192,13 @@ const GetUserPlan: FC<GetUserPlanProps> = ({}) => {
             {planName === "basic" ? "Plano Atual" : "Assine Já"}
           </Button>
         </div>
+      </div>
+
+      <div className="mx-auto flex w-full max-w-[58rem] flex-col gap-4">
+        <p className="max-w-[85%] leading-normal text-muted-foreground sm:leading-7">
+          Todo App é um app demonstrativo.{"  "}
+          <strong>Testar a assinatura não resultará em cobrança.</strong>
+        </p>
       </div>
     </>
   );
