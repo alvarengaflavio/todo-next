@@ -7,7 +7,6 @@ import { ToastAction } from "@/components/ui/toast";
 import { toast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/utils";
 import { useSession } from "next-auth/react";
-import Link from "next/link";
 import { redirect } from "next/navigation";
 import { FC, useEffect, useState } from "react";
 
