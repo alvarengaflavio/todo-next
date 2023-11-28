@@ -137,12 +137,6 @@ const GetUserPlan: FC<GetUserPlanProps> = ({}) => {
           </Button>
         </div>
       </div>
-      <div className="mx-auto flex w-full max-w-[58rem] flex-col gap-4">
-        <p className="max-w-[85%] leading-normal text-muted-foreground sm:leading-7">
-          Todo App é um app demonstrativo.{"  "}
-          <strong>Testar a assinatura não resultará em cobrança.</strong>
-        </p>
-      </div>
 
       <div
         className={cn(
@@ -199,6 +193,13 @@ const GetUserPlan: FC<GetUserPlanProps> = ({}) => {
             {planName === "basic" ? "Plano Atual" : "Assine Já"}
           </Button>
         </div>
+      </div>
+
+      <div className="mx-auto flex w-full max-w-[58rem] flex-col gap-4">
+        <p className="max-w-[85%] leading-normal text-muted-foreground sm:leading-7">
+          Todo App é um app demonstrativo.{"  "}
+          <strong>Testar a assinatura não resultará em cobrança.</strong>
+        </p>
       </div>
     </>
   );
