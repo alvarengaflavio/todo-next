@@ -36,7 +36,7 @@ export const userAuthSchema = z.object({
       message: "deve ter no máximo 45 caracteres",
     })
     .regex(
-      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{4,}$/,
+      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#!])[0-9a-zA-Z$*&@#!]{4,}$/,
       {
         message:
           "deve conter uma letra maiúscula, uma minúscula, um número e um caractere especial",
